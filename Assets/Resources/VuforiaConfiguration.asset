@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
-    vuforiaLicenseKey: Aatn+Uj/////AAABmZZp6QZ8v0ECoDhSPhklVvJwb1PpBIqTgz7o29DczoLeBM/k+MPaQ72srCD4ADVEQD+MNrN6PGEvRCCSh9FgMrXSYL+F/p8jEbQIWec9Rzmv04F+4bTzSG087KKk8qdVYL5zQomOXp2zZLHHm3Bg3HyQ1A/V8/7V6QFRTJ5Y0InSTIxBK003ZqErOZxd7rSMkIlbDuZ2YuLXmWQaP0iEuKfbdeCbl7uKouD4vlEocOfDStSW4IX11uaICZZcR08fOoIGnffVpv8Thi3qLaD/3lfeBxCCTHl2YdApTpbqPyTBLY2Ct70wdil1uOZ5PpUt6kdw81BFYOvx7lADGBY7y3c5I2YackSLWeLc//M7uWJe
-    ufoLicenseKey: QWVuT1JpLy8vLy8vQUFBQUtLNGdJcFFUbGtKNmtVL3Iybm5rUkFsY0pENFdLaGdJL3ExN09veGhubVhQWlBBbkZKK29mdnl0NUFsR2dpdVp6Qk5CaVNQdDloMmhsTDk1T2p2NWQvazhEcUpQK2VyUGlUMG1xSjB5YjR3R1d6VlNBREtvWE02R0cvcmZEVDkyQkRCeWI1c2cxeVYwZ0ZIK3RVd1hoaVhoZFNWNEw4dGxiSXpmRk5pV2JreXFGL3dCQjQ2bHIyVW45eXVpa2NjaTZyWHdIODE3akRYemhIZFZ1T1dzTmsya0V5ZlJtSjVvbUdYOGJubHFkdEgrWFpZY2tlVkpQN0laZ0s0OS85eVJaeG1ZQ2s1Vnp1MTRqdnc2L3BzTjJHS09wMkRoejQ4OGMzdDNqbHZ5a1hCUTdLY0E5ZWFVSmhQaklxNjZ6dm44aGtEaVpOV0FVczJJNit1RzBmTlNBUFk1MHlOa2d2YkRvY21EN1N4OWpwTzQ=
+    vuforiaLicenseKey: 
+    ufoLicenseKey: QVEzTExhVC8vLy8vQUFBQUtBV21XMVQrSzAzZG1kWFBjOGR2c0orTWFhRmRMQU9OYm53eG9QeHlZcmtRVlN2RS9wbmg3U2ovZzFvanVWZmU1Ykd5SWRncmpVWlhXckw4MG9tQVgyOVpsK2Jvb3M4Q0RKcFBQNVBpMy9GY3puTXFNNzltNjVWa1FGSGYzNjB1Y1dYN2NXcGwzWTJTQXJxVWNZT2R1Vnk2bmlvRS9PUGtmWCtmQy9JNlYxamtlZWNRK3VEYUxBSDVNaVA2dmovbGdWVmhzcDN1UGdtTmVjajFZQk9pd0JscXcrc3Y1V1ZIOUIrZUdITU1mMUVHd2tuK3VtenZsaGJ3WCsweGdsN0YxcTc1Smw5VUZ6UzdZaFZlaWFmeXZ2MWZPUnpEZzI5cjc3eklUdGkrUFZwMXpjSFFNN1hjNjJmZXVycmFxdnhXQ1UzOGhhMlhxZVBGNE9TMUYvck8wajdybWJxdExOZkd2Nk1ubU9RK2Q2Q2M=
     delayedInitialization: 0
     cameraFocusModeSetting: 2
     cameraDeviceModeSetting: -1
@@ -24,7 +24,7 @@ MonoBehaviour:
     shareRecordingsInITunes: 0
     logLevel: 0
     version: 11.4.4
-    eulaAcceptedVersions: '{"Values":["","11.3","0.0","11.4"]}'
+    eulaAcceptedVersions: '{"Values":["","11.2","11.3","0.0","11.4"]}'
   database:
     disableModelExtraction: 0
   plugins:
