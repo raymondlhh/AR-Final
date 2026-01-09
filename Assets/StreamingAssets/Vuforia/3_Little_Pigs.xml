@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="ending" size="1.000000 0.772727" />
+    <ImageTarget name="wolfvspig3" size="1.000000 0.772727" />
+    <ImageTarget name="wolfvspig2" size="1.000000 0.772727" />
+    <ImageTarget name="wolfvspig1" size="1.000000 0.772727" />
+    <ImageTarget name="pig2build" size="1.000000 0.772727" />
+    <ImageTarget name="pig3build" size="1.000000 0.772727" />
+    <ImageTarget name="pig1build" size="1.000000 0.772727" />
+    <ImageTarget name="intro" size="1.000000 0.772727" />
+  </Tracking>
+</QCARConfig>
