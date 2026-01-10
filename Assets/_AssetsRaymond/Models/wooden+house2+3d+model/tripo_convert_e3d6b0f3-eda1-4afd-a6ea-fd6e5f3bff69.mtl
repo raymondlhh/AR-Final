@@ -1,0 +1,152 @@
+# Blender 4.5.0 MTL File: 'None'
+# www.blender.org
+
+newmtl Material_tripo_part_0
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_0_basecolor.JPEG
+
+newmtl Material_tripo_part_1
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_1_basecolor.JPEG
+
+newmtl Material_tripo_part_10
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_10_basecolor.JPEG
+
+newmtl Material_tripo_part_11
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_11_basecolor.JPEG
+
+newmtl Material_tripo_part_12
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_12_basecolor.JPEG
+
+newmtl Material_tripo_part_13
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_13_basecolor.JPEG
+
+newmtl Material_tripo_part_14
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_14_basecolor.JPEG
+
+newmtl Material_tripo_part_2
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_2_basecolor.JPEG
+
+newmtl Material_tripo_part_3
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_3_basecolor.JPEG
+
+newmtl Material_tripo_part_4
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_4_basecolor.JPEG
+
+newmtl Material_tripo_part_5
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_5_basecolor.JPEG
+
+newmtl Material_tripo_part_6
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_6_basecolor.JPEG
+
+newmtl Material_tripo_part_7
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_7_basecolor.JPEG
+
+newmtl Material_tripo_part_8
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_8_basecolor.JPEG
+
+newmtl Material_tripo_part_9
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd woodenhouse23dmodel_tripo_part_9_basecolor.JPEG
