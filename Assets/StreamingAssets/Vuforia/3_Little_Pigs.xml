@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="wireframe" size="1.000000 0.562500" />
     <ImageTarget name="ending" size="1.000000 0.772727" />
     <ImageTarget name="wolfvspig3" size="1.000000 0.772727" />
     <ImageTarget name="wolfvspig2" size="1.000000 0.772727" />
