@@ -46,13 +46,34 @@ public class TypeWriting : MonoBehaviour
         isTyping = true;
         textDisplay.text = "";
 
-        foreach (char letter in sentences[index])
+        string sentence = sentences[index];
+        int i = 0;
+
+        while (i < sentence.Length)
         {
-            textDisplay.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            // If this is a rich text tag
+            if (sentence[i] == '<')
+            {
+                int tagEnd = sentence.IndexOf('>', i);
+
+                if (tagEnd != -1)
+                {
+                    // Add the entire tag instantly
+                    textDisplay.text += sentence.Substring(i, tagEnd - i + 1);
+                    i = tagEnd + 1;
+                }
+            }
+            else
+            {
+                // Normal visible character
+                textDisplay.text += sentence[i];
+                i++;
+                yield return new WaitForSeconds(typingSpeed);
+            }
         }
 
         isTyping = false;
+        sound.Stop();
     }
 
     public void ChangeText()
@@ -62,6 +83,7 @@ public class TypeWriting : MonoBehaviour
             StopCoroutine(typingCoroutine);
             textDisplay.text = sentences[index];
             isTyping = false;
+            sound.Stop();
             return;
         }
         if (index < sentences.Length - 1)
