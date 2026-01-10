@@ -1,0 +1,2733 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 9
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.8161765, g: 0.8748436, b: 1, a: 1}
+  m_AmbientEquatorColor: {r: 0.41176468, g: 0.4458204, b: 0.4705882, a: 1}
+  m_AmbientGroundColor: {r: 0.8014706, g: 0.4537738, b: 0.59045464, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 1
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 12
+  m_GIWorkflowMode: 0
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 1
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 0
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 500
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 2
+    m_PVRDenoiserTypeDirect: 0
+    m_PVRDenoiserTypeIndirect: 0
+    m_PVRDenoiserTypeAO: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 0
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 3b0264d56445de94389a36d78be47e85,
+    type: 2}
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 3
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    buildHeightMesh: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &55822097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1848983758196772, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 55822098}
+  m_Layer: 0
+  m_Name: Fox R Clavicle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &55822098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4297889917940818, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55822097}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071067, y: 0.0002805408, z: 0.70710677, w: -0.00028251784}
+  m_LocalPosition: {x: -0.026090506, y: -0.009436264, z: -0.01478842}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2121399786}
+  m_Father: {fileID: 1154239711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &70608559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1380241139331468, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 70608560}
+  m_Layer: 0
+  m_Name: Fox Tongue03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &70608560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4094082051530384, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70608559}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000018569928, y: -0.000011111535, z: -0.014101998, w: 0.9999006}
+  m_LocalPosition: {x: -0.052970313, y: -0.000042114258, z: -1.4901161e-10}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 896508693}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &144724038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1737241813769892, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 144724039}
+  m_Layer: 0
+  m_Name: Fox Tail2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &144724039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4114304622441528, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144724038}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00000006137701, y: -0.00000015141245, z: 0.0004792177, w: 0.9999999}
+  m_LocalPosition: {x: -0.30346835, y: -0.00018505096, z: -4.9069054e-10}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1714787415}
+  m_Father: {fileID: 930393131}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &153667983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1130491269697126, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 153667984}
+  - component: {fileID: 153667986}
+  - component: {fileID: 153667985}
+  m_Layer: 0
+  m_Name: Eye Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &153667984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4972551059524066, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153667983}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00000028212995, y: 0.000000043711754, z: -0.0000012675908,
+    w: 1}
+  m_LocalPosition: {x: 0.000000038146972, y: 0.000000009536743, z: -0.00000015258789}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2026365943}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &153667985
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 23441973805022480, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153667983}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 19c6c3888e78eb540b3a91de2a3acff7, type: 2}
+  - {fileID: 2100000, guid: bcbcf2cb284ded64d8ff622dd8f63bd2, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &153667986
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 33805385361607342, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153667983}
+  m_Mesh: {fileID: 4300002, guid: aaf604aff9e0cec42af5ec4a07762cd8, type: 3}
+--- !u!1 &291614374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1320505923779688, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 291614375}
+  m_Layer: 0
+  m_Name: Fox R Finger1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &291614375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4365838113442360, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291614374}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0003961509, y: 0.0000399286, z: -0.10028177, w: 0.994959}
+  m_LocalPosition: {x: -0.07623823, y: 0.0011999893, z: 0.00009738445}
+  m_LocalScale: {x: 1, y: 0.9999998, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1496827839}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &348357594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1184527551091754, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 348357595}
+  m_Layer: 0
+  m_Name: Fox R Upper Lip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &348357595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4057497839219636, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348357594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 3.2748144e-14, y: 0.0000000011042759, z: -0.00039883333, w: 0.99999994}
+  m_LocalPosition: {x: -0.061216123, y: 0.28144142, z: -0.07762143}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &369909647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 369909649}
+  - component: {fileID: 369909648}
+  m_Layer: 0
+  m_Name: Back Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &369909648
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369909647}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 1
+  m_Shape: 0
+  m_Color: {r: 0.04957822, g: 0.4717509, b: 0.9632353, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &369909649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369909647}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.45652685, y: 0.22242227, z: -0.7435296, w: 0.43505773}
+  m_LocalPosition: {x: 1.67, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 133.282, y: 134.933, z: 40.347992}
+--- !u!1 &413580081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1324253388263242, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 413580082}
+  m_Layer: 0
+  m_Name: Fox R Finger0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &413580082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4259958207082130, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413580081}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.31541574, y: 0.2767667, z: -0.13844737, w: 0.8970761}
+  m_LocalPosition: {x: -0.022321815, y: 0.0049601365, z: 0.026106734}
+  m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1496827839}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &447224788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1541575129861452, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 447224789}
+  m_Layer: 0
+  m_Name: Fox L Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &447224789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4932658976639010, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447224788}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.19633403, y: 0.020073172, z: -0.0997079, w: 0.97524786}
+  m_LocalPosition: {x: -0.09693948, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 585315990}
+  m_Father: {fileID: 1089539599}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &460956917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 460956919}
+  - component: {fileID: 460956918}
+  m_Layer: 0
+  m_Name: Main Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &460956918
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460956917}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 1
+  m_Shape: 0
+  m_Color: {r: 0.7941176, g: 0.65599275, b: 0.50800174, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &460956919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460956917}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.8544295, y: -0.3900874, z: 0.17186297, w: 0.29706106}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 140.08, y: -4.6319885, z: 47.39499}
+--- !u!1 &498919845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1340602627371326, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 498919846}
+  m_Layer: 0
+  m_Name: Fox L Upper Lip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &498919846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4462811035716498, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498919845}
+  serializedVersion: 2
+  m_LocalRotation: {x: 3.2748144e-14, y: 0.0000000011042759, z: -0.00039883333, w: 0.99999994}
+  m_LocalPosition: {x: -0.061216123, y: 0.28144097, z: 0.07762299}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &528659439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1755492931831780, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 528659440}
+  m_Layer: 0
+  m_Name: Fox Jaw
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &528659440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4214995995335200, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528659439}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0003695646, y: 0.00014833812, z: 0.92619395, w: -0.3770472}
+  m_LocalPosition: {x: -0.09809791, y: 0.04198056, z: 0.00000007778598}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 956869931}
+  - {fileID: 1006586791}
+  - {fileID: 694632322}
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &539916980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1383729416288260, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 539916981}
+  m_Layer: 0
+  m_Name: Fox L Forearm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &539916981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4248580528979248, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539916980}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0000000010936283, y: 0.000000029793396, z: 0.063983805,
+    w: 0.997951}
+  m_LocalPosition: {x: -0.1264043, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1947025356}
+  m_Father: {fileID: 1788910438}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &585315989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1924828793426540, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 585315990}
+  m_Layer: 0
+  m_Name: Fox L Toe0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &585315990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4073193262067446, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585315989}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000043699995, y: -0.00000012488745, z: -0.7071069, w: 0.7071067}
+  m_LocalPosition: {x: -0.044631075, y: 0.12705377, z: -0.000000019073486}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 447224789}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &655016619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1608161236031098, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 655016620}
+  m_Layer: 0
+  m_Name: R Eye Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &655016620
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4334128566783448, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655016619}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.706607, y: 0.026593987, z: -0.7066061, w: 0.02659402}
+  m_LocalPosition: {x: -0.16105178, y: 0.11079006, z: -0.09366957}
+  m_LocalScale: {x: 0.9999999, y: 1.0000001, z: 0.6595008}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 765264189}
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &655160074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1672600589112454, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 655160075}
+  m_Layer: 0
+  m_Name: Fox R Upper Eyelid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &655160075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4543032393372114, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655160074}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.26886836, y: -0.14313668, z: -0.51582724, w: 0.80071473}
+  m_LocalPosition: {x: -0.15862091, y: 0.13004433, z: -0.11347747}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &663079266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1403696800977382, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 663079267}
+  m_Layer: 0
+  m_Name: Fox R Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &663079267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4781415579815126, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663079266}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.19633427, y: -0.020073092, z: -0.09970825, w: 0.9752478}
+  m_LocalPosition: {x: -0.09693948, y: -0.0000000047683715, z: 0}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1557952255}
+  m_Father: {fileID: 1842898860}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &694632321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1693012064790820, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 694632322}
+  m_Layer: 0
+  m_Name: Fox Tongue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &694632322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4123504312911262, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694632321}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00043719972, y: 0.0004373197, z: 0.10669316, w: 0.99429184}
+  m_LocalPosition: {x: -0.05836601, y: -0.011945877, z: -0.00013917465}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 896508693}
+  m_Father: {fileID: 528659440}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &736568284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1546363197681128, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 736568285}
+  m_Layer: 0
+  m_Name: Fox L Eyebrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &736568285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4820603589663010, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736568284}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.1735926, y: 0.5934941, z: 0.42391756, w: 0.66175854}
+  m_LocalPosition: {x: -0.25745788, y: 0.19410259, z: 0.08825357}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &757960628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1642279814566462, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 757960629}
+  m_Layer: 0
+  m_Name: Fox L Thigh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &757960629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4222597458386854, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757960628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.02449903, y: 0.99969983, z: -0.0000006525415, w: -0.0000005487836}
+  m_LocalPosition: {x: 0.0000001335144, y: 0.00000015258789, z: 0.10058595}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1089539599}
+  m_Father: {fileID: 1102265726}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &765264188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1556040909169534, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 765264189}
+  - component: {fileID: 765264191}
+  - component: {fileID: 765264190}
+  m_Layer: 0
+  m_Name: Eye Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &765264189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4029792758271442, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765264188}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000013295022, y: 0.00000021628284, z: 0.3173034, w: 0.9483241}
+  m_LocalPosition: {x: 0.000000057220458, y: -0.000000009536743, z: 0.00000015258789}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 655016620}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &765264190
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 23061952978432850, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765264188}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 19c6c3888e78eb540b3a91de2a3acff7, type: 2}
+  - {fileID: 2100000, guid: bcbcf2cb284ded64d8ff622dd8f63bd2, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &765264191
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 33621913898435358, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765264188}
+  m_Mesh: {fileID: 4300004, guid: aaf604aff9e0cec42af5ec4a07762cd8, type: 3}
+--- !u!1 &896508692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1064701316065344, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 896508693}
+  m_Layer: 0
+  m_Name: Fox Tongue02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &896508693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4991910041506980, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896508692}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000019586013, y: -0.000011111289, z: -0.014102072, w: 0.9999006}
+  m_LocalPosition: {x: -0.052970238, y: -0.00004219055, z: -7.4505804e-11}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 70608560}
+  m_Father: {fileID: 694632322}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &898799998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1777457730729766, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 898799999}
+  m_Layer: 0
+  m_Name: Fox L Finger1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &898799999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4696837767321144, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898799998}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0003961446, y: -0.00003992971, z: -0.10028174, w: 0.994959}
+  m_LocalPosition: {x: -0.07623821, y: 0.0011999512, z: -0.000097379685}
+  m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1947025356}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &904388521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1459311378468260, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 904388522}
+  m_Layer: 0
+  m_Name: Fox R Lower Eyelid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &904388522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4050678267622060, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904388521}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.18239203, y: -0.23872676, z: -0.792567, w: 0.5306414}
+  m_LocalPosition: {x: -0.16461967, y: 0.13167053, z: -0.115612015}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &930393130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1651960382266956, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 930393131}
+  m_Layer: 0
+  m_Name: Fox Tail1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &930393131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4849783334472544, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930393130}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000004034536, y: 0.000000061724975, z: -0.021531112,
+    w: 0.9997682}
+  m_LocalPosition: {x: -0.3775556, y: -0.00024139404, z: -6.6749634e-10}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 144724039}
+  m_Father: {fileID: 1548030230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &949596647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1928474544053484, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 949596649}
+  - component: {fileID: 949596648}
+  m_Layer: 0
+  m_Name: Fox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &949596648
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 95343879848139930, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949596647}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: aaf604aff9e0cec42af5ec4a07762cd8, type: 3}
+  m_Controller: {fileID: 9100000, guid: 28e5f64a9e336e641b51f618e964f1bc, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &949596649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4860947916750060, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949596647}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1671002338}
+  - {fileID: 2004984074}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &949838919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1564581463351300, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 949838920}
+  m_Layer: 0
+  m_Name: Fox R Cheek Hair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &949838920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4719907006872306, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949838919}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.55945283, y: 0.63624775, z: 0.3772657, w: -0.3739947}
+  m_LocalPosition: {x: -0.12502883, y: -0.032026432, z: -0.0881874}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &956869930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1258316362919370, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 956869931}
+  m_Layer: 0
+  m_Name: Fox L Lower Lip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &956869931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4678400688882458, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956869930}
+  serializedVersion: 2
+  m_LocalRotation: {x: 3.088951e-11, y: 0.0000019611973, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.15292114, y: -0.018060073, z: 0.052489728}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 528659440}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1005357590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1991917427368400, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1005357591}
+  m_Layer: 0
+  m_Name: Fox R Ear
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1005357591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4154928097295916, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005357590}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.060186237, y: -0.32138368, z: 0.2440102, w: 0.91298914}
+  m_LocalPosition: {x: -0.25975806, y: -0.08248262, z: -0.14663495}
+  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1666730913}
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1006586790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1917236705460634, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1006586791}
+  m_Layer: 0
+  m_Name: Fox R Lower Lip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1006586791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4874341715165822, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006586790}
+  serializedVersion: 2
+  m_LocalRotation: {x: 3.088951e-11, y: 0.0000019611973, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.15292114, y: -0.018059807, z: -0.052489825}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 528659440}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1011142202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1846114165067778, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1011142203}
+  m_Layer: 0
+  m_Name: Fox L Ear02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1011142203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4068143507669260, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011142202}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000007450581, y: 0.000000014901161, z: 1.110223e-16,
+    w: 1}
+  m_LocalPosition: {x: -0.14055206, y: -0.00008804321, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1566895522}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1024891187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1020312066247510, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1024891188}
+  m_Layer: 0
+  m_Name: Fox Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1024891188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4648178983412018, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024891187}
+  serializedVersion: 2
+  m_LocalRotation: {x: 1.4301588e-13, y: 0.00000013022441, z: -0.04695071, w: 0.99889725}
+  m_LocalPosition: {x: -0.1079763, y: 0.040066574, z: -6.737309e-11}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 528659440}
+  - {fileID: 1516081910}
+  - {fileID: 1566895522}
+  - {fileID: 736568285}
+  - {fileID: 1230109798}
+  - {fileID: 1082815138}
+  - {fileID: 1512395157}
+  - {fileID: 498919846}
+  - {fileID: 949838920}
+  - {fileID: 1005357591}
+  - {fileID: 2020565448}
+  - {fileID: 2074833787}
+  - {fileID: 904388522}
+  - {fileID: 655160075}
+  - {fileID: 348357595}
+  - {fileID: 2026365943}
+  - {fileID: 655016620}
+  m_Father: {fileID: 1066546119}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1066546118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1852669726079950, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1066546119}
+  m_Layer: 0
+  m_Name: Fox Neck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1066546119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4686385060551064, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066546118}
+  serializedVersion: 2
+  m_LocalRotation: {x: -3.2590667e-14, y: 0.00000011404368, z: -0.041117553, w: 0.9991543}
+  m_LocalPosition: {x: -0.09258274, y: -0.0040677213, z: -0.000000005621941}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1024891188}
+  m_Father: {fileID: 1154239711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1068135367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1809756351451588, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1068135368}
+  m_Layer: 0
+  m_Name: Fox R Thigh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1068135368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4713137320176848, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068135367}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.024500094, y: 0.99969983, z: -0.0000007791342, w: -0.00000081828284}
+  m_LocalPosition: {x: -0.0000001335144, y: -0.00000012636184, z: -0.10058595}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1842898860}
+  m_Father: {fileID: 1102265726}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1082815137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1099078536304726, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1082815138}
+  m_Layer: 0
+  m_Name: Fox L Lower Eyelid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1082815138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4657960547412192, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082815137}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18239212, y: 0.2387313, z: -0.7925657, w: 0.53064126}
+  m_LocalPosition: {x: -0.16461967, y: 0.13166988, z: 0.11561276}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1089539598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1920474405458004, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1089539599}
+  m_Layer: 0
+  m_Name: Fox L Calf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1089539599
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4208679813422630, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089539598}
+  serializedVersion: 2
+  m_LocalRotation: {x: -2.2351073e-14, y: 1.2520451e-14, z: 0.077305965, w: 0.9970074}
+  m_LocalPosition: {x: -0.15390998, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 447224789}
+  m_Father: {fileID: 757960629}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1102265725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1055606938006836, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1102265726}
+  m_Layer: 0
+  m_Name: Fox Pelvis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1102265726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4521815512949486, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102265725}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.49999934, w: 0.50000066}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 757960629}
+  - {fileID: 1068135368}
+  - {fileID: 1301977718}
+  - {fileID: 1548030230}
+  m_Father: {fileID: 1671002338}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1154239710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1121859022233728, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1154239711}
+  m_Layer: 0
+  m_Name: Fox Spine2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1154239711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4706970480699240, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154239710}
+  serializedVersion: 2
+  m_LocalRotation: {x: 1.2907014e-13, y: -0.000000070548275, z: 0.025435636, w: 0.99967647}
+  m_LocalPosition: {x: -0.08403759, y: -0.00007329941, z: -2.0329935e-10}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1282939809}
+  - {fileID: 1066546119}
+  - {fileID: 55822098}
+  m_Father: {fileID: 2060000512}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1230109797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1292951448596292, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1230109798}
+  m_Layer: 0
+  m_Name: Fox L Lip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1230109798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4149499069538354, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230109797}
+  serializedVersion: 2
+  m_LocalRotation: {x: 3.2748144e-14, y: 0.0000000011042759, z: -0.00039883333, w: 0.99999994}
+  m_LocalPosition: {x: -0.065492705, y: 0.14922118, z: 0.118293196}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1282939808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1991946833676670, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1282939809}
+  m_Layer: 0
+  m_Name: Fox L Clavicle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1282939809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4257381710167784, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282939808}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071067, y: -0.00028251784, z: 0.70710677, w: -0.0002805408}
+  m_LocalPosition: {x: -0.026090506, y: -0.009436349, z: 0.014788368}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1788910438}
+  m_Father: {fileID: 1154239711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1301977717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1077825596255250, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1301977718}
+  m_Layer: 0
+  m_Name: Fox Spine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1301977718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4454011467820974, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301977717}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000002080476, y: 0.000000693676, z: -0.000398159, w: 0.99999994}
+  m_LocalPosition: {x: -0.09608577, y: -0.000062658786, z: 0.00000013333865}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2060000512}
+  m_Father: {fileID: 1102265726}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1331822380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1824036281477104, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1331822381}
+  m_Layer: 0
+  m_Name: Fox L Finger0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1331822381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4291047685486582, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331822380}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31541574, y: -0.2767667, z: -0.13844737, w: 0.8970761}
+  m_LocalPosition: {x: -0.022321796, y: 0.0049601747, z: -0.026106736}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1947025356}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1496827838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1423800370622528, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1496827839}
+  m_Layer: 0
+  m_Name: Fox R Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1496827839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4742608618377848, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496827838}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.70649064, y: 0.02176358, z: -0.021746263, w: 0.7070534}
+  m_LocalPosition: {x: -0.15030351, y: 0, z: 0.000000038146972}
+  m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 413580082}
+  - {fileID: 291614375}
+  m_Father: {fileID: 1882906692}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1512395156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1990340885519958, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1512395157}
+  m_Layer: 0
+  m_Name: Fox L Upper Eyelid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1512395157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4460245889401116, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512395156}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.26886836, y: 0.14313956, z: -0.51582646, w: 0.8007147}
+  m_LocalPosition: {x: -0.15862091, y: 0.1300437, z: 0.113478184}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1516081909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1633711488602424, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1516081910}
+  m_Layer: 0
+  m_Name: Fox L Cheek Hair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1516081910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4626241253297080, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516081909}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.55945283, y: 0.6362498, z: -0.37726215, w: 0.37399468}
+  m_LocalPosition: {x: -0.12502883, y: -0.03202694, z: 0.08818726}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1548030229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1237837916127792, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1548030230}
+  m_Layer: 0
+  m_Name: Fox Tail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1548030230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4574360033808102, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548030229}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000003997979, y: 0.00000023412463, z: 0.69246316, w: 0.72145325}
+  m_LocalPosition: {x: -0.0060451506, y: -0.092919804, z: 0.00000021676114}
+  m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 930393131}
+  m_Father: {fileID: 1102265726}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1557952254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1738351056377482, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1557952255}
+  m_Layer: 0
+  m_Name: Fox R Toe0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1557952255
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4405806884845624, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557952254}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000042367347, y: -0.00000010514663, z: -0.7071069, w: 0.7071067}
+  m_LocalPosition: {x: -0.04463107, y: 0.12705377, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 663079267}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1566895521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1899740545261674, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1566895522}
+  m_Layer: 0
+  m_Name: Fox L Ear
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1566895522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4409551340753982, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566895521}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.06018622, y: 0.32138237, z: 0.244012, w: 0.9129892}
+  m_LocalPosition: {x: -0.25975806, y: -0.08248343, z: 0.14663453}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1011142203}
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1666730912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1545722830367290, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1666730913}
+  m_Layer: 0
+  m_Name: Fox R Ear02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1666730913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4364429740518438, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666730912}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0000000074505815, y: -0.000000014901163, z: -0.000000022351742,
+    w: 1}
+  m_LocalPosition: {x: -0.14055206, y: -0.00008804321, z: 0}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1005357591}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1671002337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1330426666711768, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1671002338}
+  m_Layer: 0
+  m_Name: Fox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1671002338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4315665284409436, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671002337}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.50000036, y: 0.49999967, z: 0.49999967, w: 0.50000036}
+  m_LocalPosition: {x: -0, y: 0.29055, z: -0.014349999}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1102265726}
+  m_Father: {fileID: 949596649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1714787414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1462517334883798, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1714787415}
+  m_Layer: 0
+  m_Name: Fox Tail3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1714787415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4895607426642962, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714787414}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00000038602633, y: -0.0000014658307, z: 0.13459744, w: 0.9909004}
+  m_LocalPosition: {x: -0.23230338, y: -0.00012470245, z: -2.0925654e-10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 144724039}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1788910437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1144467578941594, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1788910438}
+  m_Layer: 0
+  m_Name: Fox L UpperArm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1788910438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4462120413664792, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788910437}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.091413714, y: -0.4012198, z: -0.03160312, w: 0.9108609}
+  m_LocalPosition: {x: -0.09269736, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999994, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 539916981}
+  m_Father: {fileID: 1282939809}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1842898859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1972854133701484, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1842898860}
+  m_Layer: 0
+  m_Name: Fox R Calf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1842898860
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4648640569720036, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842898859}
+  serializedVersion: 2
+  m_LocalRotation: {x: 7.383443e-14, y: 1.2851683e-14, z: 0.077305354, w: 0.9970075}
+  m_LocalPosition: {x: -0.15391001, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 663079267}
+  m_Father: {fileID: 1068135368}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1882906691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1716165353541734, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1882906692}
+  m_Layer: 0
+  m_Name: Fox R Forearm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1882906692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4795183501768956, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882906691}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0000000035774619, y: -0.000000015161127, z: 0.0639838, w: 0.997951}
+  m_LocalPosition: {x: -0.12640427, y: 0, z: -0.000000038146972}
+  m_LocalScale: {x: 1.0000001, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1496827839}
+  m_Father: {fileID: 2121399786}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1947025355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1993823995813444, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1947025356}
+  m_Layer: 0
+  m_Name: Fox L Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1947025356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4891017775274708, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947025355}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.70649064, y: -0.02176357, z: -0.021746248, w: 0.7070534}
+  m_LocalPosition: {x: -0.1503035, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1331822381}
+  - {fileID: 898799999}
+  m_Father: {fileID: 539916981}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2004984073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1718059685092532, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2004984074}
+  - component: {fileID: 2004984075}
+  m_Layer: 0
+  m_Name: Fox Mesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2004984074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4264734995516232, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004984073}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 949596649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &2004984075
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 137430588725965506, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004984073}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 91234149c79b1c24bbf1b3e6dc935378, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 4300006, guid: aaf604aff9e0cec42af5ec4a07762cd8, type: 3}
+  m_Bones:
+  - {fileID: 2060000512}
+  - {fileID: 1548030230}
+  - {fileID: 1102265726}
+  - {fileID: 1301977718}
+  - {fileID: 1154239711}
+  - {fileID: 55822098}
+  - {fileID: 1282939809}
+  - {fileID: 1024891188}
+  - {fileID: 2121399786}
+  - {fileID: 1066546119}
+  - {fileID: 528659440}
+  - {fileID: 949838920}
+  - {fileID: 1006586791}
+  - {fileID: 2074833787}
+  - {fileID: 1882906692}
+  - {fileID: 2020565448}
+  - {fileID: 655160075}
+  - {fileID: 904388522}
+  - {fileID: 348357595}
+  - {fileID: 1005357591}
+  - {fileID: 736568285}
+  - {fileID: 1666730913}
+  - {fileID: 70608560}
+  - {fileID: 694632322}
+  - {fileID: 896508693}
+  - {fileID: 1496827839}
+  - {fileID: 413580082}
+  - {fileID: 291614375}
+  - {fileID: 1068135368}
+  - {fileID: 757960629}
+  - {fileID: 663079267}
+  - {fileID: 1842898860}
+  - {fileID: 930393131}
+  - {fileID: 144724039}
+  - {fileID: 1714787415}
+  - {fileID: 447224789}
+  - {fileID: 1557952255}
+  - {fileID: 1788910438}
+  - {fileID: 956869931}
+  - {fileID: 1230109798}
+  - {fileID: 1516081910}
+  - {fileID: 539916981}
+  - {fileID: 1512395157}
+  - {fileID: 1082815138}
+  - {fileID: 1566895522}
+  - {fileID: 498919846}
+  - {fileID: 1011142203}
+  - {fileID: 1947025356}
+  - {fileID: 1331822381}
+  - {fileID: 898799999}
+  - {fileID: 1089539599}
+  - {fileID: 585315990}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 1102265726}
+  m_AABB:
+    m_Center: {x: -0.3746782, y: -0.3676214, z: 0.0000009834766}
+    m_Extent: {x: 0.6738151, y: 0.83257294, z: 0.46277258}
+  m_DirtyAABB: 0
+--- !u!1 &2020565447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1824392317755506, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2020565448}
+  m_Layer: 0
+  m_Name: Fox R Eyebrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2020565448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4259860948374170, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020565447}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.17359255, y: -0.5934965, z: 0.42391413, w: 0.66175854}
+  m_LocalPosition: {x: -0.25745788, y: 0.1941031, z: -0.088252485}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2026365942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1157149126645788, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2026365943}
+  m_Layer: 0
+  m_Name: L Eye Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2026365943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4848218236297278, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026365942}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.706607, y: 0.026593987, z: -0.7066061, w: 0.02659402}
+  m_LocalPosition: {x: -0.16105185, y: 0.11078983, z: 0.09366957}
+  m_LocalScale: {x: 0.9999999, y: 1.0000001, z: 0.6595008}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 153667984}
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2055049546
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4719907006872306, guid: d37263e8af3d9af4c93d983080584417, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.3739947
+      objectReference: {fileID: 0}
+    - target: {fileID: 4719907006872306, guid: d37263e8af3d9af4c93d983080584417, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.55945283
+      objectReference: {fileID: 0}
+    - target: {fileID: 4719907006872306, guid: d37263e8af3d9af4c93d983080584417, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.63624775
+      objectReference: {fileID: 0}
+    - target: {fileID: 4719907006872306, guid: d37263e8af3d9af4c93d983080584417, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.3772657
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860947916750060, guid: d37263e8af3d9af4c93d983080584417, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860947916750060, guid: d37263e8af3d9af4c93d983080584417, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860947916750060, guid: d37263e8af3d9af4c93d983080584417, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860947916750060, guid: d37263e8af3d9af4c93d983080584417, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860947916750060, guid: d37263e8af3d9af4c93d983080584417, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860947916750060, guid: d37263e8af3d9af4c93d983080584417, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860947916750060, guid: d37263e8af3d9af4c93d983080584417, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860947916750060, guid: d37263e8af3d9af4c93d983080584417, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d37263e8af3d9af4c93d983080584417, type: 3}
+--- !u!1 &2060000511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1404433639235720, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2060000512}
+  m_Layer: 0
+  m_Name: Fox Spine1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2060000512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4591337198223650, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060000511}
+  serializedVersion: 2
+  m_LocalRotation: {x: -7.8731394e-14, y: -0.00000007054828, z: 0.025435634, w: 0.99967647}
+  m_LocalPosition: {x: -0.078707196, y: -0.00006683111, z: -1.8536639e-10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1154239711}
+  m_Father: {fileID: 1301977718}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2063942131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2063942135}
+  - component: {fileID: 2063942134}
+  - component: {fileID: 2063942133}
+  - component: {fileID: 2063942132}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &2063942132
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063942131}
+  m_Enabled: 1
+--- !u!124 &2063942133
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063942131}
+  m_Enabled: 1
+--- !u!20 &2063942134
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063942131}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 30
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &2063942135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063942131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.012549972, y: -0.96160764, z: 0.044616554, w: 0.27048594}
+  m_LocalPosition: {x: 1.66, y: 0.95, z: 2.93}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 5.313, y: -148.57901, z: 0}
+--- !u!1 &2074833786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1061937583321772, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2074833787}
+  m_Layer: 0
+  m_Name: Fox R Lip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2074833787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4615378239069068, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074833786}
+  serializedVersion: 2
+  m_LocalRotation: {x: 3.2748144e-14, y: 0.0000000011042759, z: -0.00039883333, w: 0.99999994}
+  m_LocalPosition: {x: -0.065492705, y: 0.14922184, z: -0.11829238}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1024891188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2121399785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1175360562213206, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2121399786}
+  m_Layer: 0
+  m_Name: Fox R UpperArm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2121399786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4102450234510186, guid: d37263e8af3d9af4c93d983080584417,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055049546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121399785}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.091413714, y: 0.4012198, z: -0.03160312, w: 0.9108609}
+  m_LocalPosition: {x: -0.09269736, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999994, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1882906692}
+  m_Father: {fileID: 55822098}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 2063942135}
+  - {fileID: 460956919}
+  - {fileID: 369909649}
+  - {fileID: 2055049546}
