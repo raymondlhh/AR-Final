@@ -1,33 +1,45 @@
-// Copyright (C) 2016 ricimi - All rights reserved.
-// This code can only be used under the standard Unity Asset Store End User License Agreement.
-// A Copy of the Asset Store EULA is available at http://unity3d.com/company/legal/as_terms.
-
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Ricimi
 {
-    // This class handles updating the sound UI widgets depending on the player's selection.
-    public class SoundManager : MonoBehaviour
+    public class SFXManager : MonoBehaviour
     {
-        private Slider m_soundSlider;
-        private GameObject m_soundButton;
+        public static SFXManager Instance;
 
-        private void Start()
+        private AudioSource audioSource;
+        private float sfxVolume = 1f;
+
+        private void Awake()
         {
-            m_soundSlider = GetComponent<Slider>();
-            m_soundSlider.value = PlayerPrefs.GetInt("sound_on");
-            m_soundButton = GameObject.Find("SoundButton/Button");
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            audioSource = GetComponent<AudioSource>();
+            audioSource.loop = false;
+
+            sfxVolume = PlayerPrefs.GetFloat("sfx_volume", 1f);
+            audioSource.volume = sfxVolume;
+
+            Debug.Log("[SFX] Initialized");
         }
 
-        public void SwitchSound()
+        public void PlaySFX(AudioClip clip)
         {
-            AudioListener.volume = m_soundSlider.value;
-            PlayerPrefs.SetInt("sound_on", (int)m_soundSlider.value);
-            if (m_soundButton != null)
-            {
-                m_soundButton.GetComponent<SoundButton>().ToggleSprite();
-            }
+            if (clip == null) return;
+            audioSource.PlayOneShot(clip, sfxVolume);
+        }
+
+        public void SetVolume(float volume)
+        {
+            sfxVolume = volume;
+            audioSource.volume = volume;
+            PlayerPrefs.SetFloat("sfx_volume", volume);
         }
     }
 }
