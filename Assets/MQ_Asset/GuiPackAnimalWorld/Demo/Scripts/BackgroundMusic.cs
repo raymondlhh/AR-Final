@@ -1,72 +1,109 @@
-// Copyright (C) 2016 ricimi - All rights reserved.
-// This code can only be used under the standard Unity Asset Store End User License Agreement.
-// A Copy of the Asset Store EULA is available at http://unity3d.com/company/legal/as_terms.
-
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Ricimi
 {
-    // This class manages the audio source used to play the looping background song
-    // in the demo. The player can choose to mute the music, and this preference is
-    // persisted via Unity's PlayerPrefs.
     public class BackgroundMusic : MonoBehaviour
     {
         public static BackgroundMusic Instance;
 
-        private AudioSource m_audioSource;
+        private AudioSource audioSource;
+        private Coroutine fadeRoutine;
+        private bool isPlaying = false;
 
-        private void Start()
+        private float targetVolume = 1f;
+
+        void Awake()
         {
             if (Instance != null)
             {
-                DestroyImmediate(gameObject);
+                Destroy(gameObject);
+                return;
             }
-            else
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            audioSource = GetComponent<AudioSource>();
+            audioSource.loop = true;
+
+            targetVolume = PlayerPrefs.GetFloat("music_volume", 1f);
+            audioSource.volume = 0f;
+            audioSource.Stop();
+
+            Debug.Log("[BGM] Initialized");
+        }
+
+        // =====================
+        // PUBLIC API
+        // =====================
+
+        public void PlayBGM()
+        {
+            if (isPlaying) return;
+            isPlaying = true;
+
+            Debug.Log($"[BGM] Play → targetVolume={targetVolume}");
+
+            StopFade();
+
+            audioSource.volume = 0f;
+            audioSource.Play();
+
+            fadeRoutine = StartCoroutine(FadeTo(targetVolume));
+        }
+
+        public void StopBGM()
+        {
+            if (!isPlaying) return;
+            isPlaying = false;
+
+            Debug.Log("[BGM] Stop");
+
+            StopFade();
+            fadeRoutine = StartCoroutine(FadeTo(0f, stopAfter: true));
+        }
+
+        public void SetVolume(float volume)
+        {
+            targetVolume = volume;
+            PlayerPrefs.SetFloat("music_volume", volume);
+
+            // If currently playing, update volume immediately
+            if (isPlaying)
             {
-                DontDestroyOnLoad(gameObject);
-                Instance = this;
-                m_audioSource = GetComponent<AudioSource>();
-                m_audioSource.ignoreListenerVolume = true;
-                m_audioSource.volume = PlayerPrefs.GetInt("music_on");
-                AudioListener.volume = PlayerPrefs.GetInt("sound_on");
+                audioSource.volume = volume;
             }
         }
 
-        public void FadeIn()
+        // =====================
+        // FADE
+        // =====================
+
+        IEnumerator FadeTo(float target, bool stopAfter = false)
         {
-            if (PlayerPrefs.GetInt("music_on") == 1)
+            float start = audioSource.volume;
+            float t = 0f;
+
+            while (t < 1f)
             {
-                StartCoroutine(FadeAudio(1.0f, Fade.In));
+                t += Time.deltaTime;
+                audioSource.volume = Mathf.Lerp(start, target, t);
+                yield return null;
             }
+
+            audioSource.volume = target;
+
+            if (stopAfter)
+                audioSource.Stop();
         }
 
-        public void FadeOut()
+        void StopFade()
         {
-            if (PlayerPrefs.GetInt("music_on") == 1)
+            if (fadeRoutine != null)
             {
-                StartCoroutine(FadeAudio(1.0f, Fade.Out));
-            }
-        }
-
-        private enum Fade
-        {
-            In,
-            Out
-        }
-
-        private IEnumerator FadeAudio(float time, Fade fadeType)
-        {
-            var start = fadeType == Fade.In ? 0.0f : 1.0f;
-            var end = fadeType == Fade.In ? 1.0f : 0.0f;
-            var i = 0.0f;
-            var step = 1.0f / time;
-
-            while (i <= 1.0f)
-            {
-                i += step * Time.deltaTime;
-                m_audioSource.volume = Mathf.Lerp(start, end, i);
-                yield return new WaitForSeconds(step * Time.deltaTime);
+                StopCoroutine(fadeRoutine);
+                fadeRoutine = null;
             }
         }
     }

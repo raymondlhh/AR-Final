@@ -1,4 +1,4 @@
-// Copyright (C) 2016 ricimi - All rights reserved.
+﻿// Copyright (C) 2016 ricimi - All rights reserved.
 // This code can only be used under the standard Unity Asset Store End User License Agreement.
 // A Copy of the Asset Store EULA is available at http://unity3d.com/company/legal/as_terms.
 
@@ -18,14 +18,18 @@ namespace Ricimi
             {
                 m_bgMusic = backgroundMusic.GetComponent<BackgroundMusic>();
                 if (m_bgMusic != null)
-                    m_bgMusic.FadeOut();
+                {
+                    m_bgMusic.StopBGM(); 
+                }
             }
         }
 
         private void OnDestroy()
         {
             if (m_bgMusic != null)
-                m_bgMusic.FadeIn();
+            {
+                m_bgMusic.PlayBGM(); 
+            }
         }
     }
 }
