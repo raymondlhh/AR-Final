@@ -5576,8 +5576,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 1954114925}
   mHiddenRoot: {fileID: 0}
-  mTargetName: wireframe
-  mDatasetName: Vuforia/3_Little_Pigs.xml
+  mTargetName: p3-minigame1-min
+  mDatasetName: Vuforia/AR-Final.xml
   mCastedBehaviour: {fileID: 1954114925}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
@@ -5640,13 +5640,13 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: wireframe
+  mTrackableName: p3-minigame1-min
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/3_Little_Pigs.xml
-  mAspectRatio: 0.5625
+  mDataSetPath: Vuforia/AR-Final.xml
+  mAspectRatio: 0.535817
   mImageTargetType: 0
   mWidth: 1
-  mHeight: 0.5625
+  mHeight: 0.535817
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0

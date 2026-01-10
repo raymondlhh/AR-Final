@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="p3-minigame1-min" size="1.000000 0.535817" />
+    <ImageTarget name="p10-qna-min" size="1.000000 0.535817" />
+    <ImageTarget name="p9-ending-min" size="1.000000 0.535817" />
+    <ImageTarget name="p8-narrative3-min" size="1.000000 0.535817" />
+    <ImageTarget name="p7-minigame3-min" size="1.000000 0.535817" />
+    <ImageTarget name="p6-narrative2-min" size="1.000000 0.535817" />
+    <ImageTarget name="p5-minigame2-min" size="1.000000 0.535817" />
+    <ImageTarget name="p4-narrative1-min" size="1.000000 0.535817" />
+    <ImageTarget name="p2-intro-min" size="1.000000 0.535817" />
+    <ImageTarget name="p1-cover-min" size="1.000000 0.535817" />
+  </Tracking>
+</QCARConfig>
