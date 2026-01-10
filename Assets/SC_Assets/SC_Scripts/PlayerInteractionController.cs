@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Handles player interaction with zones (collecting, processing, building)
-/// NOTE: This script requires the player GameObject to have either:
-/// 1. A Rigidbody component (set to IsKinematic = true) for trigger detection, OR
-/// 2. A separate child GameObject with a trigger collider that represents the player's detection area
-/// The CharacterController alone may not reliably trigger OnTriggerEnter events.
+/// NOTE: This script requires the player GameObject to have:
+/// 1. A Rigidbody component (now used by PlayerController for movement) - will auto-detect triggers, OR
+/// 2. A separate child GameObject with a trigger collider and ZoneDetectionHelper script
+/// The Rigidbody component (from PlayerController) should handle trigger detection automatically.
 /// </summary>
 public class PlayerInteractionController : MonoBehaviour
 {
@@ -22,9 +22,6 @@ public class PlayerInteractionController : MonoBehaviour
     }
 
     private ZoneType currentZone = ZoneType.None;
-    
-    // Reference to CharacterController (optional, for validation)
-    private CharacterController characterController;
 
     // Action button reference
     public Button actionButton;
@@ -59,7 +56,7 @@ public class PlayerInteractionController : MonoBehaviour
     public GameObject house;
     public GameObject baseObject; // Base object to hide when house appears
 
-    // Material tracking - track which materials are visible (for paired processing)
+    // Material tracking - track which materials are visible
     // Arrays to track visibility: true = visible, false = hidden
     private bool[] rawMaterialVisible = new bool[16];
     private bool[] processedMaterialVisible = new bool[8];
@@ -69,21 +66,32 @@ public class PlayerInteractionController : MonoBehaviour
     private int visibleRawMaterialCount = 0;
     private int visibleProcessedMaterialCount = 0;
     private int visibleBuildMaterialCount = 0;
+    
+    // Processing pairs: [processedMaterialIndex] = (rawMaterialIndex1, rawMaterialIndex2)
+    // Pattern: Raw 1+5→Processed1, Raw 2+6→Processed2, Raw 3+7→Processed3, Raw 4+8→Processed4,
+    //          Raw 9+13→Processed5, Raw 10+14→Processed6, Raw 11+15→Processed7, Raw 12+16→Processed8
+    private int[][] processingPairs = new int[8][]
+    {
+        new int[] {0, 4},   // Processed 0: Raw 1 (0) + Raw 5 (4)
+        new int[] {1, 5},   // Processed 1: Raw 2 (1) + Raw 6 (5)
+        new int[] {2, 6},   // Processed 2: Raw 3 (2) + Raw 7 (6)
+        new int[] {3, 7},   // Processed 3: Raw 4 (3) + Raw 8 (7)
+        new int[] {8, 12},  // Processed 4: Raw 9 (8) + Raw 13 (12)
+        new int[] {9, 13},  // Processed 5: Raw 10 (9) + Raw 14 (13)
+        new int[] {10, 14}, // Processed 6: Raw 11 (10) + Raw 15 (14)
+        new int[] {11, 15}  // Processed 7: Raw 12 (11) + Raw 16 (15)
+    };
 
     void Start()
     {
-        // Check for CharacterController and warn about trigger detection
-        characterController = GetComponent<CharacterController>();
-        if (characterController != null)
+        // Check for Rigidbody (now required for movement and trigger detection)
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb == null)
         {
-            // Check if there's a Rigidbody for trigger detection
-            Rigidbody rb = GetComponent<Rigidbody>();
-            if (rb == null)
-            {
-                Debug.LogWarning("PlayerInteractionController: CharacterController detected but no Rigidbody found. " +
-                    "For reliable trigger detection, add a Rigidbody component (set IsKinematic = true) to the player GameObject, " +
-                    "or use a child GameObject with a trigger collider for zone detection.");
-            }
+            Debug.LogWarning("PlayerInteractionController: No Rigidbody found. " +
+                "PlayerController now uses Rigidbody for movement. Please ensure the player has a Rigidbody component. " +
+                "For trigger detection, make sure the Rigidbody is set to IsKinematic = false (for physics-based movement) " +
+                "or use a child GameObject with a trigger collider for zone detection.");
         }
 
         // Auto-find Animator if not assigned
@@ -148,7 +156,7 @@ public class PlayerInteractionController : MonoBehaviour
         }
     }
 
-    // Unity's built-in trigger detection (works if GameObject has Rigidbody or is moved by CharacterController)
+    // Unity's built-in trigger detection (works with Rigidbody-based movement)
     void OnTriggerEnter(Collider other)
     {
         OnZoneTriggerEnter(other);
@@ -262,16 +270,15 @@ public class PlayerInteractionController : MonoBehaviour
 
     private void HandleProcessingZone()
     {
-        // Process 2 raw materials into 1 processed material
-        // Find the next pair of raw materials (in order: 0&1, 2&3, 4&5, etc.)
-        int pairIndex = FindNextRawMaterialPair();
+        // Process 2 raw materials into 1 processed material using specific predefined pairs
+        // Find the next available processing pair (check all 8 pairs in order)
+        int processedMaterialIndex = FindNextAvailableProcessingPair();
         
-        if (pairIndex != -1)
+        if (processedMaterialIndex != -1)
         {
-            // Valid action - process materials
-            // pairIndex represents which processed material we're creating (0-7)
-            int rawIndex1 = pairIndex * 2;      // First raw material of pair
-            int rawIndex2 = pairIndex * 2 + 1;  // Second raw material of pair
+            // Valid action - process materials using the specific pair
+            int rawIndex1 = processingPairs[processedMaterialIndex][0];  // First raw material of pair
+            int rawIndex2 = processingPairs[processedMaterialIndex][1];  // Second raw material of pair
             
             // Hide the two raw materials
             rawMaterials[rawIndex1].SetActive(false);
@@ -281,11 +288,11 @@ public class PlayerInteractionController : MonoBehaviour
             visibleRawMaterialCount -= 2;
 
             // Show the corresponding processed material
-            processedMaterials[pairIndex].SetActive(true);
-            processedMaterialVisible[pairIndex] = true;
+            processedMaterials[processedMaterialIndex].SetActive(true);
+            processedMaterialVisible[processedMaterialIndex] = true;
             visibleProcessedMaterialCount++;
             
-            Debug.Log($"Processed raw materials {rawIndex1 + 1}&{rawIndex2 + 1} into processed material {pairIndex + 1}. Raw: {visibleRawMaterialCount}, Processed: {visibleProcessedMaterialCount}");
+            Debug.Log($"Processed raw materials {rawIndex1 + 1} & {rawIndex2 + 1} into processed material {processedMaterialIndex + 1}. Raw: {visibleRawMaterialCount}, Processed: {visibleProcessedMaterialCount}");
             
             // Play valid animation
             PlayValidActionAnimation();
@@ -295,14 +302,14 @@ public class PlayerInteractionController : MonoBehaviour
         }
         else
         {
-            // Invalid action - not enough raw materials or all processed materials already created
+            // Invalid action - no complete pair available or all processed materials already created
             if (visibleRawMaterialCount < 2)
             {
-                Debug.Log("Not enough raw materials to process! Need 2 raw materials in a pair.");
+                Debug.Log("Not enough raw materials to process! Need 2 raw materials in a specific pair.");
             }
             else
             {
-                Debug.Log("All processed materials already created!");
+                Debug.Log("No complete processing pairs available or all processed materials already created!");
             }
             
             // Play invalid animation
@@ -315,41 +322,73 @@ public class PlayerInteractionController : MonoBehaviour
 
     private void HandleBuildingZone()
     {
-        // Build: 2 processed materials into 1 build material
-        // Find the next pair of processed materials (in order: 0&1, 2&3, 4&5, etc.)
-        int pairIndex = FindNextProcessedMaterialPair();
-        
-        if (pairIndex != -1)
+        // Build: Take any 2 visible processed materials and create next build material sequentially
+        // Check if we have at least 2 visible processed materials and haven't created all 8 build materials
+        if (visibleProcessedMaterialCount >= 2 && visibleBuildMaterialCount < buildMaterials.Length)
         {
-            // Valid action - build material
-            // pairIndex represents which build material we're creating (0-7)
-            int processedIndex1 = pairIndex * 2;      // First processed material of pair
-            int processedIndex2 = pairIndex * 2 + 1;  // Second processed material of pair
+            // Find any two visible processed materials
+            int processedIndex1 = -1;
+            int processedIndex2 = -1;
             
-            // Hide the two processed materials
-            processedMaterials[processedIndex1].SetActive(false);
-            processedMaterials[processedIndex2].SetActive(false);
-            processedMaterialVisible[processedIndex1] = false;
-            processedMaterialVisible[processedIndex2] = false;
-            visibleProcessedMaterialCount -= 2;
-
-            // Show the corresponding build material
-            buildMaterials[pairIndex].SetActive(true);
-            buildMaterialVisible[pairIndex] = true;
-            visibleBuildMaterialCount++;
-            
-            Debug.Log($"Built processed materials {processedIndex1 + 1}&{processedIndex2 + 1} into build material {pairIndex + 1}. Processed: {visibleProcessedMaterialCount}, Build: {visibleBuildMaterialCount}");
-
-            // Play valid animation
-            PlayValidActionAnimation();
-            
-            // Play valid build SFX
-            PlaySFX(buildValidSFX);
-
-            // Check if all 8 build materials are visible
-            if (visibleBuildMaterialCount >= buildMaterials.Length)
+            // Find first visible processed material
+            for (int i = 0; i < processedMaterials.Length; i++)
             {
-                CompleteHouseBuilding();
+                if (processedMaterialVisible[i])
+                {
+                    processedIndex1 = i;
+                    break;
+                }
+            }
+            
+            // Find second visible processed material
+            if (processedIndex1 != -1)
+            {
+                for (int i = processedIndex1 + 1; i < processedMaterials.Length; i++)
+                {
+                    if (processedMaterialVisible[i])
+                    {
+                        processedIndex2 = i;
+                        break;
+                    }
+                }
+            }
+            
+            // If we found two visible processed materials, create build material
+            if (processedIndex1 != -1 && processedIndex2 != -1)
+            {
+                // Hide the two processed materials (any two visible ones)
+                processedMaterials[processedIndex1].SetActive(false);
+                processedMaterials[processedIndex2].SetActive(false);
+                processedMaterialVisible[processedIndex1] = false;
+                processedMaterialVisible[processedIndex2] = false;
+                visibleProcessedMaterialCount -= 2;
+
+                // Show the next build material sequentially (Build 1, then 2, then 3... up to 8)
+                int nextBuildMaterialIndex = visibleBuildMaterialCount; // This will be 0, 1, 2... 7
+                buildMaterials[nextBuildMaterialIndex].SetActive(true);
+                buildMaterialVisible[nextBuildMaterialIndex] = true;
+                visibleBuildMaterialCount++;
+                
+                Debug.Log($"Built processed materials {processedIndex1 + 1} & {processedIndex2 + 1} into build material {nextBuildMaterialIndex + 1}. Processed: {visibleProcessedMaterialCount}, Build: {visibleBuildMaterialCount}");
+
+                // Play valid animation
+                PlayValidActionAnimation();
+                
+                // Play valid build SFX
+                PlaySFX(buildValidSFX);
+
+                // Check if all 8 build materials are visible
+                if (visibleBuildMaterialCount >= buildMaterials.Length)
+                {
+                    CompleteHouseBuilding();
+                }
+            }
+            else
+            {
+                // Shouldn't happen, but safety check
+                Debug.Log("Could not find two visible processed materials!");
+                PlayInvalidActionAnimation();
+                PlaySFX(actionInvalidSFX);
             }
         }
         else
@@ -357,7 +396,7 @@ public class PlayerInteractionController : MonoBehaviour
             // Invalid action - not enough processed materials or all build materials already created
             if (visibleProcessedMaterialCount < 2)
             {
-                Debug.Log("Not enough processed materials to build! Need 2 processed materials in a pair.");
+                Debug.Log("Not enough processed materials to build! Need at least 2 visible processed materials.");
             }
             else
             {
@@ -465,63 +504,35 @@ public class PlayerInteractionController : MonoBehaviour
     }
 
     /// <summary>
-    /// Finds the next pair of visible raw materials to process
-    /// Returns the processed material index (0-7) if a pair is found, -1 otherwise
-    /// Pairs are: raw 0&1 -> processed 0, raw 2&3 -> processed 1, etc.
+    /// Finds the next available processing pair using predefined pairs
+    /// Returns the processed material index (0-7) if a complete pair is found, -1 otherwise
+    /// Uses specific pairs: Raw 1+5→Processed1, Raw 2+6→Processed2, Raw 3+7→Processed3, Raw 4+8→Processed4,
+    ///                      Raw 9+13→Processed5, Raw 10+14→Processed6, Raw 11+15→Processed7, Raw 12+16→Processed8
     /// </summary>
-    private int FindNextRawMaterialPair()
+    private int FindNextAvailableProcessingPair()
     {
-        // Check each possible pair (8 pairs total: 0-1, 2-3, 4-5, 6-7, 8-9, 10-11, 12-13, 14-15)
-        for (int pairIndex = 0; pairIndex < processedMaterials.Length; pairIndex++)
+        // Check each processing pair in order
+        for (int processedIndex = 0; processedIndex < processingPairs.Length; processedIndex++)
         {
-            int rawIndex1 = pairIndex * 2;
-            int rawIndex2 = pairIndex * 2 + 1;
-            
             // Check if this processed material is already created
-            if (processedMaterialVisible[pairIndex])
+            if (processedMaterialVisible[processedIndex])
             {
                 continue; // Skip to next pair
             }
             
-            // Check if both raw materials in this pair are visible
+            // Get the raw material indices for this processed material
+            int rawIndex1 = processingPairs[processedIndex][0];
+            int rawIndex2 = processingPairs[processedIndex][1];
+            
+            // Check if both raw materials in this specific pair are visible and exist
             if (rawIndex1 < rawMaterials.Length && rawIndex2 < rawMaterials.Length &&
                 rawMaterialVisible[rawIndex1] && rawMaterialVisible[rawIndex2] &&
                 rawMaterials[rawIndex1] != null && rawMaterials[rawIndex2] != null)
             {
-                return pairIndex; // Found a valid pair
+                return processedIndex; // Found a valid complete pair
             }
         }
-        return -1; // No valid pair found
-    }
-
-    /// <summary>
-    /// Finds the next pair of visible processed materials to build
-    /// Returns the build material index (0-7) if a pair is found, -1 otherwise
-    /// Pairs are: processed 0&1 -> build 0, processed 2&3 -> build 1, etc.
-    /// </summary>
-    private int FindNextProcessedMaterialPair()
-    {
-        // Check each possible pair (4 pairs total: 0-1, 2-3, 4-5, 6-7)
-        for (int pairIndex = 0; pairIndex < buildMaterials.Length; pairIndex++)
-        {
-            int processedIndex1 = pairIndex * 2;
-            int processedIndex2 = pairIndex * 2 + 1;
-            
-            // Check if this build material is already created
-            if (buildMaterialVisible[pairIndex])
-            {
-                continue; // Skip to next pair
-            }
-            
-            // Check if both processed materials in this pair are visible
-            if (processedIndex1 < processedMaterials.Length && processedIndex2 < processedMaterials.Length &&
-                processedMaterialVisible[processedIndex1] && processedMaterialVisible[processedIndex2] &&
-                processedMaterials[processedIndex1] != null && processedMaterials[processedIndex2] != null)
-            {
-                return pairIndex; // Found a valid pair
-            }
-        }
-        return -1; // No valid pair found
+        return -1; // No complete pair found
     }
 
     // Animation helper methods
