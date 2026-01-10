@@ -21,6 +21,19 @@ public class Pig2InteractionController : MonoBehaviour
     }
 
     private ZoneType currentZone = ZoneType.None;
+    private ZoneType previousZone = ZoneType.None; // Track previous zone for debugging
+    
+    // Zone detection settings
+    [Header("Zone Detection Settings")]
+    [Tooltip("Enable continuous zone checking for more reliable detection")]
+    public bool useContinuousZoneCheck = true;
+    [Tooltip("How often to check for zone presence (in seconds)")]
+    public float zoneCheckInterval = 0.1f;
+    [Tooltip("Radius to check for zone colliders around the player")]
+    public float zoneCheckRadius = 1.5f;
+    
+    private float lastZoneCheckTime = 0f;
+    private List<Collider> currentZoneColliders = new List<Collider>(); // Track all zones we're currently in
 
     // Action button reference
     public Button actionButton;
@@ -47,28 +60,39 @@ public class Pig2InteractionController : MonoBehaviour
 
     [Header("Build Materials (27 total, initially hidden at Building Zone)")]
     public GameObject[] buildMaterials = new GameObject[27];
+    
+    [Header("Auto-Assignment Helpers")]
+    [Tooltip("Parent GameObject containing all raw materials (for auto-assignment). Leave empty to search entire scene.")]
+    public GameObject rawMaterialsParent;
+    [Tooltip("Parent GameObject containing all processed materials (for auto-assignment). Leave empty to search entire scene.")]
+    public GameObject processedMaterialsParent;
+    [Tooltip("Parent GameObject containing all build materials (for auto-assignment). Leave empty to search entire scene.")]
+    public GameObject buildMaterialsParent;
 
     [Header("Final Objects")]
     public GameObject house;
     public GameObject baseObject; // Base object to hide when house appears
 
-    [Header("Height Settings")]
-    [Tooltip("Height values for progressive growth/shrinking (Y position or scale)")]
-    public float heightOneThird = 0.02f;   // 1/3 height
-    public float heightTwoThirds = 0.04f;  // 2/3 height
-    public float heightFull = 0.06f;       // Full height
-    [Tooltip("If true, modify Y scale. If false, modify Y position (recommended: false for position-based)")]
-    public bool useScaleForHeight = false;  // Default to position-based (Y position)
-    [Tooltip("Original Y scale of raw materials (only used if useScaleForHeight is true)")]
-    public float originalRawMaterialScaleY = 1f;  // Original scale, used for ratio calculation
+    [Header("Scale Settings")]
+    [Tooltip("Original scale of raw materials (stored at Start, used for relative scaling)")]
+    public Vector3 originalRawMaterialScale = Vector3.one;  // Default (1,1,1), will be stored from first raw material
+    
+    // Scale ratios (relative to original size)
+    private const float SCALE_ONE_THIRD = 0.33f;    // 1/3 of original size
+    private const float SCALE_TWO_THIRDS = 0.67f;   // 2/3 of original size
+    private const float SCALE_FULL = 1.0f;          // Full original size
+    private const float SCALE_HIDDEN = 0.0f;        // Hidden (scale to 0)
 
-    // Material tracking - track visibility and height state
+    // Material tracking - track visibility and scale state
     private bool[] rawMaterialVisible = new bool[6];
     private bool[] processedMaterialVisible = new bool[36];
     private bool[] buildMaterialVisible = new bool[27];
     
-    // Track raw material height state: 0 = hidden, 1 = 1/3, 2 = 2/3, 3 = full
-    private int[] rawMaterialHeightState = new int[6]; // 0-3 for each raw material
+    // Track raw material scale state: 0 = hidden (scale 0), 1 = 1/3 scale, 2 = 2/3 scale, 3 = full scale
+    private int[] rawMaterialScaleState = new int[6]; // 0-3 for each raw material
+    
+    // Store original scales for each raw material (in case they differ)
+    private Vector3[] originalRawMaterialScales = new Vector3[6];
     
     
     // Counters for quick checks
@@ -77,11 +101,42 @@ public class Pig2InteractionController : MonoBehaviour
 
     void Start()
     {
-        // Check for Rigidbody
+        // Check for Rigidbody and validate trigger detection setup
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb == null)
         {
             Debug.LogWarning("Pig2InteractionController: No Rigidbody found. Please ensure the player has a Rigidbody component.");
+        }
+        else
+        {
+            // Ensure Rigidbody is configured for trigger detection
+            // Non-kinematic Rigidbodies detect triggers automatically in Unity
+            if (rb.isKinematic)
+            {
+                Debug.LogWarning("Pig2InteractionController: Rigidbody is kinematic. " +
+                    "Kinematic Rigidbodies may not detect triggers reliably in some Unity versions. " +
+                    "Consider setting IsKinematic = false for better trigger detection.");
+            }
+        }
+        
+        // Ensure player has a collider for trigger detection
+        Collider playerCollider = GetComponent<Collider>();
+        if (playerCollider == null)
+        {
+            Debug.LogWarning("Pig2InteractionController: Player GameObject has no Collider! " +
+                "Trigger detection requires a Collider on the player GameObject. " +
+                "Zone detection may not work without a collider. Please add a Collider component.");
+        }
+        else
+        {
+            // Ensure player collider is NOT a trigger (the zone colliders should be triggers)
+            if (playerCollider.isTrigger)
+            {
+                Debug.LogWarning("Pig2InteractionController: Player Collider is set as a trigger! " +
+                    "The player's collider should NOT be a trigger. Only the zone colliders (PlayerDetectZone) should be triggers. " +
+                    "Fixing automatically...");
+                playerCollider.isTrigger = false;
+            }
         }
 
         // Auto-find Animator if not assigned
@@ -113,6 +168,9 @@ public class Pig2InteractionController : MonoBehaviour
             }
         }
 
+        // Store original scales of raw materials (for relative scaling)
+        StoreOriginalRawMaterialScales();
+        
         // Initialize all materials as hidden
         HideAllMaterials();
 
@@ -122,9 +180,23 @@ public class Pig2InteractionController : MonoBehaviour
             actionButton.onClick.AddListener(OnActionButtonPressed);
         }
     }
-
+    
     void Update()
     {
+        // Continuous zone checking only as a backup/validation (don't override trigger-based detection)
+        // Only run if we think we're in a zone but want to verify, OR if we're not in a zone and want to check
+        if (useContinuousZoneCheck && Time.time - lastZoneCheckTime >= zoneCheckInterval)
+        {
+            // Only validate if we're not already in a zone (as a fallback detection)
+            // OR validate periodically to ensure we haven't lost tracking
+            if (currentZone == ZoneType.None || currentZoneColliders.Count == 0)
+            {
+                // Only use continuous check as a fallback when triggers fail
+                ValidateCurrentZone();
+            }
+            lastZoneCheckTime = Time.time;
+        }
+        
         // Check for action button press (handles both UI button and keyboard input)
         if (actionButton != null)
         {
@@ -154,9 +226,16 @@ public class Pig2InteractionController : MonoBehaviour
     // Public methods that can be called by ZoneDetectionHelper script
     public void OnZoneTriggerEnter(Collider other)
     {
-        // Detect which zone the player entered
+        // Detect which zone the player entered (matching PlayerInteractionController logic)
+        // The zone detection boxes are named "PlayerDetectZone" and are children of the zone GameObjects
         if (other.gameObject.name == "PlayerDetectZone")
         {
+            // Add to list of current zone colliders (for tracking)
+            if (!currentZoneColliders.Contains(other))
+            {
+                currentZoneColliders.Add(other);
+            }
+            
             Transform zoneParent = other.transform.parent;
             if (zoneParent != null)
             {
@@ -164,18 +243,21 @@ public class Pig2InteractionController : MonoBehaviour
 
                 if (zoneName == "Collecting_Zone")
                 {
+                    previousZone = currentZone;
                     currentZone = ZoneType.Collecting;
-                    Debug.Log("Pig 2: Entered Collecting Zone");
+                    Debug.Log($"Pig 2: Entered Collecting Zone (Total zones tracked: {currentZoneColliders.Count})");
                 }
                 else if (zoneName == "Processing_Zone")
                 {
+                    previousZone = currentZone;
                     currentZone = ZoneType.Processing;
-                    Debug.Log("Pig 2: Entered Processing Zone");
+                    Debug.Log($"Pig 2: Entered Processing Zone (Total zones tracked: {currentZoneColliders.Count})");
                 }
                 else if (zoneName == "Building_Zone")
                 {
+                    previousZone = currentZone;
                     currentZone = ZoneType.Building;
-                    Debug.Log("Pig 2: Entered Building Zone");
+                    Debug.Log($"Pig 2: Entered Building Zone (Total zones tracked: {currentZoneColliders.Count})");
                 }
             }
         }
@@ -183,11 +265,149 @@ public class Pig2InteractionController : MonoBehaviour
 
     public void OnZoneTriggerExit(Collider other)
     {
-        // Reset zone when leaving
+        // Reset zone when leaving (matching PlayerInteractionController logic)
         if (other.gameObject.name == "PlayerDetectZone")
         {
-            currentZone = ZoneType.None;
-            Debug.Log("Pig 2: Left Zone");
+            // Remove from tracking list
+            currentZoneColliders.Remove(other);
+            
+            // Check if we're leaving the current zone
+            Transform zoneParent = other.transform.parent;
+            if (zoneParent != null)
+            {
+                string zoneName = zoneParent.gameObject.name;
+                ZoneType exitedZone = ZoneType.None;
+                
+                if (zoneName == "Collecting_Zone")
+                {
+                    exitedZone = ZoneType.Collecting;
+                }
+                else if (zoneName == "Processing_Zone")
+                {
+                    exitedZone = ZoneType.Processing;
+                }
+                else if (zoneName == "Building_Zone")
+                {
+                    exitedZone = ZoneType.Building;
+                }
+                
+                // If we're leaving the current zone, clear it
+                if (exitedZone == currentZone)
+                {
+                    previousZone = currentZone;
+                    currentZone = ZoneType.None;
+                    Debug.Log($"Pig 2: Left {exitedZone} Zone (Remaining zones tracked: {currentZoneColliders.Count})");
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Validates the current zone by checking which zone colliders the player is currently inside.
+    /// This is used as a FALLBACK only when trigger-based detection fails (when currentZone is None).
+    /// Uses physics overlap to find all zone colliders near the player, then checks bounds.
+    /// </summary>
+    void ValidateCurrentZone()
+    {
+        if (!useContinuousZoneCheck) return;
+        
+        // Only use this as a fallback when we're not already in a zone
+        // Don't override trigger-based detection!
+        if (currentZone != ZoneType.None && currentZoneColliders.Count > 0)
+        {
+            return; // Trust the trigger-based detection
+        }
+        
+        // Use physics overlap to find all zone colliders near the player
+        // Only check for trigger colliders with the name "PlayerDetectZone"
+        Collider[] nearbyColliders = Physics.OverlapSphere(transform.position, zoneCheckRadius);
+        
+        ZoneType highestPriorityZone = ZoneType.None;
+        List<Collider> foundZoneColliders = new List<Collider>();
+        
+        foreach (Collider col in nearbyColliders)
+        {
+            if (col == null || !col.isTrigger) continue;
+            if (col.gameObject.name != "PlayerDetectZone") continue;
+            if (!col.gameObject.activeInHierarchy) continue;
+            
+            // Check if the player's position is inside the collider bounds
+            bool isInside = false;
+            
+            if (col is BoxCollider || col is SphereCollider || col is CapsuleCollider)
+            {
+                // Check if our position is within the bounds
+                if (col.bounds.Contains(transform.position))
+                {
+                    isInside = true;
+                }
+                else
+                {
+                    // Check closest point as fallback
+                    Vector3 closestPoint = col.ClosestPoint(transform.position);
+                    float distance = Vector3.Distance(transform.position, closestPoint);
+                    if (distance < 0.2f)
+                    {
+                        isInside = true;
+                    }
+                }
+            }
+            else
+            {
+                // For other collider types, use closest point check
+                Vector3 closestPoint = col.ClosestPoint(transform.position);
+                float distance = Vector3.Distance(transform.position, closestPoint);
+                isInside = distance < 0.2f;
+            }
+            
+            if (isInside)
+            {
+                foundZoneColliders.Add(col);
+                
+                Transform zoneParent = col.transform.parent;
+                if (zoneParent != null)
+                {
+                    string zoneName = zoneParent.gameObject.name;
+                    ZoneType detectedZone = ZoneType.None;
+
+                    if (zoneName == "Collecting_Zone")
+                    {
+                        detectedZone = ZoneType.Collecting;
+                    }
+                    else if (zoneName == "Processing_Zone")
+                    {
+                        detectedZone = ZoneType.Processing;
+                    }
+                    else if (zoneName == "Building_Zone")
+                    {
+                        detectedZone = ZoneType.Building;
+                    }
+                    
+                    // Priority: Building > Processing > Collecting > None
+                    if (detectedZone == ZoneType.Building)
+                    {
+                        highestPriorityZone = ZoneType.Building;
+                    }
+                    else if (detectedZone == ZoneType.Processing && highestPriorityZone != ZoneType.Building)
+                    {
+                        highestPriorityZone = ZoneType.Processing;
+                    }
+                    else if (detectedZone == ZoneType.Collecting && highestPriorityZone == ZoneType.None)
+                    {
+                        highestPriorityZone = ZoneType.Collecting;
+                    }
+                }
+            }
+        }
+        
+        // Only update if we found a zone and we weren't in one before (fallback detection)
+        if (highestPriorityZone != ZoneType.None && currentZone == ZoneType.None)
+        {
+            previousZone = currentZone;
+            currentZone = highestPriorityZone;
+            currentZoneColliders.Clear();
+            currentZoneColliders.AddRange(foundZoneColliders);
+            Debug.Log($"Pig 2: Fallback validation detected {currentZone} zone (found {foundZoneColliders.Count} zone collider(s))");
         }
     }
 
@@ -198,12 +418,20 @@ public class Pig2InteractionController : MonoBehaviour
 
     private void HandleActionPress()
     {
+        // Don't validate zone here - trust the trigger events (like PlayerInteractionController)
+        // Only use continuous validation as a backup, not to override trigger-based detection
+        
+        Debug.Log($"Pig 2: Action button pressed. Current zone: {currentZone}, Previous: {previousZone}, Zone colliders tracked: {currentZoneColliders.Count}");
+        
         if (currentZone == ZoneType.None)
         {
-            Debug.Log("Pig 2: Not in any zone. Action button does nothing.");
+            Debug.LogWarning("Pig 2: ⚠️ Action pressed but NOT in any zone! Action button does nothing (no SFX).");
+            // Don't play invalid SFX when not in zone - just do nothing (matching PlayerInteractionController behavior)
             return;
         }
 
+        Debug.Log($"Pig 2: Processing action in {currentZone} zone...");
+        
         switch (currentZone)
         {
             case ZoneType.Collecting:
@@ -220,14 +448,20 @@ public class Pig2InteractionController : MonoBehaviour
 
     private void HandleCollectingZone()
     {
-        // Progressive growth: Each raw material needs 3 presses to reach full height
-        // Find the next raw material to grow (in order: 0, 1, 2, 3, 4, 5)
+        // Progressive growth: Each raw material needs 3 presses to reach full size (scale)
+        // Press 1: Scale to 1/3 (0.33), Press 2: Scale to 2/3 (0.67), Press 3: Scale to full (1.0)
+        // Find the first raw material that's not at full scale
         
-        // Find the first raw material that's not at full height
         int rawIndex = -1;
         for (int i = 0; i < rawMaterials.Length; i++)
         {
-            if (rawMaterialHeightState[i] < 3) // Not at full height yet
+            if (rawMaterials[i] == null)
+            {
+                Debug.LogWarning($"Pig 2: Raw material at index {i} is null! Check material assignment.");
+                continue;
+            }
+            
+            if (rawMaterialScaleState[i] < 3) // Not at full scale yet (0, 1, or 2)
             {
                 rawIndex = i;
                 break;
@@ -236,21 +470,31 @@ public class Pig2InteractionController : MonoBehaviour
         
         if (rawIndex != -1)
         {
-            // Grow this raw material
-            rawMaterialHeightState[rawIndex]++;
+            // Grow this raw material (increase scale state)
+            rawMaterialScaleState[rawIndex]++;
             
-            // Show material if it's the first press (was hidden)
-            if (rawMaterialHeightState[rawIndex] == 1)
+            // Show material if it's the first press (was hidden/scale 0)
+            if (rawMaterialScaleState[rawIndex] == 1)
             {
-                rawMaterials[rawIndex].SetActive(true);
-                rawMaterialVisible[rawIndex] = true;
+                if (rawMaterials[rawIndex] != null)
+                {
+                    rawMaterials[rawIndex].SetActive(true);
+                    rawMaterialVisible[rawIndex] = true;
+                }
+                else
+                {
+                    Debug.LogError($"Pig 2: Raw material at index {rawIndex} is null! Cannot show.");
+                    PlayInvalidActionAnimation();
+                    PlaySFX(actionInvalidSFX);
+                    return;
+                }
             }
             
-            // Update height based on state
-            float targetHeight = GetHeightForState(rawMaterialHeightState[rawIndex]);
-            SetMaterialHeight(rawMaterials[rawIndex], targetHeight);
+            // Update scale based on state (relative to original size)
+            float scaleRatio = GetScaleRatioForState(rawMaterialScaleState[rawIndex]);
+            SetMaterialScale(rawMaterials[rawIndex], rawIndex, scaleRatio);
             
-            Debug.Log($"Pig 2: Raw material {rawIndex + 1} at height state {rawMaterialHeightState[rawIndex]}/3 (height: {targetHeight})");
+            Debug.Log($"Pig 2: ✅ VALID ACTION - Raw material {rawIndex + 1} grown to scale state {rawMaterialScaleState[rawIndex]}/3 (scale ratio: {scaleRatio})");
             
             // Play valid animation and SFX
             PlayValidActionAnimation();
@@ -258,8 +502,8 @@ public class Pig2InteractionController : MonoBehaviour
         }
         else
         {
-            // All raw materials are at full height
-            Debug.Log("Pig 2: All raw materials are at full height!");
+            // All raw materials are at full scale
+            Debug.Log("Pig 2: ❌ INVALID ACTION - All raw materials are at full scale! (All 6 materials at state 3/3)");
             
             // Play invalid animation and SFX
             PlayInvalidActionAnimation();
@@ -269,35 +513,61 @@ public class Pig2InteractionController : MonoBehaviour
 
     private void HandleProcessingZone()
     {
-        // Process: 1 raw material (at full height) → 3 processed materials (by pressing 3 times, shrinking raw 1/3 each time)
-        // Find a raw material at full height (state 3)
+        // Process: 1 raw material (at full scale) → 3 processed materials (by pressing 3 times)
+        // Press 1: Shrink raw to 2/3 scale (0.67), show processed material 1
+        // Press 2: Shrink raw to 1/3 scale (0.33), show processed material 2
+        // Press 3: Shrink raw to 0 scale (hidden), show processed material 3
+        // 
+        // IMPORTANT: Continue processing the SAME raw material until it reaches state 0
+        // Find a raw material that's ready to process (state > 0) - prioritize state 3, but continue with partially processed ones
         int rawIndex = -1;
+        
+        // First, check if there's a raw material that's partially processed (state 1 or 2)
+        // This means we're in the middle of processing one - continue with that one
         for (int i = 0; i < rawMaterials.Length; i++)
         {
-            if (rawMaterialHeightState[i] == 3) // At full height
+            if (rawMaterials[i] != null && rawMaterialScaleState[i] > 0 && rawMaterialScaleState[i] < 3)
             {
+                // Found a partially processed raw material - continue processing this one
                 rawIndex = i;
                 break;
+            }
+        }
+        
+        // If no partially processed material, find one at full scale (state 3)
+        if (rawIndex == -1)
+        {
+            for (int i = 0; i < rawMaterials.Length; i++)
+            {
+                if (rawMaterials[i] != null && rawMaterialScaleState[i] == 3) // At full scale
+                {
+                    rawIndex = i;
+                    break;
+                }
             }
         }
         
         // Check if we can show more processed materials (max 36 visible)
         if (rawIndex != -1 && visibleProcessedMaterialCount < 36)
         {
-            // Shrink raw material and show processed material
-            rawMaterialHeightState[rawIndex]--; // Decrease height state (3 → 2 → 1 → 0)
+            // Shrink raw material (decrease scale state: 3 → 2 → 1 → 0)
+            int previousState = rawMaterialScaleState[rawIndex];
+            rawMaterialScaleState[rawIndex]--;
+            int newState = rawMaterialScaleState[rawIndex];
             
-            float targetHeight = GetHeightForState(rawMaterialHeightState[rawIndex]);
-            SetMaterialHeight(rawMaterials[rawIndex], targetHeight);
+            float scaleRatio = GetScaleRatioForState(newState);
+            SetMaterialScale(rawMaterials[rawIndex], rawIndex, scaleRatio);
             
-            // If raw material reached 0, hide it
-            if (rawMaterialHeightState[rawIndex] == 0)
+            // If raw material reached state 0 (scale 0), hide it completely
+            if (newState == 0)
             {
-                rawMaterials[rawIndex].SetActive(false);
                 rawMaterialVisible[rawIndex] = false;
+                // Optionally also SetActive(false) to ensure it's completely hidden
+                // But since scale is 0, it should be invisible anyway
+                Debug.Log($"Pig 2: Raw material {rawIndex + 1} fully consumed (scale = 0)");
             }
             
-            // Find next available processed material slot (can reuse consumed slots)
+            // Find next available processed material slot (sequential: 0, 1, 2... 35)
             int processedSlotIndex = FindNextAvailableProcessedSlot();
             if (processedSlotIndex != -1)
             {
@@ -305,15 +575,16 @@ public class Pig2InteractionController : MonoBehaviour
                 processedMaterialVisible[processedSlotIndex] = true;
                 visibleProcessedMaterialCount++;
                 
-                Debug.Log($"Pig 2: Processed raw material {rawIndex + 1} (now at state {rawMaterialHeightState[rawIndex]}). Created processed material at slot {processedSlotIndex + 1}. Total visible: {visibleProcessedMaterialCount}/36");
+                Debug.Log($"Pig 2: ✅ VALID ACTION - Processed raw material {rawIndex + 1} (state {previousState} → {newState}, scale ratio: {scaleRatio}). Created processed material at slot {processedSlotIndex + 1}. Total visible: {visibleProcessedMaterialCount}/36");
             }
             else
             {
                 // All 36 slots are already visible (shouldn't happen due to check above, but safety)
                 Debug.LogWarning("Pig 2: All processed material slots are visible!");
                 // Revert the raw material state change
-                rawMaterialHeightState[rawIndex]++;
-                SetMaterialHeight(rawMaterials[rawIndex], GetHeightForState(rawMaterialHeightState[rawIndex]));
+                rawMaterialScaleState[rawIndex] = previousState;
+                float revertScale = GetScaleRatioForState(previousState);
+                SetMaterialScale(rawMaterials[rawIndex], rawIndex, revertScale);
                 PlayInvalidActionAnimation();
                 PlaySFX(actionInvalidSFX);
                 return;
@@ -325,14 +596,14 @@ public class Pig2InteractionController : MonoBehaviour
         }
         else
         {
-            // No raw material at full height, or max processed materials reached
+            // No raw material ready to process, or max processed materials reached
             if (rawIndex == -1)
             {
-                Debug.Log("Pig 2: No raw material at full height to process!");
+                Debug.Log("Pig 2: ❌ INVALID ACTION - No raw material ready to process! (Need at least one at state 1, 2, or 3)");
             }
             else if (visibleProcessedMaterialCount >= 36)
             {
-                Debug.Log("Pig 2: Maximum processed materials (36) already visible! Build some first.");
+                Debug.Log("Pig 2: ❌ INVALID ACTION - Maximum processed materials (36) already visible! Build some first.");
             }
             
             // Play invalid animation and SFX
@@ -343,13 +614,15 @@ public class Pig2InteractionController : MonoBehaviour
 
     private void HandleBuildingZone()
     {
-        // Build: 4 processed materials → 1 build material (flexible - consume any 4 visible processed materials)
+        // Build: 4 processed materials → 1 build material
+        // Processed materials are consumed from the END of the array (highest indices first)
+        // Example: Build 1 consumes processed materials 32-35, Build 2 consumes 28-31, etc.
         // Check if we have at least 4 visible processed materials and haven't created all 27 build materials
         if (visibleProcessedMaterialCount >= 4 && visibleBuildMaterialCount < buildMaterials.Length)
         {
-            // Find any 4 visible processed materials
+            // Find 4 visible processed materials starting from the END of the array (highest indices first)
             List<int> processedIndicesToConsume = new List<int>();
-            for (int i = 0; i < processedMaterials.Length && processedIndicesToConsume.Count < 4; i++)
+            for (int i = processedMaterials.Length - 1; i >= 0 && processedIndicesToConsume.Count < 4; i--)
             {
                 if (processedMaterialVisible[i])
                 {
@@ -360,7 +633,10 @@ public class Pig2InteractionController : MonoBehaviour
             // If we found 4 processed materials, consume them and create build material
             if (processedIndicesToConsume.Count == 4)
             {
-                // Hide the 4 processed materials
+                // Sort indices descending for logging clarity
+                processedIndicesToConsume.Sort((a, b) => b.CompareTo(a));
+                
+                // Hide the 4 processed materials (from end of array)
                 foreach (int index in processedIndicesToConsume)
                 {
                     processedMaterials[index].SetActive(false);
@@ -376,7 +652,7 @@ public class Pig2InteractionController : MonoBehaviour
                     buildMaterialVisible[nextBuildSlot] = true;
                     visibleBuildMaterialCount++;
                     
-                    Debug.Log($"Pig 2: Built 4 processed materials into build material {nextBuildSlot + 1}. Processed: {visibleProcessedMaterialCount}/36, Build: {visibleBuildMaterialCount}/27");
+                    Debug.Log($"Pig 2: Built 4 processed materials (indices {processedIndicesToConsume[0]+1}, {processedIndicesToConsume[1]+1}, {processedIndicesToConsume[2]+1}, {processedIndicesToConsume[3]+1}) into build material {nextBuildSlot + 1}. Processed: {visibleProcessedMaterialCount}/36, Build: {visibleBuildMaterialCount}/27");
                     
                     // Check if all 27 build materials are visible
                     if (visibleBuildMaterialCount >= buildMaterials.Length)
@@ -451,18 +727,18 @@ public class Pig2InteractionController : MonoBehaviour
 
     private void HideAllMaterials()
     {
-        // Hide all raw materials and reset height states
+        // Hide all raw materials and reset scale states
         for (int i = 0; i < rawMaterials.Length; i++)
         {
             if (rawMaterials[i] != null)
             {
                 rawMaterials[i].SetActive(false);
-                // Reset height to 0 (hidden state)
-                rawMaterialHeightState[i] = 0;
-                SetMaterialHeight(rawMaterials[i], 0f);
+                // Reset scale to 0 (hidden state)
+                rawMaterialScaleState[i] = 0;
+                SetMaterialScale(rawMaterials[i], i, SCALE_HIDDEN);
             }
             rawMaterialVisible[i] = false;
-            rawMaterialHeightState[i] = 0; // Reset height state
+            rawMaterialScaleState[i] = 0; // Reset scale state
         }
 
         // Hide all processed materials and reset visibility tracking
@@ -534,39 +810,82 @@ public class Pig2InteractionController : MonoBehaviour
     }
     
     /// <summary>
-    /// Gets the height value based on state (0 = hidden, 1 = 1/3, 2 = 2/3, 3 = full)
+    /// Stores the original scales of all raw materials at Start (for relative scaling)
     /// </summary>
-    private float GetHeightForState(int state)
+    private void StoreOriginalRawMaterialScales()
+    {
+        for (int i = 0; i < rawMaterials.Length; i++)
+        {
+            if (rawMaterials[i] != null)
+            {
+                originalRawMaterialScales[i] = rawMaterials[i].transform.localScale;
+                // If no material has been assigned yet, use default Vector3.one
+                if (originalRawMaterialScales[i] == Vector3.zero)
+                {
+                    originalRawMaterialScales[i] = Vector3.one;
+                }
+            }
+            else
+            {
+                originalRawMaterialScales[i] = Vector3.one; // Default fallback
+            }
+        }
+        
+        // Also store in the public field for reference (use first non-null material's scale)
+        if (rawMaterials.Length > 0 && rawMaterials[0] != null)
+        {
+            originalRawMaterialScale = originalRawMaterialScales[0];
+        }
+    }
+    
+    /// <summary>
+    /// Gets the scale ratio based on state (0 = hidden/0.0, 1 = 1/3/0.33, 2 = 2/3/0.67, 3 = full/1.0)
+    /// </summary>
+    private float GetScaleRatioForState(int state)
     {
         switch (state)
         {
-            case 0: return 0f; // Hidden (shouldn't be called, but safety)
-            case 1: return heightOneThird;   // 0.02
-            case 2: return heightTwoThirds;  // 0.04
-            case 3: return heightFull;       // 0.06
-            default: return 0f;
+            case 0: return SCALE_HIDDEN;    // 0.0 (hidden)
+            case 1: return SCALE_ONE_THIRD; // 0.33 (1/3 size)
+            case 2: return SCALE_TWO_THIRDS;// 0.67 (2/3 size)
+            case 3: return SCALE_FULL;      // 1.0 (full size)
+            default: return SCALE_HIDDEN;
         }
     }
 
     /// <summary>
-    /// Sets the height of a material GameObject by modifying either Y scale or Y position
+    /// Sets the scale of a material GameObject (all axes XYZ) relative to its original size
     /// </summary>
-    private void SetMaterialHeight(GameObject material, float height)
+    private void SetMaterialScale(GameObject material, int materialIndex, float scaleRatio)
     {
-        if (material == null) return;
-
-        if (useScaleForHeight)
+        if (material == null) 
         {
-            // Modify Y scale (scale based on ratio of height to full height)
-            Vector3 scale = material.transform.localScale;
-            float scaleRatio = (heightFull > 0) ? height / heightFull : 0f;
-            material.transform.localScale = new Vector3(scale.x, originalRawMaterialScaleY * scaleRatio, scale.z);
+            Debug.LogWarning($"Pig 2: SetMaterialScale called with null material at index {materialIndex}");
+            return;
+        }
+        
+        // Get the original scale for this material (or use stored default)
+        Vector3 originalScale = originalRawMaterialScales[materialIndex];
+        if (originalScale == Vector3.zero)
+        {
+            // If original scale wasn't stored properly, try to use the current scale divided by current ratio
+            // Or use Vector3.one as fallback
+            originalScale = Vector3.one;
+            Debug.LogWarning($"Pig 2: Original scale for material {materialIndex} was zero, using fallback Vector3.one. Material name: {material.name}");
+        }
+        
+        // Apply scale ratio to all axes (uniform scaling)
+        Vector3 newScale = originalScale * scaleRatio;
+        material.transform.localScale = newScale;
+        
+        // Debug log for troubleshooting scale changes
+        if (scaleRatio == SCALE_HIDDEN)
+        {
+            Debug.Log($"Pig 2: Set material {materialIndex} ({material.name}) scale to 0 (HIDDEN). Original: {originalScale}, New: {newScale}, Ratio: {scaleRatio}");
         }
         else
         {
-            // Modify Y position (moves the object up/down) - RECOMMENDED
-            Vector3 pos = material.transform.localPosition;
-            material.transform.localPosition = new Vector3(pos.x, height, pos.z);
+            Debug.Log($"Pig 2: Set material {materialIndex} ({material.name}) scale. Original: {originalScale}, New: {newScale}, Ratio: {scaleRatio}");
         }
     }
 
@@ -594,5 +913,206 @@ public class Pig2InteractionController : MonoBehaviour
         {
             audioSource.PlayOneShot(clip);
         }
+    }
+    
+    // Auto-assignment helper method
+    /// <summary>
+    /// Public method for auto-assignment. Can be called from custom editor button or context menu.
+    /// Automatically assigns materials from parent GameObjects or searches by naming patterns.
+    /// Flexible search: Tries exact name patterns first, then falls back to finding all direct children.
+    /// </summary>
+    [ContextMenu("Auto Assign Materials")]
+    public void AutoAssignMaterials()
+    {
+        int rawCount = 0, processedCount = 0, buildCount = 0;
+        
+        // Auto-assign raw materials
+        if (rawMaterialsParent != null)
+        {
+            List<GameObject> foundRawMaterials = new List<GameObject>();
+            
+            // Try finding by name pattern first (more specific)
+            FindMaterialsInChildren(rawMaterialsParent.transform, "Raw", foundRawMaterials);
+            
+            // If no materials found by pattern, get ALL direct children
+            if (foundRawMaterials.Count == 0)
+            {
+                foreach (Transform child in rawMaterialsParent.transform)
+                {
+                    foundRawMaterials.Add(child.gameObject);
+                }
+                Debug.Log($"Pig2InteractionController: No materials found with 'Raw' in name. Using all children of {rawMaterialsParent.name}.");
+            }
+            
+            // Sort by name using natural/numeric sorting (handles numbers correctly)
+            foundRawMaterials.Sort((a, b) => NaturalCompare(a.name, b.name));
+            
+            // Assign to array (up to 6)
+            rawCount = Mathf.Min(foundRawMaterials.Count, rawMaterials.Length);
+            for (int i = 0; i < rawCount; i++)
+            {
+                rawMaterials[i] = foundRawMaterials[i];
+            }
+            
+            Debug.Log($"Pig2InteractionController: Auto-assigned {rawCount}/{rawMaterials.Length} raw materials from '{rawMaterialsParent.name}'. Found {foundRawMaterials.Count} total children.");
+        }
+        else
+        {
+            Debug.LogWarning("Pig2InteractionController: Raw Materials Parent not assigned! Cannot auto-assign raw materials.");
+        }
+        
+        // Auto-assign processed materials
+        if (processedMaterialsParent != null)
+        {
+            List<GameObject> foundProcessedMaterials = new List<GameObject>();
+            
+            // Try finding by name pattern first
+            FindMaterialsInChildren(processedMaterialsParent.transform, "Processed", foundProcessedMaterials);
+            
+            // If no materials found by pattern, get ALL direct children
+            if (foundProcessedMaterials.Count == 0)
+            {
+                foreach (Transform child in processedMaterialsParent.transform)
+                {
+                    foundProcessedMaterials.Add(child.gameObject);
+                }
+                Debug.Log($"Pig2InteractionController: No materials found with 'Processed' in name. Using all children of {processedMaterialsParent.name}.");
+            }
+            
+            // Sort by name using natural/numeric sorting (handles numbers correctly)
+            foundProcessedMaterials.Sort((a, b) => NaturalCompare(a.name, b.name));
+            
+            // Assign to array (up to 36)
+            processedCount = Mathf.Min(foundProcessedMaterials.Count, processedMaterials.Length);
+            for (int i = 0; i < processedCount; i++)
+            {
+                processedMaterials[i] = foundProcessedMaterials[i];
+            }
+            
+            Debug.Log($"Pig2InteractionController: Auto-assigned {processedCount}/{processedMaterials.Length} processed materials from '{processedMaterialsParent.name}'. Found {foundProcessedMaterials.Count} total children.");
+        }
+        else
+        {
+            Debug.LogWarning("Pig2InteractionController: Processed Materials Parent not assigned! Cannot auto-assign processed materials.");
+        }
+        
+        // Auto-assign build materials
+        if (buildMaterialsParent != null)
+        {
+            List<GameObject> foundBuildMaterials = new List<GameObject>();
+            
+            // Try finding by name pattern first
+            FindMaterialsInChildren(buildMaterialsParent.transform, "Build", foundBuildMaterials);
+            
+            // If no materials found by pattern, get ALL direct children
+            if (foundBuildMaterials.Count == 0)
+            {
+                foreach (Transform child in buildMaterialsParent.transform)
+                {
+                    foundBuildMaterials.Add(child.gameObject);
+                }
+                Debug.Log($"Pig2InteractionController: No materials found with 'Build' in name. Using all children of {buildMaterialsParent.name}.");
+            }
+            
+            // Sort by name using natural/numeric sorting (handles numbers correctly)
+            foundBuildMaterials.Sort((a, b) => NaturalCompare(a.name, b.name));
+            
+            // Assign to array (up to 27)
+            buildCount = Mathf.Min(foundBuildMaterials.Count, buildMaterials.Length);
+            for (int i = 0; i < buildCount; i++)
+            {
+                buildMaterials[i] = foundBuildMaterials[i];
+            }
+            
+            Debug.Log($"Pig2InteractionController: Auto-assigned {buildCount}/{buildMaterials.Length} build materials from '{buildMaterialsParent.name}'. Found {foundBuildMaterials.Count} total children.");
+        }
+        else
+        {
+            Debug.LogWarning("Pig2InteractionController: Build Materials Parent not assigned! Cannot auto-assign build materials.");
+        }
+        
+        if (rawCount > 0 || processedCount > 0 || buildCount > 0)
+        {
+            Debug.Log($"Pig2InteractionController: Auto-assignment complete! Raw: {rawCount}, Processed: {processedCount}, Build: {buildCount}");
+        }
+    }
+    
+    /// <summary>
+    /// Recursively finds GameObjects with names containing the search term (case-insensitive) in children
+    /// </summary>
+    void FindMaterialsInChildren(Transform parent, string searchTerm, List<GameObject> results)
+    {
+        if (parent == null) return;
+        
+        foreach (Transform child in parent)
+        {
+            // Case-insensitive search
+            if (child.name.Contains(searchTerm) || child.name.ToLower().Contains(searchTerm.ToLower()))
+            {
+                results.Add(child.gameObject);
+            }
+            // Recursively search children
+            FindMaterialsInChildren(child, searchTerm, results);
+        }
+    }
+    
+    /// <summary>
+    /// Natural string comparison that handles numbers correctly.
+    /// "Material (1)" < "Material (2)" < "Material (10)" (not alphabetical: "Material (10)" < "Material (2)")
+    /// </summary>
+    int NaturalCompare(string a, string b)
+    {
+        if (a == null && b == null) return 0;
+        if (a == null) return -1;
+        if (b == null) return 1;
+        
+        int aIndex = 0, bIndex = 0;
+        
+        while (aIndex < a.Length && bIndex < b.Length)
+        {
+            // Check if both characters are digits
+            if (char.IsDigit(a[aIndex]) && char.IsDigit(b[bIndex]))
+            {
+                // Extract the full number from both strings
+                int aNumber = 0;
+                int bNumber = 0;
+                int aStart = aIndex;
+                int bStart = bIndex;
+                
+                // Parse number from a
+                while (aIndex < a.Length && char.IsDigit(a[aIndex]))
+                {
+                    aNumber = aNumber * 10 + (a[aIndex] - '0');
+                    aIndex++;
+                }
+                
+                // Parse number from b
+                while (bIndex < b.Length && char.IsDigit(b[bIndex]))
+                {
+                    bNumber = bNumber * 10 + (b[bIndex] - '0');
+                    bIndex++;
+                }
+                
+                // Compare numbers numerically
+                if (aNumber != bNumber)
+                {
+                    return aNumber.CompareTo(bNumber);
+                }
+            }
+            else
+            {
+                // Compare characters alphabetically (case-insensitive)
+                int comparison = char.ToLowerInvariant(a[aIndex]).CompareTo(char.ToLowerInvariant(b[bIndex]));
+                if (comparison != 0)
+                {
+                    return comparison;
+                }
+                aIndex++;
+                bIndex++;
+            }
+        }
+        
+        // If we've reached the end of one string, the shorter one comes first
+        return a.Length.CompareTo(b.Length);
     }
 }

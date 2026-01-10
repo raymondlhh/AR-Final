@@ -57,6 +57,14 @@ public class Pig1InteractionController : MonoBehaviour
     public GameObject house;
     public GameObject baseObject; // Base object to hide when house appears
 
+    [Header("Auto-Assignment Helpers")]
+    [Tooltip("Parent GameObject containing all raw materials (for auto-assignment). Leave empty to search entire scene.")]
+    public GameObject rawMaterialsParent;
+    [Tooltip("Parent GameObject containing all processed materials (for auto-assignment). Leave empty to search entire scene.")]
+    public GameObject processedMaterialsParent;
+    [Tooltip("Parent GameObject containing all build materials (for auto-assignment). Leave empty to search entire scene.")]
+    public GameObject buildMaterialsParent;
+
     // Material tracking - track which materials are visible
     // Arrays to track visibility: true = visible, false = hidden
     private bool[] rawMaterialVisible = new bool[16];
@@ -562,6 +570,150 @@ public class Pig1InteractionController : MonoBehaviour
         {
             // Play one-shot so it doesn't interrupt walking SFX
             audioSource.PlayOneShot(clip);
+        }
+    }
+    
+    // Auto-assignment helper method
+    /// <summary>
+    /// Public method for auto-assignment. Can be called from custom editor button or context menu.
+    /// Automatically assigns materials from parent GameObjects or searches by naming patterns.
+    /// Flexible search: Tries exact name patterns first, then falls back to finding all direct children.
+    /// </summary>
+    [ContextMenu("Auto Assign Materials")]
+    public void AutoAssignMaterials()
+    {
+        int rawCount = 0, processedCount = 0, buildCount = 0;
+        
+        // Auto-assign raw materials
+        if (rawMaterialsParent != null)
+        {
+            List<GameObject> foundRawMaterials = new List<GameObject>();
+            
+            // Try finding by name pattern first (more specific)
+            FindMaterialsInChildren(rawMaterialsParent.transform, "Raw", foundRawMaterials);
+            
+            // If no materials found by pattern, get ALL direct children
+            if (foundRawMaterials.Count == 0)
+            {
+                foreach (Transform child in rawMaterialsParent.transform)
+                {
+                    if (child.gameObject.activeInHierarchy || !child.gameObject.activeInHierarchy) // Include all, even inactive
+                    {
+                        foundRawMaterials.Add(child.gameObject);
+                    }
+                }
+                Debug.Log($"Pig1InteractionController: No materials found with 'Raw' in name. Using all children of {rawMaterialsParent.name}.");
+            }
+            
+            // Sort by name to ensure consistent order
+            foundRawMaterials.Sort((a, b) => string.Compare(a.name, b.name));
+            
+            // Assign to array (up to 16)
+            rawCount = Mathf.Min(foundRawMaterials.Count, rawMaterials.Length);
+            for (int i = 0; i < rawCount; i++)
+            {
+                rawMaterials[i] = foundRawMaterials[i];
+            }
+            
+            Debug.Log($"Pig1InteractionController: Auto-assigned {rawCount}/{rawMaterials.Length} raw materials from '{rawMaterialsParent.name}'. Found {foundRawMaterials.Count} total children.");
+        }
+        else
+        {
+            Debug.LogWarning("Pig1InteractionController: Raw Materials Parent not assigned! Cannot auto-assign raw materials.");
+        }
+        
+        // Auto-assign processed materials
+        if (processedMaterialsParent != null)
+        {
+            List<GameObject> foundProcessedMaterials = new List<GameObject>();
+            
+            // Try finding by name pattern first
+            FindMaterialsInChildren(processedMaterialsParent.transform, "Processed", foundProcessedMaterials);
+            
+            // If no materials found by pattern, get ALL direct children
+            if (foundProcessedMaterials.Count == 0)
+            {
+                foreach (Transform child in processedMaterialsParent.transform)
+                {
+                    foundProcessedMaterials.Add(child.gameObject);
+                }
+                Debug.Log($"Pig1InteractionController: No materials found with 'Processed' in name. Using all children of {processedMaterialsParent.name}.");
+            }
+            
+            // Sort by name
+            foundProcessedMaterials.Sort((a, b) => string.Compare(a.name, b.name));
+            
+            // Assign to array (up to 8)
+            processedCount = Mathf.Min(foundProcessedMaterials.Count, processedMaterials.Length);
+            for (int i = 0; i < processedCount; i++)
+            {
+                processedMaterials[i] = foundProcessedMaterials[i];
+            }
+            
+            Debug.Log($"Pig1InteractionController: Auto-assigned {processedCount}/{processedMaterials.Length} processed materials from '{processedMaterialsParent.name}'. Found {foundProcessedMaterials.Count} total children.");
+        }
+        else
+        {
+            Debug.LogWarning("Pig1InteractionController: Processed Materials Parent not assigned! Cannot auto-assign processed materials.");
+        }
+        
+        // Auto-assign build materials
+        if (buildMaterialsParent != null)
+        {
+            List<GameObject> foundBuildMaterials = new List<GameObject>();
+            
+            // Try finding by name pattern first
+            FindMaterialsInChildren(buildMaterialsParent.transform, "Build", foundBuildMaterials);
+            
+            // If no materials found by pattern, get ALL direct children
+            if (foundBuildMaterials.Count == 0)
+            {
+                foreach (Transform child in buildMaterialsParent.transform)
+                {
+                    foundBuildMaterials.Add(child.gameObject);
+                }
+                Debug.Log($"Pig1InteractionController: No materials found with 'Build' in name. Using all children of {buildMaterialsParent.name}.");
+            }
+            
+            // Sort by name
+            foundBuildMaterials.Sort((a, b) => string.Compare(a.name, b.name));
+            
+            // Assign to array (up to 8)
+            buildCount = Mathf.Min(foundBuildMaterials.Count, buildMaterials.Length);
+            for (int i = 0; i < buildCount; i++)
+            {
+                buildMaterials[i] = foundBuildMaterials[i];
+            }
+            
+            Debug.Log($"Pig1InteractionController: Auto-assigned {buildCount}/{buildMaterials.Length} build materials from '{buildMaterialsParent.name}'. Found {foundBuildMaterials.Count} total children.");
+        }
+        else
+        {
+            Debug.LogWarning("Pig1InteractionController: Build Materials Parent not assigned! Cannot auto-assign build materials.");
+        }
+        
+        if (rawCount > 0 || processedCount > 0 || buildCount > 0)
+        {
+            Debug.Log($"Pig1InteractionController: Auto-assignment complete! Raw: {rawCount}, Processed: {processedCount}, Build: {buildCount}");
+        }
+    }
+    
+    /// <summary>
+    /// Recursively finds GameObjects with names containing the search term (case-insensitive) in children
+    /// </summary>
+    void FindMaterialsInChildren(Transform parent, string searchTerm, List<GameObject> results)
+    {
+        if (parent == null) return;
+        
+        foreach (Transform child in parent)
+        {
+            // Case-insensitive search
+            if (child.name.Contains(searchTerm) || child.name.ToLower().Contains(searchTerm.ToLower()))
+            {
+                results.Add(child.gameObject);
+            }
+            // Recursively search children
+            FindMaterialsInChildren(child, searchTerm, results);
         }
     }
 }
