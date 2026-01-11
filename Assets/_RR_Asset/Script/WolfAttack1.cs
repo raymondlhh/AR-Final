@@ -21,6 +21,10 @@ public class WolfAttack1 : MonoBehaviour
     public GameObject pangbai;
     Coroutine windCoroutine;
 
+    public AudioSource blowsound;
+    public AudioSource breaksound;
+    public AudioSource runsound;
+
     public bool activateOnce = false;
     void Start()
     {
@@ -75,9 +79,16 @@ public class WolfAttack1 : MonoBehaviour
         windparticleEffect.SetActive(false);
         BrokenObject.SetActive(true);
         secondPig.SetActive(true);
-        secondPig1.SetActive(true); 
+        secondPig1.SetActive(true);
+        StartCoroutine(Playrunsound());
         pangbai.SetActive(true);
 
+    }
+
+    IEnumerator Playrunsound()
+    {
+        yield return new WaitForSeconds(1.0f);
+        runsound.Play();
     }
 
 
@@ -87,6 +98,7 @@ public class WolfAttack1 : MonoBehaviour
         owhnoText.SetActive(true);
 
         yield return new WaitForSeconds(4.2f);
+        breaksound.Play();
         wolfAnim.SetBool("StrongAttack", false);
         EndBlowing();
     }

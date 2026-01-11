@@ -16,6 +16,8 @@ public class PigShock : MonoBehaviour
 
     private bool hasShocked = false;
 
+    public AudioSource runsound;
+
     void Start()
     {
         if (animator == null)
@@ -43,7 +45,7 @@ public class PigShock : MonoBehaviour
 
         animator.SetBool("Run", true);
         //RunSmoke.SetActive(true);
-
+        runsound.Play();
         float timer = 0f;
         while (timer < runDuration)
         {

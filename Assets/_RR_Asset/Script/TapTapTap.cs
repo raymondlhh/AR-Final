@@ -23,6 +23,8 @@ public class TapTapTap : MonoBehaviour
 
     bool isActive = true;
 
+    public AudioSource winSound;
+
     void Start()
     {
         fillPerTap = 1f / tapsRequired;
@@ -73,7 +75,7 @@ public class TapTapTap : MonoBehaviour
     void Success()
     {
         isActive = false;
-
+        winSound.Play();
         circularFill.fillAmount = 1f;
         tapText.text = "0";
 
