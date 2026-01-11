@@ -22,7 +22,7 @@ public class Pig2InteractionController : MonoBehaviour
 
     private ZoneType currentZone = ZoneType.None;
     private ZoneType previousZone = ZoneType.None; // Track previous zone for debugging
-    
+
     // Zone detection settings
     [Header("Zone Detection Settings")]
     [Tooltip("Enable continuous zone checking for more reliable detection")]
@@ -226,6 +226,19 @@ public class Pig2InteractionController : MonoBehaviour
     // Public methods that can be called by ZoneDetectionHelper script
     public void OnZoneTriggerEnter(Collider other)
     {
+        ZoneTrigger zoneTrigger = other.GetComponent<ZoneTrigger>();
+        if (zoneTrigger != null)
+        {
+            if (!currentZoneColliders.Contains(other))
+                currentZoneColliders.Add(other);
+
+            previousZone = currentZone;
+            currentZone = zoneTrigger.zoneType;
+
+            Debug.Log($"Pig 2: Entered {currentZone} zone (via ZoneTrigger)");
+            return; 
+        }
+
         // Detect which zone the player entered (matching PlayerInteractionController logic)
         // The zone detection boxes are named "PlayerDetectZone" and are children of the zone GameObjects
         if (other.gameObject.name == "PlayerDetectZone")
@@ -265,6 +278,19 @@ public class Pig2InteractionController : MonoBehaviour
 
     public void OnZoneTriggerExit(Collider other)
     {
+        if (other.GetComponent<ZoneTrigger>() != null)
+        {
+            currentZoneColliders.Remove(other);
+
+            if (currentZoneColliders.Count == 0)
+            {
+                previousZone = currentZone;
+                currentZone = ZoneType.None;
+                Debug.Log("Pig 2: Left all zones (ZoneTrigger)");
+            }
+            return;
+        }
+
         // Reset zone when leaving (matching PlayerInteractionController logic)
         if (other.gameObject.name == "PlayerDetectZone")
         {
@@ -451,7 +477,7 @@ public class Pig2InteractionController : MonoBehaviour
         // Progressive growth: Each raw material needs 3 presses to reach full size (scale)
         // Press 1: Scale to 1/3 (0.33), Press 2: Scale to 2/3 (0.67), Press 3: Scale to full (1.0)
         // Find the first raw material that's not at full scale
-        
+
         int rawIndex = -1;
         for (int i = 0; i < rawMaterials.Length; i++)
         {

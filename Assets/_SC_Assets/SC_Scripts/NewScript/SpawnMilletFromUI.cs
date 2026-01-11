@@ -13,6 +13,8 @@ public class SpawnMilletFromUI : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        Debug.Log("POINTER DOWN FIRED");
+
         spawnedMillet = Instantiate(milletPrefab, spawnParent);
         drag = spawnedMillet.GetComponent<DragObject>();
         if (drag != null)

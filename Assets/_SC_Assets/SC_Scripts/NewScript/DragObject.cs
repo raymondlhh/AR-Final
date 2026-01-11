@@ -46,7 +46,7 @@ public class DragObject : MonoBehaviour
 #endif
     }
 
-    void Drag(Vector2 screenPos)
+    public void Drag(Vector2 screenPos)
     {
         Ray ray = arCamera.ScreenPointToRay(screenPos);
         RaycastHit hit;
