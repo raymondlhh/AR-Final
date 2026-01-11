@@ -236,11 +236,11 @@ public class PlayerInteractionController : MonoBehaviour
 
     private void HandleActionPress()
     {
-        if (currentZone == ZoneType.None)
-        {
-            Debug.Log("Not in any zone. Action button does nothing.");
-            return;
-        }
+        //if (currentZone == ZoneType.None)
+        //{
+        //    Debug.Log("Not in any zone. Action button does nothing.");
+        //    return;
+        //}
 
         switch (currentZone)
         {

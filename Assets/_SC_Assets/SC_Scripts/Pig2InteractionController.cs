@@ -359,10 +359,10 @@ public class Pig2InteractionController : MonoBehaviour
     void ValidateCurrentZone()
     {
         if (!useContinuousZoneCheck) return;
-        
+
         // Only use this as a fallback when we're not already in a zone
         // Don't override trigger-based detection!
-        if (currentZone != ZoneType.None && currentZoneColliders.Count > 0)
+        if (currentZone != ZoneType.None)
         {
             return; // Trust the trigger-based detection
         }

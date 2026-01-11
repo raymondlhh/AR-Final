@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MixBucketTrigger : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class MixBucketTrigger : MonoBehaviour
     public GameObject clayVisual;
     public GameObject sandVisual;
     public GameObject waterVisual;
-    public LayerMask groundLayer;
+    public event Action OnMixSuccess;
+    public event Action OnMixFail;
 
     private List<string> inputSequence = new List<string>();
 
@@ -24,12 +26,6 @@ public class MixBucketTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (isProcessing) return;
-
-        if (((1 << other.gameObject.layer) & groundLayer) != 0)
-        {
-            Destroy(other.gameObject);
-            return;
-        }
 
         string tag = other.tag;
 
@@ -81,12 +77,15 @@ public class MixBucketTrigger : MonoBehaviour
         if (isCorrect)
         {
             Debug.Log("Correct Sequence!");
+            OnMixSuccess?.Invoke();
             //play correct sfx
             // trigger mix / brick creation here
         }
         else
         {
             Debug.Log("Wrong Sequence!");
+            OnMixFail?.Invoke();
+
             //play sfx wrong audio
         }
 

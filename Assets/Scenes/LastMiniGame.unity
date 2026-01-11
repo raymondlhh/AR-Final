@@ -65558,7 +65558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1954114924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79742,6 +79742,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Minigame_Pig3_Image_Target
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841654679779575796, guid: 3d84b8376ebac554b8a84cdb38d4a32f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8667106621998008504, guid: 3d84b8376ebac554b8a84cdb38d4a32f,
         type: 3}

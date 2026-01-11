@@ -22,7 +22,8 @@ public class Pig3InteractionController : MonoBehaviour
 
     private ZoneType currentZone = ZoneType.None;
     private ZoneType previousZone = ZoneType.None; // Track previous zone for debugging
-    
+    public bool IsAutoProcessing { get; private set; }
+
     // Zone detection - track colliders we're currently inside
     private List<Collider> currentZoneColliders = new List<Collider>(); // Track all zones we're currently in
 
@@ -293,6 +294,44 @@ public class Pig3InteractionController : MonoBehaviour
                 HandleBuildingZone();
                 break;
         }
+    }
+
+    public void ProcessAllRawFromMiniGame()
+    {
+        //if (currentZone != ZoneType.Processing)
+        //{
+        //    Debug.Log("Pig 2: Mini-game completed but NOT in Processing Zone.");
+        //    return;
+        //}
+        StartCoroutine(ProcessAllRawSequence());
+    }
+    private IEnumerator ProcessAllRawSequence()
+    {
+        IsAutoProcessing = true;
+
+        Debug.Log("Pig 2: Mini-game SEQUENTIAL processing started");
+
+        while (true)
+        {
+            int beforeProcessed = visibleProcessedMaterialCount;
+
+            HandleProcessingZone();
+
+            if (visibleProcessedMaterialCount == beforeProcessed)
+            {
+                break;
+            }
+
+            yield return new WaitForSeconds(0.4f);
+        }
+        IsAutoProcessing = false;
+
+        Debug.Log("Pig 2: Mini-game finished. No raw material left to process.");
+    }
+
+    public bool HasRawReadyForProcessing()
+    {
+        return visibleRawMaterialCount > 0;
     }
 
     private void HandleCollectingZone()
