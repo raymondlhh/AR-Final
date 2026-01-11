@@ -6,92 +6,74 @@ using UnityEngine.InputSystem;
 public class Spawn3Bobj : MonoBehaviour
 {
     public Camera cam;
+    public GameObject prefab;
+    public LayerMask uiLayer;
 
-    [Header("Prefabs")]
-    public GameObject waterPrefab;
-    public GameObject clayPrefab;
-    public GameObject sandPrefab;
-
-    bool hasSpawned;
+    private GameObject currentObj;
+    private Rigidbody currentRb;
+    private bool isDragging;
+    private float dragDepth; // auto calculated
 
     void Update()
     {
-        if (PressStarted())
-        {
-            if (hasSpawned) return;
-            hasSpawned = true;
+        if (Mouse.current == null) return;
 
+        if (Mouse.current.leftButton.wasPressedThisFrame)
             TrySpawn();
-        }
 
-        if (PressReleased())
-            hasSpawned = false;
+        if (isDragging)
+            Drag();
+
+        if (Mouse.current.leftButton.wasReleasedThisFrame)
+            Release();
     }
 
     void TrySpawn()
     {
-        Vector2 pointerPos = GetPointerPos();
-        Debug.Log("Pointer Position: " + pointerPos);
+        Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-        Ray ray = cam.ScreenPointToRay(pointerPos);
-        Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red, 1f);
-
-        if (!Physics.Raycast(ray, out RaycastHit hit, 100f))
-        {
-            Debug.Log("Raycast HIT NOTHING");
+        if (!Physics.Raycast(ray, out RaycastHit hit, 100f, uiLayer))
             return;
-        }
 
-        Debug.Log("Raycast HIT: " + hit.collider.name);
-        Debug.Log("Hit TAG: " + hit.collider.tag);
-
-        GameObject prefab = GetPrefabFromHit(hit.collider);
-        if (prefab == null)
-        {
-            Debug.Log("No prefab matched for this tag");
+        if (hit.collider.gameObject != gameObject)
             return;
-        }
 
-        GameObject obj = Instantiate(prefab, hit.point, Quaternion.identity);
+        // use hit point depth
+        dragDepth = Vector3.Distance(cam.transform.position, hit.point);
 
-        DragController drag = obj.GetComponent<DragController>();
-        if (drag != null)
-            drag.BeginDrag(cam);
+        Vector3 spawnPos = cam.ScreenToWorldPoint(
+            new Vector3(Mouse.current.position.ReadValue().x,
+                        Mouse.current.position.ReadValue().y,
+                        dragDepth));
+
+        currentObj = Instantiate(prefab, spawnPos, Quaternion.identity);
+        currentRb = currentObj.GetComponent<Rigidbody>();
+
+        currentRb.isKinematic = true;
+        currentRb.useGravity = false;
+
+        isDragging = true;
     }
 
-    GameObject GetPrefabFromHit(Collider col)
+    void Drag()
     {
-        // OPTION 1: Use TAG (recommended)
-        if (col.CompareTag("Water")) return waterPrefab;
-        if (col.CompareTag("Clay")) return clayPrefab;
-        if (col.CompareTag("Sand")) return sandPrefab;
+        Vector3 worldPos = cam.ScreenToWorldPoint(
+            new Vector3(Mouse.current.position.ReadValue().x,
+                        Mouse.current.position.ReadValue().y,
+                        dragDepth));
 
-        return null;
+        currentObj.transform.position = worldPos;
     }
 
-    // -------- INPUT --------
-
-    bool PressStarted()
+    void Release()
     {
-        if (Touchscreen.current != null)
-            return Touchscreen.current.primaryTouch.press.wasPressedThisFrame;
+        if (!isDragging) return;
 
-        return Mouse.current.leftButton.wasPressedThisFrame;
-    }
+        currentRb.isKinematic = false;
+        currentRb.useGravity = true;
 
-    bool PressReleased()
-    {
-        if (Touchscreen.current != null)
-            return Touchscreen.current.primaryTouch.press.wasReleasedThisFrame;
-
-        return Mouse.current.leftButton.wasReleasedThisFrame;
-    }
-
-    Vector2 GetPointerPos()
-    {
-        if (Touchscreen.current != null)
-            return Touchscreen.current.primaryTouch.position.ReadValue();
-
-        return Mouse.current.position.ReadValue();
+        isDragging = false;
+        currentObj = null;
+        currentRb = null;
     }
 }

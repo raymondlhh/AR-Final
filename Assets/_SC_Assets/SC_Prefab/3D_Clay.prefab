@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 1073270545937657768}
   - component: {fileID: -5344243313776809420}
   - component: {fileID: 3241462329553085418}
-  - component: {fileID: -7081906674646563381}
   m_Layer: 0
   m_Name: 3D_Clay
-  m_TagString: Untagged
+  m_TagString: Clay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,15 +133,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-7081906674646563381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476607836966533598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 420121096a31544409c60c59fee8ebd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
