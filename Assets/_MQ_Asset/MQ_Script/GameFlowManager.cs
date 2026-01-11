@@ -8,10 +8,16 @@ public class GameFlowManager : MonoBehaviour
 
     void Start()
     {
-        introDialogue.SetActive(true);
+        introDialogue.SetActive(false);
         endingDialogue.SetActive(false);
         questionsParent.SetActive(false);
     }
+
+    public void OnTargetReached()
+    {
+        introDialogue.SetActive(true);
+    }
+
 
     // Called by QuizManager
     public void OnQuizFinished()
