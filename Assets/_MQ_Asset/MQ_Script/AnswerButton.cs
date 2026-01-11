@@ -15,6 +15,11 @@ public class AnswerButton : MonoBehaviour
     private static bool isLocked = false;
     private QuizManager quizManager;
 
+    public AudioSource audioSource;
+    public AudioClip correctSFX;
+    public AudioClip wrongSFX;
+
+
     void Awake()
     {
         image = GetComponent<Image>();
@@ -35,9 +40,19 @@ public class AnswerButton : MonoBehaviour
         isLocked = true;
         LockAllButtons(true);
 
-        image.color = isCorrect ? correctColor : wrongColor;
+        //image.color = isCorrect ? correctColor : wrongColor;
+        if (isCorrect)
+        {
+            image.color = correctColor;
+            audioSource.PlayOneShot(correctSFX);
+        }
+        else
+        {
+            image.color = wrongColor;
+            audioSource.PlayOneShot(wrongSFX);
+        }
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
         if (isCorrect)
         {
