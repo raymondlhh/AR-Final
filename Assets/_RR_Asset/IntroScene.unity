@@ -1021,8 +1021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40eb1d0a65bf92469e93e652c8edcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1705891730}
-  animator: {fileID: 187615089}
+  targetedObject: {fileID: 1705891730}
+  animator: {fileID: 0}
   boolParameterName: Talking
 --- !u!114 &187615092
 MonoBehaviour:
@@ -1038,11 +1038,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intermediateTarget: {fileID: 74197996}
   finalTarget: {fileID: 1924921354}
-  moveSpeed: 0.2
+  moveSpeed: 0.5
   rotateSpeed: 5
   targetObject: {fileID: 1705891730}
   appearOnce: 0
-  animator: {fileID: 0}
+  animator: {fileID: 187615089}
   boolParameterName: Walking
 --- !u!1 &205129444
 GameObject:
@@ -3579,8 +3579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40eb1d0a65bf92469e93e652c8edcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1354392057}
-  animator: {fileID: 732220508}
+  targetedObject: {fileID: 1354392057}
+  animator: {fileID: 0}
   boolParameterName: Talking
 --- !u!114 &732220511
 MonoBehaviour:
@@ -3596,11 +3596,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intermediateTarget: {fileID: 470461319}
   finalTarget: {fileID: 915169761}
-  moveSpeed: 0.2
+  moveSpeed: 0.5
   rotateSpeed: 5
   targetObject: {fileID: 1354392057}
   appearOnce: 0
-  animator: {fileID: 0}
+  animator: {fileID: 732220508}
   boolParameterName: Walking
 --- !u!1001 &750425727
 PrefabInstance:
@@ -6902,7 +6902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40eb1d0a65bf92469e93e652c8edcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1186650211}
+  targetedObject: {fileID: 1186650211}
   animator: {fileID: 1293281283}
   boolParameterName: Talking
 --- !u!1 &1294526874
@@ -8396,8 +8396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40eb1d0a65bf92469e93e652c8edcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 1898054834}
-  animator: {fileID: 1634441636}
+  targetedObject: {fileID: 1898054834}
+  animator: {fileID: 0}
   boolParameterName: Talking
 --- !u!114 &1634441639
 MonoBehaviour:
@@ -8413,11 +8413,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intermediateTarget: {fileID: 1574869752}
   finalTarget: {fileID: 403555375}
-  moveSpeed: 0.2
+  moveSpeed: 0.5
   rotateSpeed: 5
   targetObject: {fileID: 1898054834}
   appearOnce: 0
-  animator: {fileID: 0}
+  animator: {fileID: 1634441636}
   boolParameterName: Walking
 --- !u!1 &1693519864
 GameObject:

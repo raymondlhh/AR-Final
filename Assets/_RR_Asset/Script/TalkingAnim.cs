@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class TalkingAnim : MonoBehaviour
 {
-    public GameObject targetObject;
+    public GameObject targetedObject;
     public Animator animator;       
     public string boolParameterName = "Talking"; // the bool in Animator
+
+    void Start()
+    {
+        animator=GetComponent<Animator>();
+    }
 
     void Update()
     {
 
         // Set the animator bool based on object active state
-        if (targetObject.activeSelf)
+        if (targetedObject.activeSelf)
         {
             animator.SetBool(boolParameterName, true);
         }

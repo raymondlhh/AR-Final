@@ -40,7 +40,7 @@ public class Blowing : MonoBehaviour
             if (squashRight)
             {
                 targetScale.x = originalScale.x + wave;
-                targetScale.y = originalScale.y - wave * 0.1f;
+                targetScale.y = originalScale.y - wave * 0.5f;
                 targetPosition.x = originalPosition.x - wave * 0.5f; // offset left so it squishes right
             }
             else

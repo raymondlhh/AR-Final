@@ -8,8 +8,10 @@ public class WolfComing : MonoBehaviour
     public float moveSpeed = 1f;
     public Animator WolfAnim;
     public GameObject WolfDialogue;
+    public bool appear = false;
 
     public float stopDistance = 0.05f; // how close is "arrived"
+
 
     void Start()
     {
@@ -34,7 +36,12 @@ public class WolfComing : MonoBehaviour
         {
             // Reached destination
             WolfAnim.SetBool("Reach", true);
-            WolfDialogue.SetActive(true);
+            if(!appear)
+            {
+                appear = true;
+                WolfDialogue.SetActive(true);
+            }
+            
         }
     }
 }

@@ -7,7 +7,7 @@ public class PigLeave : MonoBehaviour
     [Header("Movement Settings")]
     public Transform intermediateTarget; 
     public Transform finalTarget;        
-    public float moveSpeed = 2f;         
+    public float moveSpeed = 1f;         
     public float rotateSpeed = 5f;       
     public GameObject targetObject;      
     public bool appearOnce = false;

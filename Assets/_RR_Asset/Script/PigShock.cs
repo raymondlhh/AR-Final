@@ -53,7 +53,7 @@ public class PigShock : MonoBehaviour
         }
 
         animator.SetBool("Run", false);
-        //RunSmoke.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     IEnumerator RotateByAngle(float angle)
