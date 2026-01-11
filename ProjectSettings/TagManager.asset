@@ -5,15 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - Farmer
+  - Millet
+  - Rope
+  - Table
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
+  - Tool
+  - Table
   - 
   - 
   - 
