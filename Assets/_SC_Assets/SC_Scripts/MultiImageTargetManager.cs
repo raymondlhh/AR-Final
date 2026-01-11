@@ -295,4 +295,10 @@ public class MultiImageTargetManager : MonoBehaviour
         currentActivePig = null;
         currentActivePigIndex = -1;
     }
+
+    /*public int GetCurrentActivePigIndex()
+    {
+        return currentActivePigIndex; // -1, 0, 1, 2
+    }*/
+
 }

@@ -29,6 +29,16 @@ public class Pig3InteractionController : MonoBehaviour
     // Action button reference
     public Button actionButton;
 
+    [Header("Action Button UI")]
+    public Image actionButtonImage;
+
+    [Header("Zone Icons")]
+    public Sprite collectIcon;
+    public Sprite processIcon;
+    public Sprite buildIcon;
+
+    public Sprite defaultIcon;
+
     [Header("Animation")]
     public Animator pigAnimator;
     private static readonly int s_Eat = Animator.StringToHash("Eat"); // Use for valid action
@@ -139,8 +149,9 @@ public class Pig3InteractionController : MonoBehaviour
         {
             actionButton.onClick.AddListener(OnActionButtonPressed);
         }
+        UpdateActionButtonIcon();
     }
-    
+
     void Update()
     {
         // Check for action button press (handles both UI button and keyboard input)
@@ -205,6 +216,8 @@ public class Pig3InteractionController : MonoBehaviour
                     Debug.Log($"Pig 3: Entered Building Zone (Total zones tracked: {currentZoneColliders.Count})");
                 }
             }
+            UpdateActionButtonIcon();
+
         }
     }
 
@@ -242,6 +255,8 @@ public class Pig3InteractionController : MonoBehaviour
                     previousZone = currentZone;
                     currentZone = ZoneType.None;
                     Debug.Log($"Pig 3: Left {exitedZone} Zone (Remaining zones tracked: {currentZoneColliders.Count})");
+                    UpdateActionButtonIcon();
+
                 }
             }
         }
@@ -929,5 +944,43 @@ public class Pig3InteractionController : MonoBehaviour
         
         // If we've reached the end of one string, the shorter one comes first
         return a.Length.CompareTo(b.Length);
+    }
+
+    private void UpdateActionButtonIcon()
+    {
+        if (actionButtonImage == null)
+        {
+            Debug.LogWarning("[ActionButton] Image reference is NULL");
+            return;
+        }
+
+        // ZONE NONE → hide icon completely
+        if (currentZone == ZoneType.None)
+        {
+            actionButtonImage.enabled = false;
+            Debug.Log("[ActionButton] No zone → icon hidden");
+            return;
+        }
+
+        // ZONE ACTIVE → show icon
+        actionButtonImage.enabled = true;
+
+        switch (currentZone)
+        {
+            case ZoneType.Collecting:
+                actionButtonImage.sprite = collectIcon;
+                Debug.Log("[ActionButton] Collecting icon applied");
+                break;
+
+            case ZoneType.Processing:
+                actionButtonImage.sprite = processIcon;
+                Debug.Log("[ActionButton] Processing icon applied");
+                break;
+
+            case ZoneType.Building:
+                actionButtonImage.sprite = buildIcon;
+                Debug.Log("[ActionButton] Building icon applied");
+                break;
+        }
     }
 }

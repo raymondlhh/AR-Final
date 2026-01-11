@@ -39,6 +39,17 @@ public class Pig2InteractionController : MonoBehaviour
     // Action button reference
     public Button actionButton;
 
+    [Header("Action Button UI")]
+    public Image actionButtonImage;
+
+    [Header("Zone Icons")]
+    public Sprite collectIcon;
+    public Sprite processIcon;
+    public Sprite buildIcon;
+
+    public Sprite defaultIcon;
+
+
     [Header("Animation")]
     public Animator pigAnimator;
     private static readonly int s_Eat = Animator.StringToHash("Eat"); // Use for valid action
@@ -99,6 +110,7 @@ public class Pig2InteractionController : MonoBehaviour
     // Counters for quick checks
     private int visibleProcessedMaterialCount = 0; // How many processed materials are currently visible (max 36)
     private int visibleBuildMaterialCount = 0;
+
 
     void Start()
     {
@@ -180,8 +192,11 @@ public class Pig2InteractionController : MonoBehaviour
         {
             actionButton.onClick.AddListener(OnActionButtonPressed);
         }
+
+        UpdateActionButtonIcon();
+
     }
-    
+
     void Update()
     {
         // Continuous zone checking only as a backup/validation (don't override trigger-based detection)
@@ -237,6 +252,7 @@ public class Pig2InteractionController : MonoBehaviour
             currentZone = zoneTrigger.zoneType;
 
             Debug.Log($"Pig 2: Entered {currentZone} zone (via ZoneTrigger)");
+            UpdateActionButtonIcon();
             return; 
         }
 
@@ -273,6 +289,7 @@ public class Pig2InteractionController : MonoBehaviour
                     currentZone = ZoneType.Building;
                     Debug.Log($"Pig 2: Entered Building Zone (Total zones tracked: {currentZoneColliders.Count})");
                 }
+                
             }
         }
     }
@@ -288,6 +305,8 @@ public class Pig2InteractionController : MonoBehaviour
                 previousZone = currentZone;
                 currentZone = ZoneType.None;
                 Debug.Log("Pig 2: Left all zones (ZoneTrigger)");
+
+                UpdateActionButtonIcon();
             }
             return;
         }
@@ -324,7 +343,10 @@ public class Pig2InteractionController : MonoBehaviour
                     previousZone = currentZone;
                     currentZone = ZoneType.None;
                     Debug.Log($"Pig 2: Left {exitedZone} Zone (Remaining zones tracked: {currentZoneColliders.Count})");
+
+                    UpdateActionButtonIcon();
                 }
+                UpdateActionButtonIcon();
             }
         }
     }
@@ -435,6 +457,9 @@ public class Pig2InteractionController : MonoBehaviour
             currentZoneColliders.Clear();
             currentZoneColliders.AddRange(foundZoneColliders);
             Debug.Log($"Pig 2: Fallback validation detected {currentZone} zone (found {foundZoneColliders.Count} zone collider(s))");
+
+            UpdateActionButtonIcon();
+
         }
     }
 
@@ -1184,5 +1209,43 @@ public class Pig2InteractionController : MonoBehaviour
         
         // If we've reached the end of one string, the shorter one comes first
         return a.Length.CompareTo(b.Length);
+    }
+
+    private void UpdateActionButtonIcon()
+    {
+        if (actionButtonImage == null)
+        {
+            Debug.LogWarning("[ActionButton] Image reference is NULL");
+            return;
+        }
+
+        // ZONE NONE → hide icon completely
+        if (currentZone == ZoneType.None)
+        {
+            actionButtonImage.enabled = false;
+            Debug.Log("[ActionButton] No zone → icon hidden");
+            return;
+        }
+
+        // ZONE ACTIVE → show icon
+        actionButtonImage.enabled = true;
+
+        switch (currentZone)
+        {
+            case ZoneType.Collecting:
+                actionButtonImage.sprite = collectIcon;
+                Debug.Log("[ActionButton] Collecting icon applied");
+                break;
+
+            case ZoneType.Processing:
+                actionButtonImage.sprite = processIcon;
+                Debug.Log("[ActionButton] Processing icon applied");
+                break;
+
+            case ZoneType.Building:
+                actionButtonImage.sprite = buildIcon;
+                Debug.Log("[ActionButton] Building icon applied");
+                break;
+        }
     }
 }
