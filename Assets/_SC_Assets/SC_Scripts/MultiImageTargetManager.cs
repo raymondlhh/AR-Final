@@ -116,7 +116,11 @@ public class MultiImageTargetManager : MonoBehaviour
                 Pig2InteractionController ic2 = pig2.GetComponent<Pig2InteractionController>();
                 if (ic2 != null) ic2.actionButton = actionButton;
             }
-            // Add Pig3InteractionController when implemented
+            if (pig3 != null)
+            {
+                Pig3InteractionController ic3 = pig3.GetComponent<Pig3InteractionController>();
+                if (ic3 != null) ic3.actionButton = actionButton;
+            }
         }
     }
 
