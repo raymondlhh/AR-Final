@@ -88866,7 +88866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8511f725516761b4ab69e38850a1fcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionButton: {fileID: 7622040285451842535}
+  actionButton: {fileID: 4412514282316818942}
   actionButtonImage: {fileID: 915278911552569280}
   collectIcon: {fileID: 21300000, guid: 9758d2acdc8f61947965e5fed87e58a2, type: 3}
   processIcon: {fileID: 21300000, guid: ad5ba1ff20caf7f49b8560f9bceb1b7d, type: 3}
@@ -193123,8 +193123,9 @@ GameObject:
   - component: {fileID: 873428888225977408}
   - component: {fileID: 4412514282316818941}
   - component: {fileID: 915278911552569280}
+  - component: {fileID: 4412514282316818942}
   m_Layer: 5
-  m_Name: ActionButtonImage
+  m_Name: NewActionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212197,6 +212198,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2775470907357051962}
   m_CullTransparentMesh: 1
+--- !u!114 &4412514282316818942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775470907357051962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 3540702945364435913}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4431847899663746025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237216,7 +237261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bbbcd0d4c5a9045933f1181d8f16b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionButton: {fileID: 7622040285451842535}
+  actionButton: {fileID: 4412514282316818942}
   actionButtonImage: {fileID: 915278911552569280}
   collectIcon: {fileID: 21300000, guid: de47326dbefca0248a65ad7b22d65ead, type: 3}
   processIcon: {fileID: 21300000, guid: 286e0f6668f4ac04f8689d08517efe42, type: 3}
@@ -253094,7 +253139,7 @@ MonoBehaviour:
   useContinuousZoneCheck: 1
   zoneCheckInterval: 0.1
   zoneCheckRadius: 1.5
-  actionButton: {fileID: 7622040285451842535}
+  actionButton: {fileID: 4412514282316818942}
   actionButtonImage: {fileID: 915278911552569280}
   collectIcon: {fileID: 21300000, guid: d02d8933449e05047af2af66683f7327, type: 3}
   processIcon: {fileID: 21300000, guid: 664a3115845e9c642ab2eb4acedc783e, type: 3}
