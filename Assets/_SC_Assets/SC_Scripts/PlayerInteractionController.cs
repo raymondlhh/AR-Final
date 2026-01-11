@@ -36,7 +36,7 @@ public class PlayerInteractionController : MonoBehaviour
 
     public Sprite defaultIcon;
 
-
+    public bool IsAutoProcessing { get; private set; } = false;
 
     [Header("Animation")]
     public Animator pigAnimator;
@@ -254,6 +254,45 @@ public class PlayerInteractionController : MonoBehaviour
                 HandleBuildingZone();
                 break;
         }
+    }
+    public void StartAutoProcessing()
+    {
+        if (IsAutoProcessing) return;
+
+        Debug.Log("[AutoProcessing] Started");
+
+        IsAutoProcessing = true;
+        StartCoroutine(AutoProcessRoutine());
+    }
+    private IEnumerator AutoProcessRoutine()
+    {
+        // Temporarily force zone to Processing
+        ZoneType previousZone = currentZone;
+        currentZone = ZoneType.Processing;
+
+        while (true)
+        {
+            int pairIndex = FindNextAvailableProcessingPair();
+
+            if (pairIndex == -1)
+            {
+                Debug.Log("[AutoProcessing] No more raw materials to process");
+                break;
+            }
+
+            HandleProcessingZone();
+            yield return new WaitForSeconds(0.6f);
+        }
+
+        currentZone = previousZone;
+        IsAutoProcessing = false;
+
+        Debug.Log("[AutoProcessing] Completed");
+    }
+
+    public bool HasRawReadyForProcessing()
+    {
+        return FindNextAvailableProcessingPair() != -1;
     }
 
     private void HandleCollectingZone()
@@ -601,7 +640,6 @@ public class PlayerInteractionController : MonoBehaviour
             return;
         }
 
-        // ZONE ACTIVE → show icon
         actionButtonImage.enabled = true;
 
         switch (currentZone)

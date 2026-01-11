@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4452311995035445735}
   m_Layer: 0
   m_Name: Dragable_Millet
-  m_TagString: Untagged
+  m_TagString: Millet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,8 +104,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.33148897, y: 0.85674864, z: 0.40916252}
-  m_Center: {x: -0.010225289, y: 0.30379578, z: -0.034104906}
+  m_Size: {x: 0.33148903, y: 0.9033236, z: 0.40916258}
+  m_Center: {x: -0.010225281, y: 0.2805087, z: -0.034104902}
 --- !u!54 &4452311995035445735
 Rigidbody:
   m_ObjectHideFlags: 0

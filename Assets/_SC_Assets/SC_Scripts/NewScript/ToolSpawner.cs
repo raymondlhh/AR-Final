@@ -1,16 +1,24 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class ToolSpawner : MonoBehaviour
 {
-    [Header("Tool Types")]
-    public bool isRopeSpawner;
+    public static event Action OnHayCrafted;
 
+    [Header("Tool Type")]
+    public bool isRopeSpawner; // tick this ONLY on rope spawner
+
+    [Header("References")]
     public Camera cam;
     public GameObject dragPrefab;
     public LayerMask toolLayer;
     public LayerMask dragSurface;
     public Transform[] milletSlots;
+
+    [Header("Crafting")]
+    public GameObject hayPrefab;          // hay to spawn
+    public Transform haySpawnPoint;        // center of table
 
     private Rigidbody currentRb;
     private bool isDragging = false;
@@ -30,46 +38,50 @@ public class ToolSpawner : MonoBehaviour
             ReleaseObject();
     }
 
+    // ================= SPAWN =================
     void TrySpawnAndStartDrag()
     {
+        if (currentRb != null) return;
+
+        // Rope locked until all millet placed
         if (isRopeSpawner && !AllSlotsFilled())
         {
-            Debug.Log("Rope locked: place all millet first");
+            Debug.Log("Rope locked: place 3 millet first");
             return;
         }
 
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Ray ray = cam.ScreenPointToRay(mousePos);
 
+        // Must click on tool icon
         RaycastHit hitTool;
-        if (!Physics.Raycast(ray, out hitTool, 100f, toolLayer))
+        if (!Physics.Raycast(ray, out hitTool, 100f))
             return;
 
-        // Raycast to drag surface immediately
-        RaycastHit hitSurface;
-        if (!Physics.Raycast(ray, out hitSurface, 100f, dragSurface))
+        if (hitTool.collider.gameObject != gameObject)
             return;
 
-        // Spawn EXACTLY at finger/mouse position
+        // Must have valid drag surface
+        if (!Physics.Raycast(ray, out RaycastHit hitSurface, 100f, dragSurface))
+            return;
+
         GameObject obj = Instantiate(dragPrefab, hitSurface.point, Quaternion.identity);
 
         currentRb = obj.GetComponent<Rigidbody>();
         currentRb.useGravity = false;
         currentRb.isKinematic = true;
-        currentRb.interpolation = RigidbodyInterpolation.Interpolate;
 
         isDragging = true;
-
         Debug.Log("Spawn + Drag started");
     }
 
+    // ================= DRAG =================
     void DragObject()
     {
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Ray ray = cam.ScreenPointToRay(mousePos);
 
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100f, dragSurface))
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, dragSurface))
         {
             isOverTable = true;
             currentRb.MovePosition(hit.point);
@@ -77,14 +89,26 @@ public class ToolSpawner : MonoBehaviour
         else
         {
             isOverTable = false;
-
         }
     }
 
+    // ================= RELEASE =================
     void ReleaseObject()
     {
         if (currentRb == null) return;
-        if (isOverTable)
+
+        GameObject obj = currentRb.gameObject;
+
+        // Dropped outside table
+        if (!isOverTable)
+        {
+            DropAndDestroy(obj);
+            ResetDrag();
+            return;
+        }
+
+        // ---------- MILLET ----------
+        if (obj.CompareTag("Millet"))
         {
             Transform freeSlot = GetFreeSlot();
 
@@ -93,27 +117,44 @@ public class ToolSpawner : MonoBehaviour
                 SnapToSlot(freeSlot);
 
                 if (AllSlotsFilled())
-                {
                     Debug.Log("All millet placed – rope unlocked");
-                }
             }
             else
             {
-                Destroy(currentRb.gameObject, 1f);
-                //play error sfx (full)
+                Destroy(obj, 1f); // slots full
             }
-
         }
-        else
+        // ---------- ROPE ----------
+        else if (obj.CompareTag("Rope"))
         {
-            currentRb.isKinematic = false;
-            currentRb.useGravity = true;
-            GameObject objToDestroy = currentRb.gameObject;
-            Destroy(objToDestroy, 1f);
+            if (AllSlotsFilled())
+            {
+                CraftHay();
+                Destroy(obj);
+            }
+            else
+            {
+                Debug.Log("Rope useless without 3 millet");
+                Destroy(obj, 1f);
+            }
         }
 
+        ResetDrag();
+    }
+
+    // ================= HELPERS =================
+    void ResetDrag()
+    {
         currentRb = null;
         isDragging = false;
+        isOverTable = false;
+    }
+
+    void DropAndDestroy(GameObject obj)
+    {
+        currentRb.isKinematic = false;
+        currentRb.useGravity = true;
+        Destroy(obj, 1f);
     }
 
     Transform GetFreeSlot()
@@ -125,15 +166,17 @@ public class ToolSpawner : MonoBehaviour
         }
         return null;
     }
+
     void SnapToSlot(Transform slot)
     {
         currentRb.transform.position = slot.position;
         currentRb.transform.rotation = slot.rotation;
         currentRb.transform.SetParent(slot);
 
-        currentRb.isKinematic = true;   // stay fixed on table
+        currentRb.isKinematic = true;
         currentRb.useGravity = false;
     }
+
     bool AllSlotsFilled()
     {
         foreach (Transform slot in milletSlots)
@@ -142,5 +185,33 @@ public class ToolSpawner : MonoBehaviour
                 return false;
         }
         return true;
+    }
+
+    // ================= CRAFT =================
+    public void CraftHay()
+    {
+        Debug.Log("HAY CREATED!");
+
+        // remove all millet
+        foreach (Transform slot in milletSlots)
+        {
+            if (slot.childCount > 0)
+                Destroy(slot.GetChild(0).gameObject);
+        }
+
+        // spawn hay
+        if (hayPrefab != null && haySpawnPoint != null)
+        {
+            GameObject hayInstance = Instantiate(
+                hayPrefab,
+                haySpawnPoint.position,
+                haySpawnPoint.rotation,
+                haySpawnPoint.parent
+            );
+
+            Destroy(hayInstance, 2f);
+        }
+
+        OnHayCrafted?.Invoke();
     }
 }
