@@ -56,6 +56,7 @@ public class WolfAttack : MonoBehaviour
 
         wolfAnim.SetBool("Blowing", true);
         houseBlow.StartBlowHouse();
+        blowsound.Play();
         //smokeParticleEffect.SetActive(true);
         windparticleEffect.SetActive(true);
 
@@ -73,7 +74,7 @@ public class WolfAttack : MonoBehaviour
 
     private void EndBlowing()
     {
-        //breaksound.Play();
+        blowsound.Stop();
         owhnoText.SetActive(false);
         House.SetActive(false); 
         smokeParticleEffect.SetActive(false);

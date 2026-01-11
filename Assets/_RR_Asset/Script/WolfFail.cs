@@ -16,6 +16,8 @@ public class WolfFail : MonoBehaviour
     public GameObject gameUi;
     public GameObject owhnoText;
     Coroutine windCoroutine;
+    public AudioSource blowsound;
+
 
     public bool activateOnce = false;
     void Start()
@@ -45,6 +47,7 @@ public class WolfFail : MonoBehaviour
 
 
         wolfAnim.SetBool("Blowing", true);
+        blowsound.Play();
         houseBlow.StartBlowHouse();
         windparticleEffect.SetActive(true);
         StartCoroutine(ShowInstruction());
@@ -60,6 +63,7 @@ public class WolfFail : MonoBehaviour
 
     private void EndBlowing()
     {
+        blowsound.Stop();
         owhnoText.SetActive(false);
         houseBlow.StopBlowHouse();  
         wolfDialogue.SetActive(true);
