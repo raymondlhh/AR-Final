@@ -860,7 +860,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Button - Base
+  m_Name: Button - Base MM
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Normal
@@ -1169,7 +1169,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ed64155ff8f014ea1ba86d66dc8b1da9, type: 2}
+  m_Motion: {fileID: 7400000, guid: e1119ef9997965f4bbe5b78769089a22, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1200,7 +1200,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 2783118932260842821}
-    m_Position: {x: 230, y: -60, z: 0}
+    m_Position: {x: 240, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3251070848505199043}
     m_Position: {x: 290, y: 50, z: 0}
@@ -1253,7 +1253,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 1.2, y: 1.2, z: 1.2}
+        value: {x: 1.4, y: 1.4, z: 1.4}
         inSlope: {x: 1.0576662, y: 0, z: 0}
         outSlope: {x: 1.0576662, y: 0, z: 0}
         tangentMode: 0
@@ -1310,7 +1310,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1.2
+        value: 1.4
         inSlope: 1.0576662
         outSlope: 1.0576662
         tangentMode: 34
@@ -1331,7 +1331,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1.2
+        value: 1.4
         inSlope: -1.1028417
         outSlope: -1.1028417
         tangentMode: 34
@@ -1352,7 +1352,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1.2
+        value: 1.4
         inSlope: 0
         outSlope: 0
         tangentMode: 34
