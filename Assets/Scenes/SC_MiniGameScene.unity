@@ -7822,7 +7822,7 @@ MonoBehaviour:
   toolspawner: {fileID: 8771597995236132868}
   pig1: {fileID: 6791141490278355173}
   joystickUI: {fileID: 4130493845048918739}
-  actionButtonUI: {fileID: 0}
+  actionButtonUI: {fileID: 216009329990459631}
   miniGameParent: {fileID: 2114042751}
 --- !u!1 &285041554
 GameObject:
@@ -89020,7 +89020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementJoystick: {fileID: 4130493845048918751}
-  playerSpeed: 1
+  playerSpeed: 0.7
   lockYPosition: 1
   yOffsetFromGround: 0
   groundDetection: 0
@@ -127408,7 +127408,7 @@ Transform:
   m_GameObject: {fileID: 1582602223}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00013245137, y: 0.0010533299, z: -0.0012707865, w: 0.9999986}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.003, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -153254,7 +153254,7 @@ Transform:
   m_GameObject: {fileID: 1821421095}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 4.0628, y: 0.4298, z: -0.75}
+  m_LocalPosition: {x: 2, y: 0.75, z: -0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -200991,8 +200991,8 @@ Transform:
   m_GameObject: {fileID: 196512854512960136}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.35260817, y: 0.13482441, z: -0.24641195}
-  m_LocalScale: {x: 0.19610408, y: 0.19610408, z: 0.19610408}
+  m_LocalPosition: {x: 0.37123, y: 0.154, z: -0.2353}
+  m_LocalScale: {x: 0.5219702, y: 0.5219702, z: 0.5219702}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2114042752}
@@ -237415,7 +237415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementJoystick: {fileID: 4130493845048918751}
-  playerSpeed: 1
+  playerSpeed: 0.7
   lockYPosition: 1
   yOffsetFromGround: 0
   groundDetection: 0
@@ -241567,13 +241567,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8771597995236132867}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.64670646, y: 0.23476376, z: -0.26393473, w: 0.6760143}
-  m_LocalPosition: {x: -0.25015846, y: 0.13490677, z: -0.287}
-  m_LocalScale: {x: 0.27828556, y: 0.27828562, z: 0.27828562}
+  m_LocalRotation: {x: 0.008077233, y: -0.008973862, z: -0.10948817, w: 0.9939148}
+  m_LocalPosition: {x: -0.25461, y: 0.173, z: -0.21141}
+  m_LocalScale: {x: 0.54196113, y: 0.54196125, z: 0.54196125}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2114042752}
-  m_LocalEulerAnglesHint: {x: 86.649, y: -24.208, z: -65.524}
+  m_LocalEulerAnglesHint: {x: 0.807, y: -1.124, z: -12.58}
 --- !u!1 &8325889782633618064
 GameObject:
   m_ObjectHideFlags: 0
@@ -253207,7 +253207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementJoystick: {fileID: 4130493845048918751}
-  playerSpeed: 1
+  playerSpeed: 0.7
   lockYPosition: 1
   yOffsetFromGround: 0
   groundDetection: 0
