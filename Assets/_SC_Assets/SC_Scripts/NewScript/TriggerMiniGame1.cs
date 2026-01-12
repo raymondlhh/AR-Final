@@ -9,6 +9,8 @@ public class TriggerMiniGame1 : MonoBehaviour
     [Header("Gameplay UI")]
     public GameObject joystickUI;
     public GameObject actionButtonUI;
+    public GameObject instrutUI;
+
     //public GameObject miniGameUI;
     public GameObject miniGameParent;
 
@@ -60,6 +62,7 @@ public class TriggerMiniGame1 : MonoBehaviour
 
         joystickUI.SetActive(false);
         actionButtonUI.SetActive(false);
+        instrutUI.SetActive(true);
 
         Debug.Log("Mini-game started");
     }
@@ -81,6 +84,7 @@ public class TriggerMiniGame1 : MonoBehaviour
 
         joystickUI.SetActive(true);
         actionButtonUI.SetActive(true);
+        instrutUI.SetActive(false);
 
         isMiniGameActive = false;
 
