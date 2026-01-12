@@ -1044,6 +1044,7 @@ MonoBehaviour:
   appearOnce: 0
   animator: {fileID: 187615089}
   boolParameterName: Walking
+  islastpig: 1
 --- !u!1 &205129444
 GameObject:
   m_ObjectHideFlags: 0
@@ -3267,6 +3268,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 659432863}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &662262335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662262337}
+  - component: {fileID: 662262336}
+  m_Layer: 0
+  m_Name: LoadScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &662262336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662262335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01b88119c0b49049b119c48c72c6203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &662262337
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662262335}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.67373717, y: -0.2052572, z: 1.0090626}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &691816178
 GameObject:
   m_ObjectHideFlags: 0
@@ -3602,6 +3647,7 @@ MonoBehaviour:
   appearOnce: 0
   animator: {fileID: 732220508}
   boolParameterName: Walking
+  islastpig: 0
 --- !u!1001 &750425727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8419,6 +8465,7 @@ MonoBehaviour:
   appearOnce: 0
   animator: {fileID: 1634441636}
   boolParameterName: Walking
+  islastpig: 0
 --- !u!1 &1693519864
 GameObject:
   m_ObjectHideFlags: 0
@@ -10298,3 +10345,4 @@ SceneRoots:
   - {fileID: 1204859879}
   - {fileID: 418102977}
   - {fileID: 1323438887}
+  - {fileID: 662262337}

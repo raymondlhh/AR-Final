@@ -3896,6 +3896,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 595663394}
   m_CullTransparentMesh: 1
+--- !u!1 &620412269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 620412271}
+  - component: {fileID: 620412270}
+  m_Layer: 0
+  m_Name: LoadScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &620412270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620412269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01b88119c0b49049b119c48c72c6203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &620412271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620412269}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.67373717, y: -0.2052572, z: 1.0090626}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1323438887}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &632525738
 GameObject:
   m_ObjectHideFlags: 0
@@ -7285,6 +7329,7 @@ Transform:
   - {fileID: 582033262661897624}
   - {fileID: 1621974403}
   - {fileID: 1864411442}
+  - {fileID: 620412271}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1323438888
@@ -8758,7 +8803,8 @@ MonoBehaviour:
   - Seems like straw house is not strong enough.
   - Let see where big brother runs to.
   typingSpeed: 0.05
-  playerUI: []
+  playerUI:
+  - {fileID: 620412269}
   dialogueUI: {fileID: 1226974971}
   sound: {fileID: 1619407754}
 --- !u!82 &1619407754

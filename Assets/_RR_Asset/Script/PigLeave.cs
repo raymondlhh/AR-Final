@@ -20,6 +20,8 @@ public class PigLeave : MonoBehaviour
     public Animator animator;
     public string boolParameterName = "Walking";
 
+    public bool islastpig = false;  
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -78,6 +80,10 @@ public class PigLeave : MonoBehaviour
                 {
                     shouldMove = false;
                     animator.SetBool(boolParameterName, false); 
+                    if(islastpig)
+                    {
+                        UnityEngine.SceneManagement.SceneManager.LoadScene("SC_MiniGameScene");
+                    }
                     gameObject.SetActive(false);               
                 }
             }
