@@ -47610,7 +47610,6 @@ MonoBehaviour:
   mixBucket: {fileID: 8397113986028348195}
   joystickUI: {fileID: 4130493845048918739}
   actionButtonUI: {fileID: 216009329990459631}
-  miniGameUI: {fileID: 3194548218642911435}
   miniGameParent: {fileID: 1297709923}
 --- !u!65 &706544096
 BoxCollider:
@@ -86988,6 +86987,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1071924635}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1182527233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1182527234}
+  m_Layer: 0
+  m_Name: LoadScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1182527234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182527233}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6323632, y: 0.8016788, z: -0.397}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1183383353 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2035555172433996715, guid: 2a55d161553051940a1b80605bd94deb,
@@ -237483,6 +237513,7 @@ MonoBehaviour:
   processIcon: {fileID: 21300000, guid: 286e0f6668f4ac04f8689d08517efe42, type: 3}
   buildIcon: {fileID: 21300000, guid: 10677cc3d4963a44cb07cf52b09a5246, type: 3}
   defaultIcon: {fileID: 21300000, guid: 8c101280afaeb48d29aff4eb721c30ca, type: 3}
+  sceneLoader: {fileID: 0}
   pigAnimator: {fileID: 6791141490278355171}
   audioSource: {fileID: 0}
   collectValidSFX: {fileID: 8300000, guid: d353a538b2ca8334084dd5b56a8c903b, type: 3}
@@ -254195,3 +254226,4 @@ SceneRoots:
   - {fileID: 1418930910}
   - {fileID: 3994566354165011277}
   - {fileID: 1801493412}
+  - {fileID: 1182527234}

@@ -1,7 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class TypeWriting : MonoBehaviour
 {
@@ -11,6 +13,12 @@ public class TypeWriting : MonoBehaviour
     public GameObject[] playerUI;
     public GameObject dialogueUI;
     public AudioSource sound;
+
+    [Header("Optional Scene Load")]
+    public bool loadSceneAfterDialogue = false;
+    public string sceneName;
+    public float sceneLoadDelay = 1.5f;
+
 
     int index;
     bool isTyping;
@@ -103,8 +111,21 @@ public class TypeWriting : MonoBehaviour
         {
             ui.SetActive(true);
         }
-        
+
+        // ✅ START coroutine FIRST (while object is active)
+        if (loadSceneAfterDialogue)
+        {
+            StartCoroutine(LoadSceneRoutine());
+        }
+
+        // ❌ Disable dialogue AFTER coroutine started
         dialogueUI.SetActive(false);
-        
     }
+
+    private IEnumerator LoadSceneRoutine()
+    {
+        yield return new WaitForSeconds(sceneLoadDelay);
+        SceneManager.LoadScene(sceneName);
+    }
+
 }

@@ -1918,6 +1918,9 @@ MonoBehaviour:
   - {fileID: 1354392057}
   dialogueUI: {fileID: 1898054834}
   sound: {fileID: 424299031}
+  loadSceneAfterDialogue: 0
+  sceneName: 
+  sceneLoadDelay: 1.5
 --- !u!114 &424299028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4204,6 +4207,9 @@ MonoBehaviour:
   - {fileID: 1186650211}
   dialogueUI: {fileID: 129499095}
   sound: {fileID: 845110768}
+  loadSceneAfterDialogue: 0
+  sceneName: 
+  sceneLoadDelay: 1.5
 --- !u!82 &845110768
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4490,6 +4496,9 @@ MonoBehaviour:
   - {fileID: 1705891730}
   dialogueUI: {fileID: 1354392057}
   sound: {fileID: 882051248}
+  loadSceneAfterDialogue: 0
+  sceneName: 
+  sceneLoadDelay: 1.5
 --- !u!114 &882051245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5554,6 +5563,52 @@ RectTransform:
   m_AnchoredPosition: {x: -19, y: -52}
   m_SizeDelta: {x: 2131.898, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1117809652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1117809654}
+  - component: {fileID: 1117809653}
+  m_Layer: 0
+  m_Name: LoadScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1117809653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117809652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ce2de001e877840b26cdc8ca97ad56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: SC_MiniGameScene
+  delay: 2
+--- !u!4 &1117809654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117809652}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -960.6324, y: -110.38287, z: -0.397}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1705891731}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1120926316
 GameObject:
   m_ObjectHideFlags: 0
@@ -6006,6 +6061,9 @@ MonoBehaviour:
   playerUI: []
   dialogueUI: {fileID: 1705891730}
   sound: {fileID: 1178722037}
+  loadSceneAfterDialogue: 1
+  sceneName: SC_MiniGameScene
+  sceneLoadDelay: 1.5
 --- !u!114 &1178722034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6967,6 +7025,9 @@ MonoBehaviour:
   - {fileID: 1898054834}
   dialogueUI: {fileID: 1186650211}
   sound: {fileID: 1294526879}
+  loadSceneAfterDialogue: 0
+  sceneName: 
+  sceneLoadDelay: 1.5
 --- !u!114 &1294526877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8622,6 +8683,7 @@ RectTransform:
   - {fileID: 1178722036}
   - {fileID: 1554089864}
   - {fileID: 1574060755}
+  - {fileID: 1117809654}
   m_Father: {fileID: 1579363004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

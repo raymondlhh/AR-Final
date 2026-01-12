@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -818,9 +819,17 @@ public class Pig2InteractionController : MonoBehaviour
 
         // Play house completion SFX
         PlaySFX(houseCompleteSFX);
+
+        StartCoroutine(LoadScene());
     }
 
-    private void HideAllMaterials()
+
+private IEnumerator LoadScene()
+{
+    yield return new WaitForSeconds(2f); // wait for SFX / animation
+    SceneManager.LoadScene("Wolf Come Scene 2");
+}
+private void HideAllMaterials()
     {
         // Hide all raw materials and reset scale states
         for (int i = 0; i < rawMaterials.Length; i++)
