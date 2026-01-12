@@ -21,6 +21,7 @@ public class BGM : MonoBehaviour
         if (bgmSource != null && !bgmSource.isPlaying)
         {
             bgmSource.Play();
+            Debug.Log("bgm played");
         }
     }
 
