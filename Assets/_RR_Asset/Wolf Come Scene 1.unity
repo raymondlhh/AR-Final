@@ -2565,15 +2565,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 146.8
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 255.9
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2632,7 +2632,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 800, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &472295664
 GameObject:
@@ -6293,9 +6293,6 @@ MonoBehaviour:
   - {fileID: 805203219}
   dialogueUI: {fileID: 1867112168}
   sound: {fileID: 1105478890}
-  loadSceneAfterDialogue: 0
-  sceneName: 
-  sceneLoadDelay: 1.5
 --- !u!82 &1105478890
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8228,9 +8225,6 @@ MonoBehaviour:
   - {fileID: 1894492397}
   dialogueUI: {fileID: 805203219}
   sound: {fileID: 1384746334}
-  loadSceneAfterDialogue: 0
-  sceneName: 
-  sceneLoadDelay: 1.5
 --- !u!82 &1384746334
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9109,9 +9103,6 @@ MonoBehaviour:
   - {fileID: 282644155}
   dialogueUI: {fileID: 1226974971}
   sound: {fileID: 1619407754}
-  loadSceneAfterDialogue: 0
-  sceneName: 
-  sceneLoadDelay: 1.5
 --- !u!82 &1619407754
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11650,9 +11641,6 @@ MonoBehaviour:
   - {fileID: 5549420427737914208}
   dialogueUI: {fileID: 1894492397}
   sound: {fileID: 2139131010}
-  loadSceneAfterDialogue: 0
-  sceneName: 
-  sceneLoadDelay: 1.5
 --- !u!82 &2139131010
 AudioSource:
   m_ObjectHideFlags: 0
