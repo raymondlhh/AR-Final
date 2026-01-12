@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SC_MiniGameScene.unity
     guid: c24356a02886f344688c5eaab690ffa9
+  - enabled: 1
+    path: Assets/Scenes/EndingQuestion.unity
+    guid: bb66b9142c3e4324c87bcdd49f9301b0
   m_configObjects: {}
