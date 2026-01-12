@@ -1,5 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class ChapterItem : MonoBehaviour
 {
@@ -28,5 +30,19 @@ public class ChapterItem : MonoBehaviour
     {
         if (outline != null)
             outline.enabled = false;
+    }
+
+    // ✅ LOAD SCENE
+    public void LoadChapter()
+    {
+        if (!string.IsNullOrEmpty(sceneName))
+        {
+            Debug.Log("[ChapterItem] Loading scene: " + sceneName);
+            SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            Debug.LogError("Scene name is empty!");
+        }
     }
 }

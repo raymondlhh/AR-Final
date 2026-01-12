@@ -615,7 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: EndingQuestion
 --- !u!114 &137778247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,7 +855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: EndingScene
 --- !u!114 &160425495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1520,7 +1520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: SC_MiniGameScene
 --- !u!114 &236554615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2633,7 +2633,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559501161}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.129}
+  m_LocalPosition: {x: 0, y: 0, z: -0.397}
   m_LocalScale: {x: 0.00093934004, y: 0.00093934004, z: 0.00093934004}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -3847,7 +3847,7 @@ PrefabInstance:
     - target: {fileID: 1884518989231728280, guid: 5dc836f802aabf8468711a964b20321a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -733
+      value: -571
       objectReference: {fileID: 0}
     - target: {fileID: 1884518989231728280, guid: 5dc836f802aabf8468711a964b20321a,
         type: 3}
@@ -3869,6 +3869,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1884518989231728280, guid: 5dc836f802aabf8468711a964b20321a,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3747954970263920462, guid: 5dc836f802aabf8468711a964b20321a,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3e246df52203c95489c6a37ca01a35b1, type: 2}
     - target: {fileID: 4992795417595762930, guid: 5dc836f802aabf8468711a964b20321a,
         type: 3}
       propertyPath: popupPrefab
@@ -4114,7 +4124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: SC_MiniGameScene
 --- !u!114 &835426635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7902,7 +7912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: Wolf Come Scene 2
 --- !u!114 &1444583213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9120,7 +9130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: Wolf Come Scene
 --- !u!114 &1807428089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9530,7 +9540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: Wolf Come Scene 1
 --- !u!114 &1877289881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13781,7 +13791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: IntroScene
 --- !u!114 &5755028945548096607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15624,7 +15634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: NarrativeScene
+  sceneName: MainMenuScene
 --- !u!224 &8591863621580875485
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15933,7 +15943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: SC_MiniGameScene
 --- !u!114 &8851498109929024401
 MonoBehaviour:
   m_ObjectHideFlags: 0
