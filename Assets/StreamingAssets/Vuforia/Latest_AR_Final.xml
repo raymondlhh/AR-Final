@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="page10_qna" size="1.000000 0.535645" />
+    <ImageTarget name="page9_ending" size="1.000000 0.535645" />
+    <ImageTarget name="page8_wolfblowstone" size="1.000000 0.535645" />
+    <ImageTarget name="page7_stonehouse" size="1.000000 0.535645" />
+    <ImageTarget name="page6_wolfblowwood" size="1.000000 0.535645" />
+    <ImageTarget name="page5_woodenhouse" size="1.000000 0.535645" />
+    <ImageTarget name="page4_wolfblowstraw" size="1.000000 0.535645" />
+    <ImageTarget name="page3_strawhouse" size="1.000000 0.535645" />
+    <ImageTarget name="page2_intro" size="1.000000 0.535645" />
+    <ImageTarget name="page1_title" size="1.000000 0.535645" />
+  </Tracking>
+</QCARConfig>

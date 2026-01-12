@@ -5906,13 +5906,13 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: p1-cover-min
+  mTrackableName: page1_title
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/AR-Final.xml
-  mAspectRatio: 0.535817
+  mDataSetPath: Vuforia/Latest_AR_Final.xml
+  mAspectRatio: 0.535645
   mImageTargetType: 0
   mWidth: 1
-  mHeight: 0.535817
+  mHeight: 0.535645
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0
@@ -5945,8 +5945,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 1083345488}
   mHiddenRoot: {fileID: 0}
-  mTargetName: p1-cover-min
-  mDatasetName: Vuforia/AR-Final.xml
+  mTargetName: page1_title
+  mDatasetName: Vuforia/Latest_AR_Final.xml
   mCastedBehaviour: {fileID: 1083345488}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}

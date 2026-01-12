@@ -3423,9 +3423,6 @@ MonoBehaviour:
   playerUI: []
   dialogueUI: {fileID: 1938634640}
   sound: {fileID: 862878161}
-  loadSceneAfterDialogue: 0
-  sceneName: 
-  sceneLoadDelay: 1.5
 --- !u!114 &862878158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9811,9 +9808,6 @@ MonoBehaviour:
   - {fileID: 1065165856}
   dialogueUI: {fileID: 1882363513}
   sound: {fileID: 1988369039}
-  loadSceneAfterDialogue: 0
-  sceneName: 
-  sceneLoadDelay: 1.5
 --- !u!114 &1988369036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10063,13 +10057,13 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: p10-qna-min
+  mTrackableName: page10_qna
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/AR-Final.xml
-  mAspectRatio: 0.535817
+  mDataSetPath: Vuforia/Latest_AR_Final.xml
+  mAspectRatio: 0.535645
   mImageTargetType: 0
   mWidth: 1
-  mHeight: 0.535817
+  mHeight: 0.535645
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0
@@ -10119,8 +10113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 1993229521}
   mHiddenRoot: {fileID: 0}
-  mTargetName: p10-qna-min
-  mDatasetName: Vuforia/AR-Final.xml
+  mTargetName: page10_qna
+  mDatasetName: Vuforia/Latest_AR_Final.xml
   mCastedBehaviour: {fileID: 1993229521}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}

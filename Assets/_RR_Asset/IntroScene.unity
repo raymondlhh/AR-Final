@@ -1919,9 +1919,6 @@ MonoBehaviour:
   - {fileID: 1354392057}
   dialogueUI: {fileID: 1898054834}
   sound: {fileID: 424299031}
-  loadSceneAfterDialogue: 0
-  sceneName: 
-  sceneLoadDelay: 1.5
 --- !u!114 &424299028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3300,6 +3297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01b88119c0b49049b119c48c72c6203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: 
 --- !u!4 &662262337
 Transform:
   m_ObjectHideFlags: 0
@@ -4253,9 +4251,6 @@ MonoBehaviour:
   - {fileID: 1186650211}
   dialogueUI: {fileID: 129499095}
   sound: {fileID: 845110768}
-  loadSceneAfterDialogue: 0
-  sceneName: 
-  sceneLoadDelay: 1.5
 --- !u!82 &845110768
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4542,9 +4537,6 @@ MonoBehaviour:
   - {fileID: 1705891730}
   dialogueUI: {fileID: 1354392057}
   sound: {fileID: 882051248}
-  loadSceneAfterDialogue: 0
-  sceneName: 
-  sceneLoadDelay: 1.5
 --- !u!114 &882051245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6107,9 +6099,6 @@ MonoBehaviour:
   playerUI: []
   dialogueUI: {fileID: 1705891730}
   sound: {fileID: 1178722037}
-  loadSceneAfterDialogue: 1
-  sceneName: SC_MiniGameScene
-  sceneLoadDelay: 1.5
 --- !u!114 &1178722034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6304,10 +6293,10 @@ RectTransform:
   - {fileID: 205129445}
   m_Father: {fileID: 1579363004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -428.8154}
-  m_SizeDelta: {x: 0, y: -857.6309}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 111.18454}
+  m_SizeDelta: {x: 1920, y: 222.36908}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1186650213
 MonoBehaviour:
@@ -7071,9 +7060,6 @@ MonoBehaviour:
   - {fileID: 1898054834}
   dialogueUI: {fileID: 1186650211}
   sound: {fileID: 1294526879}
-  loadSceneAfterDialogue: 0
-  sceneName: 
-  sceneLoadDelay: 1.5
 --- !u!114 &1294526877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7331,13 +7317,13 @@ MonoBehaviour:
   PreviewVisible: 1
   RuntimeOcclusion: 0
   RuntimeCollider: 0
-  mTrackableName: p2-intro-min
+  mTrackableName: page2_intro
   mInitializedInEditor: 1
-  mDataSetPath: Vuforia/AR-Final.xml
-  mAspectRatio: 0.535817
+  mDataSetPath: Vuforia/Latest_AR_Final.xml
+  mAspectRatio: 0.535645
   mImageTargetType: 0
   mWidth: 1
-  mHeight: 0.535817
+  mHeight: 0.535645
   mRuntimeTexture: {fileID: 0}
   mMotionHint: 1
   mTrackingOptimization: 0
@@ -7395,8 +7381,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mObserverBehaviour: {fileID: 1323438886}
   mHiddenRoot: {fileID: 0}
-  mTargetName: p2-intro-min
-  mDatasetName: Vuforia/AR-Final.xml
+  mTargetName: page2_intro
+  mDatasetName: Vuforia/Latest_AR_Final.xml
   mCastedBehaviour: {fileID: 1323438886}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
