@@ -9,93 +9,75 @@ public class TriggerMiniGame2 : MonoBehaviour
     [Header("Gameplay UI")]
     public GameObject joystickUI;
     public GameObject actionButtonUI;
-    public GameObject miniGameUI;
     public GameObject miniGameParent;
 
-    private bool isProcessing;
-    private bool playerInZone;
+    private bool isMiniGameActive;
 
     private void Start()
     {
         if (miniGameParent != null)
             miniGameParent.SetActive(false);
-
-        miniGameUI.SetActive(false);
-
-        // Listen to mix result
-        mixBucket.OnMixSuccess += OnMixSuccess;
-        pig3.OnRawCollected += TryOpenMiniGame;
-
     }
 
-    private void OnDestroy()
+    private void OnEnable()
     {
-        mixBucket.OnMixSuccess -= OnMixSuccess;
-        pig3.OnRawCollected -= TryOpenMiniGame;
+        mixBucket.OnMixSuccess += OnMiniGameCompleted;
+    }
+
+    private void OnDisable()
+    {
+        mixBucket.OnMixSuccess -= OnMiniGameCompleted;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
+        if (isMiniGameActive) return;
 
-        playerInZone = true;
+        if (pig3.IsAutoProcessing)
+        {
+            Debug.Log("Mini-game locked: auto processing");
+            return;
+        }
 
-        TryOpenMiniGame();
-    }
-
-
-    private void TryOpenMiniGame()
-    {
-        if (!playerInZone) return;
-        if (isProcessing) return;
-        if (pig3.IsAutoProcessing) return;
-        if (!pig3.HasWorkToProcess()) return;
+        if (!pig3.HasWorkToProcess())
+        {
+            Debug.Log("Mini-game blocked: no work to process");
+            return;
+        }
 
         OpenMiniGame();
     }
 
     private void OpenMiniGame()
     {
-        if (miniGameParent != null)
-            miniGameParent.SetActive(true);
+        isMiniGameActive = true;
 
-        miniGameUI.SetActive(true);
+        miniGameParent.SetActive(true);
         joystickUI.SetActive(false);
         actionButtonUI.SetActive(false);
 
-        Debug.Log("MiniGame OPENED");
+        Debug.Log("Pig3 Mini-game OPENED");
     }
 
-    private void OnMixSuccess()
+    private void OnMiniGameCompleted()
     {
-        if (isProcessing) return;
+        if (!isMiniGameActive) return;
 
-        Debug.Log("Mix SUCCESS Auto Processing");
-
-        isProcessing = true;
+        Debug.Log("Pig3 Mini-game COMPLETED  auto processing");
 
         pig3.ProcessAllRawFromMiniGame();
-
-        // Close mini game immediately after success
-        CloseMiniGameUI();
+        CloseMiniGame();
     }
 
-    private void CloseMiniGameUI()
+    private void CloseMiniGame()
     {
-        if (miniGameParent != null)
-            miniGameParent.SetActive(false);
-
-        miniGameUI.SetActive(false);
+        miniGameParent.SetActive(false);
         joystickUI.SetActive(true);
         actionButtonUI.SetActive(true);
-    }
 
-    public void OnProcessingFinished()
-    {
-        isProcessing = false;
+        isMiniGameActive = false;
 
-        // Mini-game will only reopen if:
-        // player is still in zone AND has new raw
-        TryOpenMiniGame();
+        Debug.Log("Pig3 Mini-game CLOSED");
     }
 }
