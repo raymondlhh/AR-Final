@@ -73,7 +73,7 @@ public class TriggerMiniGame1 : MonoBehaviour
 
         Debug.Log("Mini-game completed");
 
-        pig1.StartAutoProcessing();
+        pig1.OnProcessingMiniGameCompleted();
         CloseMiniGame();
     }
 

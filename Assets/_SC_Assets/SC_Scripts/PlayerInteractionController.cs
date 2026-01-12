@@ -30,6 +30,11 @@ public class PlayerInteractionController : MonoBehaviour
     [Header("Action Button UI")]
     public Image actionButtonImage;
 
+    [Header("Arrow UI")]
+    public Image arrow1;
+    public Image arrow2;
+    public Image arrow3;    
+
     [Header("Zone Icons")]
     public Sprite collectIcon;
     public Sprite processIcon;
@@ -97,6 +102,15 @@ public class PlayerInteractionController : MonoBehaviour
         new int[] {11, 15}  // Processed 7: Raw 12 (11) + Raw 16 (15)
     };
 
+    private enum TutorialStep
+    {
+        Collect,
+        Process,
+        Build,
+        Done
+    }
+
+    private TutorialStep tutorialStep = TutorialStep.Collect;
     void Start()
     {
         // Check for Rigidbody (now required for movement and trigger detection)
@@ -142,6 +156,9 @@ public class PlayerInteractionController : MonoBehaviour
                 // (PlayerController will handle looping for walking SFX separately)
                 audioSource.loop = false;
             }
+            arrow1.gameObject.SetActive(true);
+            arrow2.gameObject.SetActive(false);
+            arrow3.gameObject.SetActive(false);
         }
 
         // Initialize all materials as hidden
@@ -323,12 +340,16 @@ public class PlayerInteractionController : MonoBehaviour
 
             // Play valid collect SFX
             PlaySFX(collectValidSFX);
+            if (visibleRawMaterialCount >= rawMaterials.Length &&
+                tutorialStep == TutorialStep.Collect)
+            {
+                AdvanceTutorial();
+            }
         }
         else
         {
             // Invalid action - already at max
             Debug.Log("All raw materials already collected!");
-
             // Play invalid animation
             PlayInvalidActionAnimation();
 
@@ -368,6 +389,7 @@ public class PlayerInteractionController : MonoBehaviour
 
             // Play valid process SFX
             PlaySFX(processValidSFX);
+
         }
         else
         {
@@ -386,6 +408,7 @@ public class PlayerInteractionController : MonoBehaviour
 
             // Play shared invalid SFX
             PlaySFX(actionInvalidSFX);
+
         }
     }
 
@@ -438,6 +461,9 @@ public class PlayerInteractionController : MonoBehaviour
                 buildMaterialVisible[nextBuildMaterialIndex] = true;
                 visibleBuildMaterialCount++;
 
+                if (tutorialStep == TutorialStep.Build)
+                    AdvanceTutorial();
+
                 Debug.Log($"Built processed materials {processedIndex1 + 1} & {processedIndex2 + 1} into build material {nextBuildMaterialIndex + 1}. Processed: {visibleProcessedMaterialCount}, Build: {visibleBuildMaterialCount}");
 
                 // Play valid animation
@@ -450,6 +476,7 @@ public class PlayerInteractionController : MonoBehaviour
                 if (visibleBuildMaterialCount >= buildMaterials.Length)
                 {
                     CompleteHouseBuilding();
+
                 }
             }
             else
@@ -676,5 +703,37 @@ public class PlayerInteractionController : MonoBehaviour
                 break;
         }
     }
+    public void OnProcessingMiniGameCompleted()
+    {
+        if (tutorialStep == TutorialStep.Process)
+        {
+            AdvanceTutorial();
+        }
 
+        StartAutoProcessing();
+    }
+    private void AdvanceTutorial()
+    {
+        if (tutorialStep == TutorialStep.Done) return;
+
+        switch (tutorialStep)
+        {
+            case TutorialStep.Collect:
+                arrow1.gameObject.SetActive(false);
+                arrow2.gameObject.SetActive(true);
+                tutorialStep = TutorialStep.Process;
+                break;
+
+            case TutorialStep.Process:
+                arrow2.gameObject.SetActive(false);
+                arrow3.gameObject.SetActive(true);
+                tutorialStep = TutorialStep.Build;
+                break;
+
+            case TutorialStep.Build:
+                arrow3.gameObject.SetActive(false);
+                tutorialStep = TutorialStep.Done;
+                break;
+        }
+    }
 }
