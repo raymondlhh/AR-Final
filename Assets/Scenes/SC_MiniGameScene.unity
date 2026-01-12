@@ -60761,7 +60761,7 @@ MonoBehaviour:
   miniGame: {fileID: 1164543165}
   pig2: {fileID: 8841309127826169684}
   joystickUI: {fileID: 4130493845048918739}
-  actionButtonUI: {fileID: 0}
+  actionButtonUI: {fileID: 216009329990459631}
   miniGameUI: {fileID: 1990025306}
   woodLog: {fileID: 52387374}
 --- !u!1 &916426682
