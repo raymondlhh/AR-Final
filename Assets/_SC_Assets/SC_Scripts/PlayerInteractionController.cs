@@ -260,15 +260,16 @@ public class PlayerInteractionController : MonoBehaviour
     }
     public void StartAutoProcessing()
     {
-        if (IsAutoProcessing) return;
+        //if (IsAutoProcessing) return;
 
-        Debug.Log("[AutoProcessing] Started");
+        //Debug.Log("[AutoProcessing] Started");
 
-        IsAutoProcessing = true;
+        //IsAutoProcessing = true;
         StartCoroutine(AutoProcessRoutine());
     }
     private IEnumerator AutoProcessRoutine()
     {
+        IsAutoProcessing = true;
         // Temporarily force zone to Processing
         ZoneType previousZone = currentZone;
         currentZone = ZoneType.Processing;
@@ -295,7 +296,12 @@ public class PlayerInteractionController : MonoBehaviour
 
     public bool HasRawReadyForProcessing()
     {
-        return FindNextAvailableProcessingPair() != -1;
+        for (int i = 0; i < rawMaterialVisible.Length; i++)
+        {
+            if (rawMaterialVisible[i])
+                return true;
+        }
+        return false;
     }
 
     private void HandleCollectingZone()
