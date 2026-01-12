@@ -2504,6 +2504,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4355081392711511258, guid: 7b274e4ba9735204391ded88f47b7b7b,
         type: 3}
+      propertyPath: scene
+      value: IntroScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355081392711511258, guid: 7b274e4ba9735204391ded88f47b7b7b,
+        type: 3}
       propertyPath: color.b
       value: 0
       objectReference: {fileID: 0}

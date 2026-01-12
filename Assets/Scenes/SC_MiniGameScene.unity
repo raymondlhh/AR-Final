@@ -186255,7 +186255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: SC_MiniGameScene
 --- !u!222 &1913661041078149539
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -186359,7 +186359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: Wolf Come Scene 2
 --- !u!224 &1947557231816780900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -201375,7 +201375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: SC_MiniGameScene
 --- !u!4 &3994566354165011277
 Transform:
   m_ObjectHideFlags: 0
@@ -212376,7 +212376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: NarrativeScene
+  sceneName: MainMenuScene
 --- !u!114 &4397677199812636390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212389,7 +212389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: IntroScene
 --- !u!1 &4399513447852505542
 GameObject:
   m_ObjectHideFlags: 0
@@ -212620,7 +212620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: EndingScene
 --- !u!114 &4476306547512112961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240621,7 +240621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: EndingQuestion
 --- !u!1 &7797462130045207854
 GameObject:
   m_ObjectHideFlags: 0
@@ -241540,7 +241540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: Wolf Come Scene 1
 --- !u!222 &8196524349300527663
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -241561,7 +241561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: Wolf Come Scene
 --- !u!114 &8201948940246225807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247831,7 +247831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be874a3a5483a14897408837fa56a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: SC_MiniGameScene
 --- !u!222 &8725795692359131443
 CanvasRenderer:
   m_ObjectHideFlags: 0
