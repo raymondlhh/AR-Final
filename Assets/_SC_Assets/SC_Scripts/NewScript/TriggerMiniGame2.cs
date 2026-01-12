@@ -24,11 +24,14 @@ public class TriggerMiniGame2 : MonoBehaviour
 
         // Listen to mix result
         mixBucket.OnMixSuccess += OnMixSuccess;
+        pig3.OnRawCollected += TryOpenMiniGame;
+
     }
 
     private void OnDestroy()
     {
         mixBucket.OnMixSuccess -= OnMixSuccess;
+        pig3.OnRawCollected -= TryOpenMiniGame;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,7 +49,7 @@ public class TriggerMiniGame2 : MonoBehaviour
         if (!playerInZone) return;
         if (isProcessing) return;
         if (pig3.IsAutoProcessing) return;
-        if (!pig3.HasRawReadyForProcessing()) return;
+        if (!pig3.HasWorkToProcess()) return;
 
         OpenMiniGame();
     }

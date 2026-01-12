@@ -23,6 +23,7 @@ public class Pig3InteractionController : MonoBehaviour
     private ZoneType currentZone = ZoneType.None;
     private ZoneType previousZone = ZoneType.None; // Track previous zone for debugging
     public bool IsAutoProcessing { get; private set; }
+    public System.Action OnRawCollected;
 
     // Zone detection - track colliders we're currently inside
     private List<Collider> currentZoneColliders = new List<Collider>(); // Track all zones we're currently in
@@ -329,9 +330,23 @@ public class Pig3InteractionController : MonoBehaviour
         Debug.Log("Pig 2: Mini-game finished. No raw material left to process.");
     }
 
-    public bool HasRawReadyForProcessing()
+    public bool HasWorkToProcess()
     {
-        return visibleRawMaterialCount > 0;
+        // Can process if:
+        // - has raw
+        // OR
+        // - has incomplete processed material
+        if (visibleRawMaterialCount > 0)
+            return true;
+
+        for (int i = 0; i < processedMaterialScaleState.Length; i++)
+        {
+            if (processedMaterialScaleState[i] > 0 &&
+                processedMaterialScaleState[i] < 10)
+                return true;
+        }
+
+        return false;
     }
 
     private void HandleCollectingZone()
@@ -353,6 +368,8 @@ public class Pig3InteractionController : MonoBehaviour
             
             // Play valid collect SFX
             PlaySFX(collectValidSFX);
+            NotifyRawCollected();
+
         }
         else
         {
@@ -366,7 +383,10 @@ public class Pig3InteractionController : MonoBehaviour
             PlaySFX(actionInvalidSFX);
         }
     }
-
+    private void NotifyRawCollected()
+    {
+        OnRawCollected?.Invoke();
+    }
     private void HandleProcessingZone()
     {
         // Process: Sequential processing - consume 1 raw material per press, scale up current processed material by 0.1
