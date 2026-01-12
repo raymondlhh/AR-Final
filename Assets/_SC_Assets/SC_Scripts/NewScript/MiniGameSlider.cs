@@ -29,6 +29,14 @@ public class MiniGameSlider : MonoBehaviour
     [Header("Wood UI (3 needed)")]
     public GameObject[] woodUI;
 
+    [Header("SFX")]
+    public AudioSource audioSource;
+
+    public AudioClip perfectSFX;        // hit perfect zone
+    public AudioClip missSFX;           // miss
+    public AudioClip woodGainSFX;        // wood UI appears
+    public AudioClip completeSFX;        // all perfect done
+
     private bool moveRight = true;
     private bool isStopped = false;
     private int perfectCount = 0;
@@ -38,6 +46,16 @@ public class MiniGameSlider : MonoBehaviour
 
     void Start()
     {
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+                audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
+
         foreach (var wood in woodUI)
             wood.SetActive(false);
 
@@ -92,15 +110,18 @@ public class MiniGameSlider : MonoBehaviour
         {
             //Show Perfect UI
             Debug.Log("PERFECT");
+            PlaySFX(perfectSFX);
 
             if (perfectCount < woodUI.Length)
             {
                 woodUI[perfectCount].SetActive(true);
+                PlaySFX(woodGainSFX);
                 perfectCount++;
             }
 
             if (perfectCount >= woodUI.Length)
             {
+                PlaySFX(completeSFX);
                 OnMiniGamePerfectComplete?.Invoke();
                 gameObject.SetActive(false);
                 Debug.Log("ALL PERFECT - GAME COMPLETE");
@@ -113,6 +134,7 @@ public class MiniGameSlider : MonoBehaviour
         {
             //Show Miss UI
             Debug.Log("MISS");
+            PlaySFX(missSFX);
             StartCoroutine(Retry());
         }
     }
@@ -184,5 +206,10 @@ public class MiniGameSlider : MonoBehaviour
 
         // New perfect zone
         RandomizePerfectZone();
+    }
+    void PlaySFX(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+            audioSource.PlayOneShot(clip);
     }
 }

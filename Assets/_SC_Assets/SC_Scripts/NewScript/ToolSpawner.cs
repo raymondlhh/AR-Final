@@ -20,9 +20,33 @@ public class ToolSpawner : MonoBehaviour
     public GameObject hayPrefab;          // hay to spawn
     public Transform haySpawnPoint;        // center of table
 
+    [Header("SFX")]
+    public AudioSource audioSource;
+
+    public AudioClip takeToolSFX;
+    public AudioClip placeMilletSFX;
+    public AudioClip dropFailSFX;
+    public AudioClip ropeLockedSFX;
+    public AudioClip hayCraftedSFX;
+
     private Rigidbody currentRb;
     private bool isDragging = false;
     private bool isOverTable = false;
+
+    void Start()
+    {
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
+        }
+
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
+    }
 
     void Update()
     {
@@ -41,12 +65,14 @@ public class ToolSpawner : MonoBehaviour
     // ================= SPAWN =================
     void TrySpawnAndStartDrag()
     {
+
         if (currentRb != null) return;
 
         // Rope locked until all millet placed
         if (isRopeSpawner && !AllSlotsFilled())
         {
             Debug.Log("Rope locked: place 3 millet first");
+            PlaySFX(ropeLockedSFX);
             return;
         }
 
@@ -72,6 +98,8 @@ public class ToolSpawner : MonoBehaviour
         currentRb.isKinematic = true;
 
         isDragging = true;
+        PlaySFX(takeToolSFX);
+
         Debug.Log("Spawn + Drag started");
     }
 
@@ -154,6 +182,7 @@ public class ToolSpawner : MonoBehaviour
     {
         currentRb.isKinematic = false;
         currentRb.useGravity = true;
+        PlaySFX(dropFailSFX);
         Destroy(obj, 1f);
     }
 
@@ -169,6 +198,8 @@ public class ToolSpawner : MonoBehaviour
 
     void SnapToSlot(Transform slot)
     {
+        PlaySFX(placeMilletSFX);
+
         currentRb.transform.position = slot.position;
         currentRb.transform.rotation = slot.rotation;
         currentRb.transform.SetParent(slot);
@@ -190,6 +221,8 @@ public class ToolSpawner : MonoBehaviour
     // ================= CRAFT =================
     public void CraftHay()
     {
+        PlaySFX(hayCraftedSFX);
+
         Debug.Log("HAY CREATED!");
 
         // remove all millet
@@ -213,5 +246,12 @@ public class ToolSpawner : MonoBehaviour
         }
 
         OnHayCrafted?.Invoke();
+    }
+    void PlaySFX(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
     }
 }
