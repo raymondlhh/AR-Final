@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -35,6 +36,8 @@ public class PlayerInteractionController : MonoBehaviour
     public Sprite buildIcon;
 
     public Sprite defaultIcon;
+
+    public LoadScene sceneLoader;
 
     public bool IsAutoProcessing { get; private set; } = false;
 
@@ -498,8 +501,15 @@ public class PlayerInteractionController : MonoBehaviour
 
         // Play house completion SFX
         PlaySFX(houseCompleteSFX);
+
+        StartCoroutine(LoadNextScene());
     }
 
+    private IEnumerator LoadNextScene()
+    {
+        yield return new WaitForSeconds(2f); // delay for SFX
+        SceneManager.LoadScene("Wolf Come Scene");
+    }
     private void HideAllMaterials()
     {
         // Hide all raw materials and reset visibility tracking

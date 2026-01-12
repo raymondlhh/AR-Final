@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -600,7 +601,16 @@ public class Pig3InteractionController : MonoBehaviour
 
         // Play house completion SFX
         PlaySFX(houseCompleteSFX);
+
+        StartCoroutine(LoadScene());
     }
+
+    private IEnumerator LoadScene()
+    {
+        yield return new WaitForSeconds(2f); // wait for SFX / animation
+        SceneManager.LoadScene("Wolf Come Scene 3");
+    }
+
 
     private void HideAllMaterials()
     {
