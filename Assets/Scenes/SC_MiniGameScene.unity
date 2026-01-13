@@ -143929,12 +143929,12 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: c46988ff1098a7e478ce80f7a9b6a1ac, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: -0.3
+  m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 200
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -158577,12 +158577,12 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: b7d96fec2b87ba449b64140c98ef5506, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: -0.3
+  m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 200
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -167175,17 +167175,16 @@ AudioSource:
   m_GameObject: {fileID: 1954114922}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -7200073449591079900, guid: 4685000daaf8f14478699e589b15b0ac,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b7d96fec2b87ba449b64140c98ef5506, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: -0.3
+  m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 200
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -176117,7 +176116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2114042752
 Transform:
   m_ObjectHideFlags: 0
@@ -253638,8 +253637,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.42534664, y: 0.85674894, z: 0.34247634}
-  m_Center: {x: -0.057154108, y: 0.3037958, z: -0.00076134154}
+  m_Size: {x: 0.4253466, y: 0.85674894, z: 0.82095}
+  m_Center: {x: -0.0571541, y: 0.3037958, z: -0.23999827}
 --- !u!114 &8721588379364299849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254101,8 +254100,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.26236644, y: 0.7055901, z: 0.27536067}
-  m_Center: {x: 0.052928578, y: 0.19482681, z: -0.08913932}
+  m_Size: {x: 0.2623665, y: 0.9393497, z: 0.588937}
+  m_Center: {x: 0.05292866, y: 0.3117076, z: -0.24592791}
 --- !u!82 &8771597995236132870
 AudioSource:
   m_ObjectHideFlags: 0
