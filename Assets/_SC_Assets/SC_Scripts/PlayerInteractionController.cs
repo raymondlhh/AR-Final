@@ -736,4 +736,13 @@ public class PlayerInteractionController : MonoBehaviour
                 break;
         }
     }
+    public void OnImageTargetFound()
+    {
+        enabled = true;   // Script runs ONLY when target is visible
+    }
+
+    public void OnImageTargetLost()
+    {
+        enabled = false;  // Script stops completely
+    }
 }
