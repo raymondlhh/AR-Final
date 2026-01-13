@@ -1,15 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 using UnityEngine.EventSystems;
+using System;
 
-public class ToolSpawner : MonoBehaviour,
-    IPointerDownHandler,
-    IDragHandler,
-    IPointerUpHandler
+public class ToolSpawner : MonoBehaviour
 {
     public static event Action OnHayCrafted;
-
     [Header("Tool Type")]
     public bool isRopeSpawner; // tick this ONLY on rope spawner
 
@@ -23,6 +19,7 @@ public class ToolSpawner : MonoBehaviour,
     [Header("Crafting")]
     public GameObject hayPrefab;          // hay to spawn
     public Transform haySpawnPoint;        // center of table
+
 
     [Header("SFX")]
     public AudioSource audioSource;
@@ -52,70 +49,88 @@ public class ToolSpawner : MonoBehaviour,
         audioSource.loop = false;
     }
 
-    //void Update()
-    //{
-    //    //if (Mouse.current == null) return;
-
-    //    //if (Mouse.current.leftButton.wasPressedThisFrame)
-    //    //    TrySpawnAndStartDrag(Mouse.current.position.ReadValue());
-
-    //    //if (isDragging)
-    //    //    DragObject(Mouse.current.position.ReadValue());
-
-    //    //if (Mouse.current.leftButton.wasReleasedThisFrame)
-    //    //    ReleaseObject();
-
-    //if (Touchscreen.current == null) return;
-
-    //var touch = Touchscreen.current.primaryTouch;
-
-    //if (touch.press.wasPressedThisFrame)
-    //    TrySpawnAndStartDrag(touch.position.ReadValue());
-
-    //if (isDragging && touch.press.isPressed)
-    //    DragObject(touch.position.ReadValue());
-
-    //if (touch.press.wasReleasedThisFrame)
-    //    ReleaseObject();
-
-
-    //}
-
-    public void OnPointerDown(PointerEventData eventData)
+    void Update()
     {
-        TrySpawnAndStartDrag(eventData.position);
+        if (PressStarted())
+            TrySpawnAndStartDrag();
+
+        if (isDragging)
+            DragObject();
+
+        if (PressReleased())
+            ReleaseObject();
     }
 
-    public void OnDrag(PointerEventData eventData)
+    bool PressStarted()
     {
-        if (!isDragging) return;
-        DragObject(eventData.position);
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+            return true;
+
+        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+            return true;
+
+        return false;
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    bool PressReleased()
     {
-        ReleaseObject();
+        if (Mouse.current != null && Mouse.current.leftButton.wasReleasedThisFrame)
+            return true;
+
+        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasReleasedThisFrame)
+            return true;
+
+        return false;
+    }
+
+    Vector2 GetPointerPosition()
+    {
+        if (Mouse.current != null)
+            return Mouse.current.position.ReadValue();
+
+        if (Touchscreen.current != null)
+            return Touchscreen.current.primaryTouch.position.ReadValue();
+
+        return Vector2.zero;
     }
 
     // ================= SPAWN =================
-    void TrySpawnAndStartDrag(Vector2 screenPos)
+    void TrySpawnAndStartDrag()
     {
+        Debug.Log("Detected");
+
         if (currentRb != null) return;
 
+        // Rope locked until all millet placed
         if (isRopeSpawner && !AllSlotsFilled())
         {
+            Debug.Log("Rope locked: place 3 millet first");
             PlaySFX(ropeLockedSFX);
             return;
         }
 
-        Ray ray = cam.ScreenPointToRay(screenPos);
+        Vector2 mousePos = GetPointerPosition()
+;
+        Ray ray = cam.ScreenPointToRay(mousePos);
 
-        if (!Physics.Raycast(ray, out RaycastHit hitTool, 100f))
+        // Must click on tool icon
+        RaycastHit hitTool;
+        if (!Physics.Raycast(ray, out hitTool, 100f, toolLayer))
+        {
+            Debug.Log("Tool raycast MISS");
             return;
+        }
+
+        Debug.Log("Tool raycast HIT: " + hitTool.collider.name);
 
         if (hitTool.collider.gameObject != gameObject)
+        {
+            Debug.Log("Hit wrong object: " + hitTool.collider.name);
             return;
+        }
 
+
+        // Must have valid drag surface
         if (!Physics.Raycast(ray, out RaycastHit hitSurface, 100f, dragSurface))
             return;
 
@@ -127,12 +142,16 @@ public class ToolSpawner : MonoBehaviour,
 
         isDragging = true;
         PlaySFX(takeToolSFX);
+
+        Debug.Log("Spawn + Drag started");
     }
 
     // ================= DRAG =================
-    void DragObject(Vector2 screenPos)
+    void DragObject()
     {
-        Ray ray = cam.ScreenPointToRay(screenPos);
+        Vector2 mousePos = GetPointerPosition()
+;
+        Ray ray = cam.ScreenPointToRay(mousePos);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, dragSurface))
         {
@@ -152,14 +171,6 @@ public class ToolSpawner : MonoBehaviour,
 
         GameObject obj = currentRb.gameObject;
 
-        // Dropped outside table
-        if (!isOverTable)
-        {
-            DropAndDestroy(obj);
-            ResetDrag();
-            return;
-        }
-
         // ---------- MILLET ----------
         if (obj.CompareTag("Millet"))
         {
@@ -167,32 +178,43 @@ public class ToolSpawner : MonoBehaviour,
 
             if (freeSlot != null)
             {
+                // ✅ SNAP AND KEEP
                 SnapToSlot(freeSlot);
+                Debug.Log("Millet snapped and kept");
 
-                if (AllSlotsFilled())
-                    Debug.Log("All millet placed � rope unlocked");
+                ResetDrag();
+                return;
             }
             else
             {
-                Destroy(obj, 1f); // slots full
+                // ❌ NO SLOT → DESTROY
+                Debug.Log("No free slot → destroy millet");
+                DropAndDestroy(obj);
+
+                ResetDrag();
+                return;
             }
         }
+
         // ---------- ROPE ----------
-        else if (obj.CompareTag("Rope"))
+        if (obj.CompareTag("Rope"))
         {
             if (AllSlotsFilled())
             {
-                CraftHay();
-                Destroy(obj);
+                Debug.Log("Rope used → crafting hay");
+
+                CraftHay();      // destroys millet inside
+                Destroy(obj);    // destroy rope
             }
             else
             {
-                Debug.Log("Rope useless without 3 millet");
+                Debug.Log("Rope without 3 millet → destroy rope");
                 Destroy(obj, 1f);
             }
-        }
 
-        ResetDrag();
+            ResetDrag();
+            return;
+        }
     }
 
     // ================= HELPERS =================
@@ -223,6 +245,8 @@ public class ToolSpawner : MonoBehaviour,
 
     void SnapToSlot(Transform slot)
     {
+        Debug.Log("Snapped");
+
         PlaySFX(placeMilletSFX);
 
         currentRb.transform.position = slot.position;
@@ -231,6 +255,7 @@ public class ToolSpawner : MonoBehaviour,
 
         currentRb.isKinematic = true;
         currentRb.useGravity = false;
+
     }
 
     bool AllSlotsFilled()
@@ -279,4 +304,5 @@ public class ToolSpawner : MonoBehaviour,
             audioSource.PlayOneShot(clip);
         }
     }
+
 }
