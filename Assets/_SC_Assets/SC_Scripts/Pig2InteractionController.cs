@@ -827,7 +827,7 @@ public class Pig2InteractionController : MonoBehaviour
 private IEnumerator LoadScene()
 {
     yield return new WaitForSeconds(2f); // wait for SFX / animation
-    SceneManager.LoadScene("Wolf Come Scene 2");
+    SceneManager.LoadScene("Wolf Come Scene 1");
 }
 private void HideAllMaterials()
     {
