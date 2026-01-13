@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.EventSystems;
 
-public class ToolSpawner : MonoBehaviour
+public class ToolSpawner : MonoBehaviour,
+    IPointerDownHandler,
+    IDragHandler,
+    IPointerUpHandler
 {
     public static event Action OnHayCrafted;
 
@@ -48,46 +52,70 @@ public class ToolSpawner : MonoBehaviour
         audioSource.loop = false;
     }
 
-    void Update()
+    //void Update()
+    //{
+    //    //if (Mouse.current == null) return;
+
+    //    //if (Mouse.current.leftButton.wasPressedThisFrame)
+    //    //    TrySpawnAndStartDrag(Mouse.current.position.ReadValue());
+
+    //    //if (isDragging)
+    //    //    DragObject(Mouse.current.position.ReadValue());
+
+    //    //if (Mouse.current.leftButton.wasReleasedThisFrame)
+    //    //    ReleaseObject();
+
+    //if (Touchscreen.current == null) return;
+
+    //var touch = Touchscreen.current.primaryTouch;
+
+    //if (touch.press.wasPressedThisFrame)
+    //    TrySpawnAndStartDrag(touch.position.ReadValue());
+
+    //if (isDragging && touch.press.isPressed)
+    //    DragObject(touch.position.ReadValue());
+
+    //if (touch.press.wasReleasedThisFrame)
+    //    ReleaseObject();
+
+
+    //}
+
+    public void OnPointerDown(PointerEventData eventData)
     {
-        if (Mouse.current == null) return;
+        TrySpawnAndStartDrag(eventData.position);
+    }
 
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-            TrySpawnAndStartDrag();
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (!isDragging) return;
+        DragObject(eventData.position);
+    }
 
-        if (isDragging)
-            DragObject();
-
-        if (Mouse.current.leftButton.wasReleasedThisFrame)
-            ReleaseObject();
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        ReleaseObject();
     }
 
     // ================= SPAWN =================
-    void TrySpawnAndStartDrag()
+    void TrySpawnAndStartDrag(Vector2 screenPos)
     {
-
         if (currentRb != null) return;
 
-        // Rope locked until all millet placed
         if (isRopeSpawner && !AllSlotsFilled())
         {
-            Debug.Log("Rope locked: place 3 millet first");
             PlaySFX(ropeLockedSFX);
             return;
         }
 
-        Vector2 mousePos = Mouse.current.position.ReadValue();
-        Ray ray = cam.ScreenPointToRay(mousePos);
+        Ray ray = cam.ScreenPointToRay(screenPos);
 
-        // Must click on tool icon
-        RaycastHit hitTool;
-        if (!Physics.Raycast(ray, out hitTool, 100f))
+        if (!Physics.Raycast(ray, out RaycastHit hitTool, 100f))
             return;
 
         if (hitTool.collider.gameObject != gameObject)
             return;
 
-        // Must have valid drag surface
         if (!Physics.Raycast(ray, out RaycastHit hitSurface, 100f, dragSurface))
             return;
 
@@ -99,15 +127,12 @@ public class ToolSpawner : MonoBehaviour
 
         isDragging = true;
         PlaySFX(takeToolSFX);
-
-        Debug.Log("Spawn + Drag started");
     }
 
     // ================= DRAG =================
-    void DragObject()
+    void DragObject(Vector2 screenPos)
     {
-        Vector2 mousePos = Mouse.current.position.ReadValue();
-        Ray ray = cam.ScreenPointToRay(mousePos);
+        Ray ray = cam.ScreenPointToRay(screenPos);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, dragSurface))
         {
